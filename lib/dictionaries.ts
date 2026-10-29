@@ -80,6 +80,21 @@ const en = {
     close: 'close',
   },
   skip: 'Skip to content',
+  contribute: {
+    fab: 'Suggest a motion',
+    title: 'Suggest a motion',
+    lede: 'Seen an effect you would like to find here? Describe it, and it opens as a prefilled GitHub issue for you to post.',
+    name: 'Effect name',
+    namePh: 'e.g. Liquid fill button',
+    details: 'What does it do?',
+    detailsPh: 'What moves, when it plays, and where you saw it.',
+    link: 'Reference link',
+    optional: 'optional',
+    note: 'Needs a GitHub account. Suggestions are public.',
+    cancel: 'Cancel',
+    submit: 'Continue on GitHub',
+    close: 'Close',
+  },
   footer: '© 2026 Motion Library by twlworks · Demos and prompts are original work.',
 }
 
@@ -163,6 +178,21 @@ const zhCN: Dictionary = {
     close: '关闭',
   },
   skip: '跳到主要内容',
+  contribute: {
+    fab: '投稿动效创意',
+    title: '投稿动效创意',
+    lede: '看到想收录的效果？简单描述一下，会打开一个预先填好的 GitHub Issue，确认后即可提交。',
+    name: '效果名称',
+    namePh: '例如：液体填充按钮',
+    details: '它是怎么动的？',
+    detailsPh: '哪些元素在动、什么时候播放、在哪里看到的。',
+    link: '参考链接',
+    optional: '选填',
+    note: '需要 GitHub 账号，投稿内容会公开。',
+    cancel: '取消',
+    submit: '前往 GitHub 提交',
+    close: '关闭',
+  },
   footer: '© 2026 Motion Library · twlworks 出品 · 演示与提示词均为原创内容。',
 }
 

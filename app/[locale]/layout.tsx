@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import { IBM_Plex_Mono, IBM_Plex_Sans, Outfit } from 'next/font/google'
 import { notFound } from 'next/navigation'
+import ContributeFab from '@/components/ContributeFab'
 import Nav from '@/components/Nav'
 import { themeScript } from '@/components/ThemeToggle'
 import { getDictionary } from '@/lib/dictionaries'
@@ -61,6 +62,7 @@ export default async function RootLayout({ children, params }: LayoutProps<'/[lo
             <a href="/sitemap.xml">sitemap</a>
           </p>
         </footer>
+        <ContributeFab labels={dict.contribute} locale={locale} />
       </body>
     </html>
   )

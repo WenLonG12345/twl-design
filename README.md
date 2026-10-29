@@ -12,6 +12,29 @@ bun run build
 
 No environment variables are required on Vercel: canonical URLs, hreflang, the sitemap and llms.txt use the project's production domain automatically. Set `NEXT_PUBLIC_SITE_URL` (e.g. `https://motion.example.com`) only to override it, such as for a custom domain.
 
+## Contributing
+
+Ideas and new motions are both welcome.
+
+### Suggest an idea
+
+- On the site, press **Suggest a motion** (the round button, bottom right). It opens a prefilled issue in this repo for you to post.
+- Or [open an issue](https://github.com/WenLonG12345/twl-motions/issues/new) yourself. Title it `Idea: <effect name>`, then describe what moves, when it plays (on hover, on scroll, in a loop…) and where you saw it. A link or a screen recording helps a lot.
+- Search the existing issues first, in case someone has already suggested it.
+
+### Build a motion
+
+1. Fork the repo, then run `bun install` and `bun dev`.
+2. Follow [Add a motion](#add-a-motion) below.
+3. Before you open a pull request, check that:
+   - The code, text and prompt are your own work. Don't copy them from another library or site.
+   - `meta.ts` has both `en` and `zh-CN` copy, and the prompt describes what your demo actually does.
+   - It respects `prefers-reduced-motion`, and loops pause when they scroll off screen.
+   - It works with a keyboard, and every visible word comes from `labels`.
+   - It uses the `--stage-*` colour tokens and fits the 240px-tall card stage.
+   - `bun lint` and `bun run build` both pass.
+4. Open the pull request. If it builds an idea from an issue, write `Closes #<issue number>` in the description.
+
 ## Add a motion
 
 1. Create `motions/<slug>/meta.ts` (tech, component, trigger, and `i18n.en` + `i18n['zh-CN']` with title, summary, prompt, labels). TypeScript fails the build if a language is missing.

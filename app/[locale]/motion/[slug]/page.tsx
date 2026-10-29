@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation'
 import CopyButton from '@/components/CopyButton'
 import MotionDemo from '@/components/MotionDemo'
 import { getDictionary } from '@/lib/dictionaries'
+import { highlightSource } from '@/lib/highlight'
 import { hasLocale, languageAlternates, locales, otherLocale, SITE_URL } from '@/lib/i18n'
 import { techLabel } from '@/lib/motions'
 import { getMotion, motions } from '@/motions'
@@ -99,9 +100,8 @@ export default async function MotionPage({ params }: PageProps<'/[locale]/motion
               <span>{f.name}</span>
               <CopyButton text={f.code} labels={{ ...dict.copy, idle: dict.copy.code }} variant="dark" />
             </figcaption>
-            <pre>
-              <code>{f.code}</code>
-            </pre>
+            {/* our own source files, escaped by the highlighter */}
+            <div dangerouslySetInnerHTML={{ __html: highlightSource(f.name, f.code) }} />
           </figure>
         ))}
       </section>
