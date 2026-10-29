@@ -21,7 +21,9 @@
 
 .text {
   max-width: 300px;
-  margin: 140px auto 200px;
+  margin: 220px auto 200px;
   font: 600 var(--text-xl) / 1.35 var(--font-display);
   color: var(--stage-ink);
 }
+
+.word { display: inline; }

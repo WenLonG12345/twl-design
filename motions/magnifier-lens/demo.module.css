@@ -1,0 +1,91 @@
+.area {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  cursor: none;
+}
+
+.map,
+.copy {
+  position: absolute;
+  inset: 0;
+}
+
+.copy {
+  width: 100%;
+  height: 100%;
+  transform-origin: 0 0;
+}
+
+.map {
+  background:
+    repeating-linear-gradient(90deg, transparent 0 46px, var(--stage-rule) 46px 48px),
+    repeating-linear-gradient(0deg, transparent 0 38px, var(--stage-rule) 38px 40px),
+    var(--stage-surface);
+}
+
+.river {
+  position: absolute;
+  inset: 40% -10% auto;
+  height: 22px;
+  background: oklch(48% 0.07 230);
+  transform: rotate(-12deg);
+}
+
+.street {
+  position: absolute;
+  padding: 1px 3px;
+  border-radius: 2px;
+  background: var(--stage-bg);
+  color: var(--stage-muted);
+  font: 500 7px / 1 var(--font-mono);
+  white-space: nowrap;
+}
+
+.pin {
+  position: absolute;
+  left: 61%;
+  top: 34%;
+  width: 8px;
+  height: 8px;
+  border: 2px solid var(--stage-ink);
+  border-radius: 50%;
+  background: var(--stage-accent);
+}
+
+.hint {
+  position: absolute;
+  left: 50%;
+  bottom: 10px;
+  translate: -50% 0;
+  padding: 4px 8px;
+  border-radius: 6px;
+  background: var(--stage-bg);
+  font: 500 var(--text-xs) / 1 var(--font-mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--stage-muted);
+  transition: opacity 150ms;
+}
+
+.lens {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 120px;
+  height: 120px;
+  overflow: hidden;
+  border-radius: 50%;
+  box-shadow: 0 0 0 2px var(--stage-ink), 0 10px 30px oklch(0% 0 0 / 0.5);
+  opacity: 0;
+  scale: 0.8;
+  pointer-events: none;
+  transition: opacity 150ms, scale 150ms var(--ease-out);
+}
+
+.area[data-on] .lens { opacity: 1; scale: 1; }
+.area[data-on] .hint { opacity: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  .lens { transition: none; }
+}

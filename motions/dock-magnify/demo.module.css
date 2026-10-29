@@ -1,0 +1,59 @@
+.dock {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  height: 96px;
+  padding: 8px 10px;
+  border: 1px solid var(--stage-rule);
+  border-radius: 18px;
+  background: var(--stage-surface);
+  align-self: end;
+  margin-bottom: 24px;
+}
+
+.icon {
+  --s: 1;
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: calc(40px * var(--s));
+  height: calc(40px * var(--s));
+  padding: 0;
+  border: 0;
+  border-radius: calc(10px * var(--s));
+  background: oklch(62% 0.11 calc(40 + var(--h)));
+  color: oklch(20% 0.02 60);
+  font: 700 calc(var(--text-base) * var(--s)) / 1 var(--font-display);
+  cursor: pointer;
+  transition: width 120ms var(--ease-out), height 120ms var(--ease-out), border-radius 120ms var(--ease-out), font-size 120ms var(--ease-out);
+}
+
+.icon:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 3px; }
+
+.tip {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  translate: -50% 0;
+  padding: 4px 7px;
+  border-radius: 6px;
+  background: var(--stage-ink);
+  color: var(--stage-bg);
+  font: 500 var(--text-xs) / 1 var(--font-body);
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 120ms;
+}
+
+.icon:hover .tip,
+.icon:focus-visible .tip { opacity: 1; }
+
+@media (max-width: 380px) {
+  .dock { gap: 5px; }
+  .icon { width: calc(34px * var(--s)); height: calc(34px * var(--s)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .icon { transition: none; }
+}

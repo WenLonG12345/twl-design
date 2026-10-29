@@ -1,0 +1,60 @@
+.wrap {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  align-content: center;
+  gap: 10px;
+}
+
+.track {
+  --card: 120px;
+  display: flex;
+  gap: 12px;
+  padding: 8px calc(50% - var(--card) / 2);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+}
+
+.track::-webkit-scrollbar { display: none; }
+.track:focus-visible { outline: 2px solid var(--color-focus); outline-offset: -2px; }
+
+.card {
+  flex: none;
+  display: grid;
+  align-content: space-between;
+  width: var(--card);
+  height: 150px;
+  padding: 12px;
+  border-radius: 14px;
+  background: linear-gradient(160deg, oklch(64% 0.1 var(--h)), oklch(36% 0.06 var(--h)));
+  scroll-snap-align: center;
+}
+
+.n { font: 500 var(--text-xs) / 1 var(--font-mono); color: oklch(100% 0 0 / 0.7); }
+.name { font: 700 var(--text-xl) / 1 var(--font-display); color: oklch(98% 0.01 80); }
+
+.hint {
+  font: 500 var(--text-xs) / 1 var(--font-mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--stage-muted);
+}
+
+@supports (animation-timeline: view()) {
+  .card {
+    animation: focus linear both;
+    animation-timeline: view(inline);
+  }
+}
+
+@keyframes focus {
+  0%, 100% { transform: scale(0.8); opacity: 0.45; }
+  50% { transform: scale(1); opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card { animation: none; }
+}

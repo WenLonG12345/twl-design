@@ -1,0 +1,40 @@
+.group {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  width: min(330px, 100%);
+}
+
+.card {
+  display: grid;
+  gap: 4px;
+  padding: 14px 12px;
+  border: 1px solid var(--stage-rule);
+  border-radius: 12px;
+  background: var(--stage-surface);
+  color: var(--stage-ink);
+  text-decoration: none;
+  transition: opacity 260ms var(--ease-out), transform 260ms var(--ease-out), filter 260ms var(--ease-out), border-color 260ms;
+}
+
+.card:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
+
+.group:has(.card:hover) .card:not(:hover),
+.group:has(.card:focus-visible) .card:not(:focus-visible) {
+  opacity: 0.4;
+  transform: scale(0.97);
+  filter: blur(1px);
+}
+
+.card:hover,
+.card:focus-visible { transform: translateY(-4px); border-color: var(--stage-accent); }
+
+.name { font: 500 var(--text-xs) / 1.2 var(--font-body); color: var(--stage-muted); }
+.price { font: 700 var(--text-2xl) / 1 var(--font-display); }
+.per { font: 500 0.625rem / 1 var(--font-mono); color: var(--stage-muted); text-transform: uppercase; }
+
+@media (prefers-reduced-motion: reduce) {
+  .card, .card:hover, .card:focus-visible,
+  .group:has(.card:hover) .card:not(:hover),
+  .group:has(.card:focus-visible) .card:not(:focus-visible) { transform: none; filter: none; }
+}

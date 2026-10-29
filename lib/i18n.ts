@@ -7,8 +7,11 @@ export const hasLocale = (value: string): value is Locale =>
 
 export const otherLocale = (locale: Locale): Locale => (locale === 'en' ? 'zh-CN' : 'en')
 
-// Set NEXT_PUBLIC_SITE_URL in Vercel so canonical, hreflang, sitemap and llms.txt use the real domain.
-export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000').replace(/\/$/, '')
+// NEXT_PUBLIC_SITE_URL overrides; otherwise Vercel's production domain (set automatically on Vercel) keeps canonical, hreflang, sitemap and llms.txt correct.
+const vercelUrl = process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL
+export const SITE_URL = (
+  process.env.NEXT_PUBLIC_SITE_URL ?? (vercelUrl ? `https://${vercelUrl}` : 'http://localhost:3000')
+).replace(/\/$/, '')
 
 export const fmt = (template: string, n: number) => template.replace('{n}', String(n))
 

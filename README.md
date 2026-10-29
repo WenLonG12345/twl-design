@@ -10,7 +10,7 @@ bun dev            # http://localhost:3000 → redirects to /en or /zh-CN by Acc
 bun run build
 ```
 
-Set `NEXT_PUBLIC_SITE_URL` (e.g. `https://motion.example.com`) in Vercel so canonical URLs, hreflang, the sitemap and llms.txt use the real domain.
+No environment variables are required on Vercel: canonical URLs, hreflang, the sitemap and llms.txt use the project's production domain automatically. Set `NEXT_PUBLIC_SITE_URL` (e.g. `https://motion.example.com`) only to override it, such as for a custom domain.
 
 ## Add a motion
 

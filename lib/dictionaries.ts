@@ -4,7 +4,7 @@ import type { Component, Trigger } from './motions'
 const en = {
   brand: 'TWL Motions',
   meta: {
-    title: 'TWL Motions: web animations with AI prompts',
+    title: 'Motion Library',
     description:
       'Live, interactive web animation demos for CSS, JavaScript, GSAP, SVG and Canvas. Every motion comes with its source and a copy-ready AI prompt in English and Simplified Chinese.',
   },
@@ -88,7 +88,7 @@ export type Dictionary = typeof en
 const zhCN: Dictionary = {
   brand: 'TWL Motions',
   meta: {
-    title: 'TWL Motions：附带 AI 提示词的网页动效库',
+    title: 'Motion Library',
     description:
       '可交互的网页动效演示，涵盖 CSS、JavaScript、GSAP、SVG 与 Canvas。每个动效都附带源代码和可直接复制的 AI 提示词，支持简体中文与英文。',
   },

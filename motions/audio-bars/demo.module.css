@@ -1,0 +1,49 @@
+.player {
+  display: grid;
+  justify-items: center;
+  gap: 12px;
+}
+
+.bars { width: 96px; height: 52px; }
+
+.bar {
+  fill: var(--stage-accent);
+  transform-box: fill-box;
+  transform-origin: bottom;
+  transform: scaleY(0.2);
+  transition: transform 400ms var(--ease-out);
+}
+
+.player[data-playing] .bar {
+  animation: bounce var(--dur) ease-in-out var(--delay) infinite alternate;
+}
+
+.player[data-offscreen] .bar { animation-play-state: paused; }
+
+@keyframes bounce {
+  from { transform: scaleY(0.2); }
+  to { transform: scaleY(1); }
+}
+
+.track {
+  font: 500 var(--text-sm) / 1 var(--font-body);
+  color: var(--stage-muted);
+}
+
+.btn {
+  height: 32px;
+  padding: 0 14px;
+  border: 1px solid var(--stage-rule);
+  border-radius: 999px;
+  background: var(--stage-surface);
+  color: var(--stage-ink);
+  font: 500 var(--text-sm) / 1 var(--font-body);
+  cursor: pointer;
+}
+
+.btn:hover { border-color: var(--stage-accent); }
+.btn:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .player[data-playing] .bar { animation: none; transform: scaleY(var(--rest)); }
+}

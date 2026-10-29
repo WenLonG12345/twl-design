@@ -1,0 +1,43 @@
+.scene {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: radial-gradient(ellipse at 50% 120%, oklch(28% 0.04 50), var(--stage-bg));
+}
+
+.orb {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: var(--size);
+  height: var(--size);
+  margin: calc(var(--size) / -2) 0 0 calc(var(--size) / -2);
+  border-radius: 50%;
+  background: radial-gradient(circle, oklch(80% 0.13 var(--hue)) 0 40%, transparent 70%);
+  filter: blur(6px);
+  mix-blend-mode: screen;
+  opacity: 0.5;
+  animation: drift var(--dur) ease-in-out var(--delay) infinite alternate;
+}
+
+.scene[data-paused] .orb { animation-play-state: paused; }
+
+@keyframes drift {
+  0% { transform: translate(-20px, 10px) scale(0.85); opacity: 0.35; }
+  50% { opacity: 0.8; }
+  100% { transform: translate(20px, -15px) scale(1.1); opacity: 0.45; }
+}
+
+.title {
+  position: relative;
+  margin: 0;
+  font: 600 var(--text-2xl) / 1 var(--font-display);
+  letter-spacing: -0.01em;
+  color: var(--stage-ink);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .orb { animation: none; }
+}
