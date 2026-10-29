@@ -55,3 +55,7 @@ Groups: text, button, form, card, image, svg, background, layout, cursor. Trigge
 ## Design
 
 Cream Paper theme built on the twlworks logo (cream #F2EEE6, charcoal #1C1A18, terracotta #C4702C), with a dark mode that follows the system and a toggle in the nav that remembers the choice. Tokens live in `tokens.css` (OKLCH colours, spacing, type, easing); page styles are in `app/[locale]/globals.css`; each demo owns its CSS module. The logo is `components/Logo.tsx`; the favicon and Apple icon are `app/icon.png` and `app/apple-icon.png` from twlworks-web. OG images are generated per language and per motion by `lib/og.tsx`.
+
+## License
+
+[MIT](LICENSE). Use, copy, modify and ship any motion, demo or prompt, including in commercial work; keep the copyright notice in copies of the code. By opening a pull request you agree your contribution is released under the same license.

@@ -2,6 +2,7 @@
   "name": "twl-motions",
   "version": "0.1.0",
   "private": true,
+  "license": "MIT",
   "scripts": {
     "gen": "bun scripts/gen-sources.mjs",
     "predev": "bun run gen",
