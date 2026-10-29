@@ -1,0 +1,42 @@
+.field {
+  --blob-a: oklch(66% 0.13 55);
+  --blob-b: oklch(72% 0.1 85);
+  --blob-c: oklch(48% 0.09 25);
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: var(--stage-bg);
+}
+
+.blob {
+  position: absolute;
+  width: 65%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  filter: blur(40px);
+  opacity: 0.7;
+  will-change: transform;
+}
+
+.a { background: var(--blob-a); top: -20%; left: -10%; animation: a 12s ease-in-out infinite alternate; }
+.b { background: var(--blob-b); top: 20%; right: -20%; animation: b 15s ease-in-out infinite alternate; }
+.c { background: var(--blob-c); bottom: -35%; left: 20%; animation: c 18s ease-in-out infinite alternate; }
+
+@keyframes a { 50% { transform: translate(30%, 20%); } 100% { transform: translate(10%, 45%); } }
+@keyframes b { 50% { transform: translate(-35%, 10%); } 100% { transform: translate(-15%, -30%); } }
+@keyframes c { 50% { transform: translate(25%, -25%); } 100% { transform: translate(-20%, -10%); } }
+
+.text {
+  position: relative;
+  margin: 0;
+  font: 700 var(--text-2xl) / 1.1 var(--font-display);
+  letter-spacing: -0.02em;
+  color: var(--stage-ink);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blob { animation: none; }
+}

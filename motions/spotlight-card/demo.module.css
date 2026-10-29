@@ -1,0 +1,34 @@
+.card {
+  --x: 50%;
+  --y: 50%;
+  position: relative;
+  display: grid;
+  gap: 6px;
+  width: min(260px, 100%);
+  padding: 22px;
+  overflow: hidden;
+  border: 1px solid transparent;
+  border-radius: 16px;
+  background:
+    linear-gradient(var(--stage-surface), var(--stage-surface)) padding-box,
+    radial-gradient(160px circle at var(--x) var(--y), var(--stage-accent), var(--stage-rule)) border-box;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(320px circle at var(--x) var(--y), color-mix(in oklch, var(--stage-accent) 18%, transparent), transparent 70%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 200ms var(--ease-out);
+}
+
+.card:hover::before { opacity: 1; }
+
+.card > * { position: relative; }
+
+.kicker { font: 500 var(--text-xs) / 1 var(--font-mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--stage-muted); }
+.name { font: 600 var(--text-xl) / 1.2 var(--font-display); color: var(--stage-ink); }
+.price { font: 600 var(--text-base) / 1.2 var(--font-body); color: var(--stage-accent); }
+.note { font-size: var(--text-sm); color: var(--stage-muted); }

@@ -1,0 +1,68 @@
+.snippet {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 8px 8px 16px;
+  border: 1px solid var(--stage-rule);
+  border-radius: var(--radius-sm);
+  background: var(--stage-surface);
+}
+
+.code {
+  font: 500 var(--text-sm) / 1 var(--font-mono);
+  color: var(--stage-ink);
+  white-space: nowrap;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 96px;
+  height: 34px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 8px;
+  background: var(--stage-bg);
+  color: var(--stage-ink);
+  font: 500 var(--text-sm) / 1 var(--font-body);
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.button:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
+
+.icons { display: grid; width: 16px; height: 16px; }
+
+.icons svg {
+  grid-area: 1 / 1;
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform 260ms cubic-bezier(0.34, 1.56, 0.64, 1), opacity 180ms;
+}
+
+.checkIcon {
+  stroke: var(--stage-accent) !important;
+  stroke-dasharray: 24;
+  stroke-dashoffset: 24;
+  transform: scale(0.4);
+  opacity: 0;
+}
+
+.button[data-copied] .copyIcon { transform: scale(0.4); opacity: 0; }
+
+.button[data-copied] .checkIcon {
+  transform: scale(1);
+  opacity: 1;
+  stroke-dashoffset: 0;
+  transition: transform 260ms cubic-bezier(0.34, 1.56, 0.64, 1), opacity 180ms, stroke-dashoffset 320ms var(--ease-out) 60ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .icons svg, .button[data-copied] .checkIcon { transition: none; }
+}

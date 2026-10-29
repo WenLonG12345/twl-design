@@ -1,36 +1,34 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# TWL Motions
 
-## Getting Started
+A twlworks project. Bilingual (English / Simplified Chinese) library of web animations. Each motion has a live demo, its source, and an AI prompt that recreates it. The prompt and the words inside the demo follow the site language.
 
-First, run the development server:
+## Run
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+bun install
+bun dev            # http://localhost:3000 → redirects to /en or /zh-CN by Accept-Language
+bun run build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Set `NEXT_PUBLIC_SITE_URL` (e.g. `https://motion.example.com`) in Vercel so canonical URLs, hreflang, the sitemap and llms.txt use the real domain.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Add a motion
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Create `motions/<slug>/meta.ts` (tech, component, trigger, and `i18n.en` + `i18n['zh-CN']` with title, summary, prompt, labels). TypeScript fails the build if a language is missing.
+2. Create `motions/<slug>/Demo.tsx` (+ optional `demo.module.css`). Read every visible word from `labels`, never hard-code text. Style it with the `--stage-*` tokens: every demo plays on the charcoal stage in both light and dark mode.
+3. Run `bun run gen` (it also runs before `dev` and `build`). It registers the motion, its demo and its source automatically.
 
-## Learn More
+The library grid, detail page, OG image, sitemap, llms.txt and llms-full.txt pick it up automatically.
 
-To learn more about Next.js, take a look at the following resources:
+Groups: text, button, form, card, image, svg, background, layout, cursor. Triggers: entrance, loop, hover, click, toggle, scroll, drag, pointer (see `lib/motions.ts`).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## SEO and AI discovery
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- `/en/...` and `/zh-CN/...` are statically pre-rendered, with `hreflang` alternates, canonical URLs and JSON-LD.
+- `/sitemap.xml` lists both languages with alternates; `/robots.txt` allows all crawlers, AI crawlers included.
+- Every page has a generated OG image (`opengraph-image.tsx`) with the logo and the page title in its language.
+- `/llms.txt` indexes every motion in both languages; `/llms-full.txt` contains every prompt in full.
 
-## Deploy on Vercel
+## Design
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Cream Paper theme built on the twlworks logo (cream #F2EEE6, charcoal #1C1A18, terracotta #C4702C), with a dark mode that follows the system and a toggle in the nav that remembers the choice. Tokens live in `tokens.css` (OKLCH colours, spacing, type, easing); page styles are in `app/[locale]/globals.css`; each demo owns its CSS module. The logo is `components/Logo.tsx`; the favicon and Apple icon are `app/icon.png` and `app/apple-icon.png` from twlworks-web. OG images are generated per language and per motion by `lib/og.tsx`.

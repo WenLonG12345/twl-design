@@ -1,0 +1,56 @@
+.frame {
+  --sky-top: oklch(42% 0.09 300);
+  --sky-low: oklch(70% 0.14 45);
+  --sun: oklch(88% 0.11 75);
+  --sea: oklch(36% 0.07 250);
+  --island: oklch(22% 0.03 280);
+  --shade: oklch(0% 0 0 / 0.6);
+  position: relative;
+  width: min(300px, 100%);
+  aspect-ratio: 16 / 10;
+  max-width: 100%;
+  margin: 0;
+  overflow: hidden;
+  border-radius: 14px;
+}
+
+.scene {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 22% 14% at 30% 62%, var(--island) 97%, transparent 100%),
+    radial-gradient(ellipse 34% 18% at 78% 64%, var(--island) 97%, transparent 100%),
+    linear-gradient(180deg, transparent 62%, var(--sea) 62%),
+    radial-gradient(circle at 58% 56%, var(--sun) 0 10%, transparent 10.5%),
+    linear-gradient(180deg, var(--sky-top), var(--sky-low) 62%);
+  transform-origin: 60% 40%;
+  will-change: transform;
+  animation: drift 14s ease-in-out infinite alternate;
+}
+
+.frame[data-paused] .scene { animation-play-state: paused; }
+
+.frame::after {
+  content: '';
+  position: absolute;
+  inset: 50% 0 0;
+  background: linear-gradient(transparent, var(--shade));
+}
+
+.caption {
+  position: absolute;
+  left: 12px;
+  bottom: 10px;
+  z-index: 1;
+  font: 500 var(--text-sm) / 1.2 var(--font-body);
+  color: var(--stage-ink);
+}
+
+@keyframes drift {
+  from { transform: scale(1) translate(0, 0); }
+  to { transform: scale(1.18) translate(-4%, -3%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scene { animation: none; }
+}

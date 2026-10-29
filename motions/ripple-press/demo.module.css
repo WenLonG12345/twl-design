@@ -1,0 +1,41 @@
+.button {
+  position: relative;
+  overflow: hidden;
+  height: 52px;
+  padding: 0 32px;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: var(--stage-accent);
+  color: var(--stage-accent-ink);
+  font: 500 var(--text-base) / 1 var(--font-body);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color var(--dur-micro) var(--ease-out);
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 3px;
+}
+
+.ripple {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.25;
+  translate: -50% -50%;
+  pointer-events: none;
+  animation: ripple 600ms var(--ease-out) forwards;
+}
+
+@keyframes ripple {
+  from { transform: scale(0); opacity: 0.25; }
+  to { transform: scale(24); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ripple { display: none; }
+  .button:active { background: var(--stage-accent-hover); }
+}

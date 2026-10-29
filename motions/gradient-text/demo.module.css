@@ -1,0 +1,20 @@
+.text {
+  margin: 0;
+  font: 700 clamp(2rem, 7vw, 2.75rem) / 1.1 var(--font-display);
+  letter-spacing: -0.02em;
+  background-image: linear-gradient(90deg, var(--stage-accent), oklch(86% 0.13 85), var(--stage-ink), var(--stage-accent));
+  background-size: 300% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: flow 6s linear infinite;
+}
+
+@keyframes flow {
+  from { background-position: 0% 50%; }
+  to { background-position: 300% 50%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .text { animation: none; }
+}

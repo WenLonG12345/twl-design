@@ -1,0 +1,36 @@
+.line {
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  gap: 0.25em;
+  margin: 0;
+  font: 600 var(--text-2xl) / 1.2 var(--font-display);
+  letter-spacing: -0.02em;
+  color: var(--stage-ink);
+  white-space: nowrap;
+}
+
+.slot {
+  display: inline-grid;
+  overflow: hidden;
+  transition: width 300ms var(--ease-out);
+}
+
+.word {
+  grid-area: 1 / 1;
+  color: var(--stage-accent);
+  transition: transform 500ms var(--ease-out), opacity 500ms var(--ease-out);
+}
+
+.word[data-state='in'] { transform: translateY(0); opacity: 1; }
+.word[data-state='out'] { transform: translateY(-100%); opacity: 0; }
+.word[data-state='wait'] { transform: translateY(100%); opacity: 0; transition: none; }
+
+.measure { position: absolute; visibility: hidden; white-space: nowrap; }
+
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+
+@media (prefers-reduced-motion: reduce) {
+  .word, .word[data-state] { transform: none; transition: opacity 150ms linear; }
+  .slot { transition: none; }
+}

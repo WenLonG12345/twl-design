@@ -1,0 +1,70 @@
+.wrap {
+  display: grid;
+  justify-items: center;
+  gap: 12px;
+}
+
+.radar {
+  position: relative;
+  width: 160px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.grid {
+  position: absolute;
+  inset: 0;
+  fill: none;
+  stroke: var(--stage-rule);
+  stroke-width: 0.6;
+}
+
+.beam {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, color-mix(in oklch, var(--stage-accent) 50%, transparent), transparent 70deg);
+  transform: scaleX(-1);
+  animation: spin 3s linear infinite;
+}
+
+/* scaleX(-1) puts the bright edge in front of the wedge as it turns clockwise */
+@keyframes spin {
+  from { transform: scaleX(-1) rotate(0deg); }
+  to { transform: scaleX(-1) rotate(-360deg); }
+}
+
+.blip {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  margin: -4px 0 0 -4px;
+  border-radius: 50%;
+  background: var(--stage-accent);
+  box-shadow: 0 0 10px var(--stage-accent);
+  opacity: 0;
+  animation: blip 3s linear infinite backwards;
+}
+
+@keyframes blip {
+  0% { opacity: 0; transform: scale(1.6); }
+  2% { opacity: 1; transform: scale(1.6); }
+  40% { opacity: 0; transform: scale(1); }
+  100% { opacity: 0; }
+}
+
+.wrap[data-paused] .beam,
+.wrap[data-paused] .blip { animation-play-state: paused; }
+
+.caption {
+  font: 500 var(--text-xs) / 1 var(--font-mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--stage-muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .beam, .blip { animation: none; }
+  .blip { opacity: 0.5; }
+}

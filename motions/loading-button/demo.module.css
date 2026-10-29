@@ -1,0 +1,66 @@
+.button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 200px;
+  height: 52px;
+  overflow: hidden;
+  border: 0;
+  border-radius: 12px;
+  background: var(--stage-ink);
+  color: var(--stage-bg);
+  font: 600 var(--text-base) / 1 var(--font-body);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 200ms var(--ease-out);
+}
+
+.button:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 3px; }
+.button:disabled { cursor: progress; }
+.button[data-state='done'] { background: var(--stage-accent); color: var(--stage-accent-ink); }
+
+.label { transition: transform 200ms var(--ease-out), opacity 200ms var(--ease-out); }
+.button[data-state='loading'] .label { transform: translateY(-100%); opacity: 0; }
+
+.spinner {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 150ms linear;
+  animation: spin 700ms linear infinite;
+}
+
+.button[data-state='loading'] .spinner { opacity: 1; }
+
+.check { width: 0; height: 20px; overflow: visible; }
+.button[data-state='done'] .check { width: 20px; }
+
+.check path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 22;
+  stroke-dashoffset: 22;
+}
+
+.button[data-state='done'] .check path { animation: draw 400ms 100ms var(--ease-out) forwards; }
+
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes draw { to { stroke-dashoffset: 0; } }
+
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+
+@media (prefers-reduced-motion: reduce) {
+  .spinner { animation: none; }
+  .label { transition: opacity 150ms linear; }
+  .button[data-state='loading'] .label { transform: none; }
+  .button[data-state='done'] .check path { animation: none; stroke-dashoffset: 0; }
+}

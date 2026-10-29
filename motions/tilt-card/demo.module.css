@@ -1,0 +1,51 @@
+.card {
+  --px: 0;
+  --py: 0;
+  position: relative;
+  display: grid;
+  align-content: end;
+  gap: 4px;
+  width: min(260px, 100%);
+  aspect-ratio: 1.6;
+  padding: 20px;
+  overflow: hidden;
+  border-radius: 14px;
+  background: var(--stage-surface);
+  border: 1px solid var(--stage-rule);
+  color: var(--stage-ink);
+  transform: perspective(800px) rotateX(calc(var(--py) * -12deg)) rotateY(calc(var(--px) * 12deg));
+  transition: transform 150ms var(--ease-out);
+}
+
+.card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at calc((var(--px) + 0.5) * 100%) calc((var(--py) + 0.5) * 100%),
+    var(--stage-sheen),
+    transparent 55%
+  );
+  mix-blend-mode: soft-light;
+  pointer-events: none;
+}
+
+.kicker {
+  font: 500 var(--text-xs) / 1 var(--font-mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--stage-muted);
+}
+
+.name {
+  font: 600 var(--text-xl) / 1.2 var(--font-display);
+}
+
+.meta {
+  font-size: var(--text-sm);
+  color: var(--stage-muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card { transform: none; }
+}

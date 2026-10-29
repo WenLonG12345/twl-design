@@ -1,0 +1,72 @@
+.wrap {
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+}
+
+.badge {
+  width: 72px;
+  height: 72px;
+  animation: pop 300ms var(--ease-out) 850ms both;
+}
+
+.ring, .check {
+  fill: none;
+  stroke: var(--stage-accent);
+  stroke-width: 3.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.ring {
+  stroke-dasharray: 164;
+  stroke-dashoffset: 164;
+  transform: rotate(-90deg);
+  transform-origin: center;
+  animation: draw 600ms var(--ease-in-out) both;
+}
+
+.check {
+  stroke: var(--stage-accent-ink);
+  stroke-dasharray: 36;
+  stroke-dashoffset: 36;
+  animation: draw 300ms var(--ease-out) 550ms both;
+}
+
+.disc {
+  fill: var(--stage-accent);
+  transform: scale(0);
+  transform-origin: center;
+  animation: grow 260ms var(--ease-out) 450ms both;
+}
+
+@keyframes draw { to { stroke-dashoffset: 0; } }
+@keyframes grow { to { transform: scale(1); } }
+@keyframes pop { 50% { transform: scale(1.1); } }
+
+.caption {
+  margin: 0 0 6px;
+  font: 600 var(--text-base) / 1.2 var(--font-display);
+  color: var(--stage-ink);
+}
+
+.replay {
+  height: 32px;
+  padding: 0 12px;
+  border: 1px solid var(--stage-rule);
+  border-radius: var(--radius-sm);
+  background: var(--stage-surface);
+  color: var(--stage-ink);
+  font: 500 var(--text-sm) / 1 var(--font-body);
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.replay:hover { border-color: var(--stage-accent); }
+.replay:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .badge, .ring, .check, .disc { animation: none; }
+  .ring, .check { stroke-dashoffset: 0; }
+  .disc { transform: none; }
+}

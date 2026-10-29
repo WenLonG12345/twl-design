@@ -1,0 +1,75 @@
+.card {
+  --x: 0.5;
+  --y: 0.5;
+  --on: 0;
+  position: relative;
+  display: grid;
+  align-content: space-between;
+  width: 136px;
+  aspect-ratio: 5 / 7;
+  padding: 14px;
+  overflow: hidden;
+  border: 1px solid var(--stage-rule);
+  border-radius: 14px;
+  background: linear-gradient(160deg, var(--stage-surface), var(--stage-bg));
+  transform: perspective(600px) rotateY(calc((var(--x) - 0.5) * 12deg * var(--on)))
+    rotateX(calc((0.5 - var(--y)) * 12deg * var(--on)));
+  transition: transform 120ms linear;
+}
+
+.card::before,
+.card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  transition: opacity var(--dur-long) var(--ease-out);
+}
+
+.card::before {
+  background: repeating-linear-gradient(
+    115deg,
+    oklch(80% 0.08 20),
+    oklch(85% 0.08 90),
+    oklch(82% 0.08 160),
+    oklch(78% 0.08 250),
+    oklch(80% 0.08 320),
+    oklch(80% 0.08 20) 40%
+  );
+  background-size: 200% 200%;
+  background-position: calc(var(--x) * 100%) calc(var(--y) * 100%);
+  mix-blend-mode: color-dodge;
+  opacity: calc(var(--on) * 0.3);
+}
+
+.card::after {
+  background: radial-gradient(circle at calc(var(--x) * 100%) calc(var(--y) * 100%), var(--stage-sheen), transparent 45%);
+  opacity: var(--on);
+}
+
+.badge {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--stage-accent);
+  color: var(--stage-accent-ink);
+  font-size: var(--text-sm);
+}
+
+.title {
+  margin: 0;
+  font: 600 var(--text-lg) / 1.2 var(--font-display);
+  color: var(--stage-ink);
+}
+
+.sub {
+  margin: 4px 0 0;
+  font: 500 var(--text-xs) / 1 var(--font-mono);
+  color: var(--stage-muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card { transform: none; }
+}

@@ -1,0 +1,41 @@
+.button {
+  position: relative;
+  width: 56px;
+  height: 56px;
+  border: 1px solid var(--stage-rule);
+  border-radius: 14px;
+  background: var(--stage-surface);
+  cursor: pointer;
+}
+
+.button:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 3px; }
+
+.bar {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 22px;
+  height: 2px;
+  margin: -1px 0 0 -11px;
+  border-radius: 2px;
+  background: var(--stage-ink);
+  /* closing: rotate back first, then spread out */
+  transition: translate 180ms var(--ease-out) 180ms, rotate 180ms var(--ease-out), opacity 180ms 180ms, scale 180ms 180ms;
+}
+
+.bar:nth-child(1) { translate: 0 -7px; }
+.bar:nth-child(3) { translate: 0 7px; }
+
+.button[aria-expanded='true'] .bar {
+  /* opening: meet in the middle first, then rotate */
+  transition: translate 180ms var(--ease-out), rotate 180ms var(--ease-out) 180ms, opacity 180ms, scale 180ms;
+  background: var(--stage-accent);
+}
+
+.button[aria-expanded='true'] .bar:nth-child(1) { translate: 0 0; rotate: 45deg; }
+.button[aria-expanded='true'] .bar:nth-child(2) { opacity: 0; scale: 0 1; }
+.button[aria-expanded='true'] .bar:nth-child(3) { translate: 0 0; rotate: -45deg; }
+
+@media (prefers-reduced-motion: reduce) {
+  .bar, .button[aria-expanded='true'] .bar { transition: none; }
+}

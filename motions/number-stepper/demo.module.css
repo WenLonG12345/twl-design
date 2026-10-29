@@ -1,0 +1,65 @@
+.wrap {
+  display: grid;
+  justify-items: center;
+  gap: 12px;
+}
+
+.label {
+  font: 500 var(--text-sm) / 1 var(--font-body);
+  color: var(--stage-muted);
+}
+
+.stepper {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid var(--stage-rule);
+  border-radius: 999px;
+  background: var(--stage-surface);
+}
+
+.btn {
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--stage-ink);
+  font: 400 var(--text-2xl) / 1 var(--font-body);
+  cursor: pointer;
+  transition: background-color var(--dur-micro);
+}
+
+.btn:hover:not(:disabled) { background: var(--stage-bg); }
+.btn:disabled { color: var(--stage-rule); cursor: not-allowed; }
+.btn:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
+
+.value {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 44px;
+  overflow: hidden;
+}
+
+.num {
+  font: 600 var(--text-2xl) / 1 var(--font-display);
+  font-variant-numeric: tabular-nums;
+  color: var(--stage-ink);
+  animation: in-up 280ms var(--ease-out);
+}
+
+.num[data-dir='down'] { animation-name: in-down; }
+
+@keyframes in-up {
+  from { transform: translateY(60%); opacity: 0; }
+}
+
+@keyframes in-down {
+  from { transform: translateY(-60%); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .num { animation: none; }
+}

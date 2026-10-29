@@ -1,0 +1,23 @@
+.sign {
+  --glow: var(--stage-accent);
+  margin: 0;
+  font: 300 clamp(2rem, 7vw, 2.75rem) / 1 var(--font-display);
+  letter-spacing: 0.04em;
+  color: var(--stage-ink);
+  text-shadow: 0 0 4px var(--glow), 0 0 12px var(--glow), 0 0 28px var(--glow), 0 0 56px var(--glow);
+  animation: flicker 4s linear infinite;
+}
+
+.sign[data-paused] { animation-play-state: paused; }
+
+@keyframes flicker {
+  0%, 7%, 9%, 11%, 61%, 67%, 100% {
+    opacity: 1;
+    text-shadow: 0 0 4px var(--glow), 0 0 12px var(--glow), 0 0 28px var(--glow), 0 0 56px var(--glow);
+  }
+  8%, 10%, 62%, 66% { opacity: 0.35; text-shadow: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sign { animation: none; }
+}

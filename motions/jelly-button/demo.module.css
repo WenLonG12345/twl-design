@@ -1,0 +1,33 @@
+.button {
+  height: 52px;
+  padding: 0 32px;
+  border: 0;
+  border-radius: var(--radius-sm);
+  font: 500 var(--text-base) / 1 var(--font-body);
+  white-space: nowrap;
+  cursor: pointer;
+  border-radius: 999px;
+  background: var(--stage-accent);
+  color: var(--stage-accent-ink);
+  font-weight: 600;
+}
+
+.button:hover,
+.button:focus-visible {
+  animation: jelly 700ms ease;
+}
+
+.button:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 4px; }
+
+@keyframes jelly {
+  0%, 100% { transform: scale(1, 1); }
+  30% { transform: scale(1.2, 0.8); }
+  40% { transform: scale(0.8, 1.2); }
+  50% { transform: scale(1.1, 0.9); }
+  65% { transform: scale(0.95, 1.05); }
+  75% { transform: scale(1.03, 0.97); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button:hover, .button:focus-visible { animation: none; background: var(--stage-accent-hover); }
+}

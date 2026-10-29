@@ -1,0 +1,25 @@
+.wrap {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: var(--stage-bg);
+}
+
+.canvas {
+  --dot: var(--stage-ink);
+  --line: var(--stage-accent);
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.caption {
+  position: relative;
+  font: 500 var(--text-xs) / 1 var(--font-mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--stage-muted);
+  pointer-events: none;
+}

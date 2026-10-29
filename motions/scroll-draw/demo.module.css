@@ -1,0 +1,72 @@
+.frame {
+  position: absolute;
+  inset: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+}
+
+.frame:focus-visible { outline: 2px solid var(--color-focus); outline-offset: -4px; }
+
+.hint {
+  display: block;
+  font: 500 var(--text-xs) / 1 var(--font-mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--stage-muted);
+}
+
+.frame { --p: 0; }
+
+.section { height: 300%; }
+
+.sticky {
+  position: sticky;
+  top: 0;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 4px;
+  height: 240px;
+}
+
+.svg { width: min(300px, 90%); overflow: visible; }
+
+.track, .path {
+  fill: none;
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+
+.track { stroke: var(--stage-rule); stroke-dasharray: 2 8; }
+
+.path {
+  stroke: var(--stage-accent);
+  stroke-dasharray: 1;
+  stroke-dashoffset: calc(1 - var(--p));
+}
+
+.startDot { fill: var(--stage-accent); }
+
+.endDot {
+  fill: var(--stage-bg);
+  stroke: var(--stage-accent);
+  stroke-width: 2;
+  transition: fill var(--dur-short);
+}
+
+.frame[data-done] .endDot { fill: var(--stage-accent); }
+
+.text { fill: var(--stage-muted); font: 500 11px var(--font-mono); }
+
+.label {
+  font: 500 var(--text-xs) / 1 var(--font-mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--stage-muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .path { stroke-dashoffset: 0; }
+}

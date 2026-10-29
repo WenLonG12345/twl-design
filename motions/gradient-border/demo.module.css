@@ -1,0 +1,36 @@
+@property --angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.button {
+  height: 52px;
+  padding: 0 32px;
+  border: 0;
+  border-radius: var(--radius-sm);
+  font: 500 var(--text-base) / 1 var(--font-body);
+  white-space: nowrap;
+  cursor: pointer;
+  border: 2px solid transparent;
+  border-radius: 999px;
+  color: var(--stage-ink);
+  background:
+    linear-gradient(var(--stage-surface), var(--stage-surface)) padding-box,
+    conic-gradient(from var(--angle), transparent 0 60%, var(--stage-accent) 80%, var(--stage-ink) 90%, transparent) border-box;
+  animation: spin 3s linear infinite;
+}
+
+.button:hover { animation-duration: 1.2s; }
+.button:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 4px; }
+
+@keyframes spin {
+  to { --angle: 360deg; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button {
+    animation: none;
+    background: linear-gradient(var(--stage-surface), var(--stage-surface)) padding-box, var(--stage-accent) border-box;
+  }
+}

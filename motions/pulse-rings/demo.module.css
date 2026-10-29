@@ -1,0 +1,50 @@
+.wrap {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 80px;
+  height: 80px;
+}
+
+.ring {
+  position: absolute;
+  inset: 0;
+  border: 1.5px solid var(--stage-accent);
+  border-radius: 50%;
+  opacity: 0;
+  animation: pulse 3s var(--ease-out) infinite;
+}
+
+.wrap[data-paused] .ring { animation-play-state: paused; }
+
+@keyframes pulse {
+  from { transform: scale(0.4); opacity: 0.8; }
+  to { transform: scale(3); opacity: 0; }
+}
+
+.badge {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: var(--stage-accent);
+  color: var(--stage-accent-ink);
+  font: 600 var(--text-xs) / 1 var(--font-mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ring { animation: none; }
+  .ring:first-child { opacity: 0.5; transform: scale(1.6); }
+}

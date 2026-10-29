@@ -1,0 +1,50 @@
+.board {
+  display: flex;
+  gap: 4px;
+  perspective: 400px;
+}
+
+.tile {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 52px;
+  border-radius: 6px;
+  background: var(--stage-surface);
+  box-shadow: inset 0 0 0 1px var(--stage-rule);
+  color: var(--stage-ink);
+  font: 600 var(--text-2xl) / 1 var(--font-mono);
+  white-space: pre;
+  animation: flip 360ms var(--ease-out) both;
+}
+
+.tile::after {
+  content: '';
+  position: absolute;
+  inset: 50% 0 auto;
+  height: 1px;
+  background: var(--stage-bg);
+}
+
+@keyframes flip {
+  from { transform: rotateX(-90deg); opacity: 0.4; }
+  to { transform: rotateX(0); opacity: 1; }
+}
+
+.sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@media (max-width: 360px) {
+  .tile { width: 30px; height: 44px; font-size: var(--text-xl); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tile { animation: none; }
+}

@@ -1,0 +1,79 @@
+.frame {
+  position: absolute;
+  inset: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+}
+
+.frame:focus-visible { outline: 2px solid var(--color-focus); outline-offset: -4px; }
+
+.hint {
+  display: block;
+  font: 500 var(--text-xs) / 1 var(--font-mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--stage-muted);
+}
+
+.frame { padding-top: 24px; }
+
+.figure {
+  --sky-top: oklch(40% 0.08 260);
+  --sky-low: oklch(78% 0.1 60);
+  --cloud: oklch(92% 0.02 80);
+  position: relative;
+  height: 200px;
+  margin: 160px 0 200px;
+  overflow: hidden;
+}
+
+.scene {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 30% 14% at 20% 78%, var(--cloud) 96%, transparent),
+    radial-gradient(ellipse 40% 16% at 70% 84%, var(--cloud) 96%, transparent),
+    radial-gradient(ellipse 50% 20% at 45% 96%, var(--cloud) 96%, transparent),
+    radial-gradient(circle at 62% 46%, oklch(95% 0.06 85) 0 8%, transparent 8.5%),
+    linear-gradient(var(--sky-top), var(--sky-low));
+}
+
+.caption {
+  position: absolute;
+  left: 50%;
+  bottom: 12px;
+  translate: -50% 0;
+  font: 600 var(--text-base) / 1 var(--font-display);
+  color: var(--stage-bg);
+  white-space: nowrap;
+}
+
+@supports (animation-timeline: view()) {
+  .figure {
+    animation: open linear both;
+    animation-timeline: view();
+    animation-range: entry 10% cover 50%;
+  }
+
+  .scene {
+    animation: settle linear both;
+    animation-timeline: view();
+    animation-range: entry 10% cover 50%;
+  }
+}
+
+@keyframes open {
+  from { clip-path: inset(0 22% round 20px); }
+  to { clip-path: inset(0 0 round 0); }
+}
+
+@keyframes settle {
+  from { transform: scale(1.2); }
+  to { transform: scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .figure, .scene { animation: none; }
+}

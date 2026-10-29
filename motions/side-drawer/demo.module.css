@@ -1,0 +1,86 @@
+.shell {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: var(--stage-bg);
+}
+
+.drawer {
+  position: absolute;
+  inset: 0 auto 0 0;
+  display: grid;
+  align-content: start;
+  gap: 4px;
+  width: 180px;
+  padding: 56px 16px 16px;
+  transform: translateX(-100%);
+  transition: transform 420ms var(--ease-out);
+}
+
+.link {
+  padding: 8px 10px;
+  border-radius: 8px;
+  color: var(--stage-ink);
+  font: 500 var(--text-sm) / 1 var(--font-body);
+  text-decoration: none;
+  opacity: 0;
+  transform: translateX(-12px);
+  transition: opacity 260ms, transform 260ms var(--ease-out), background-color var(--dur-micro);
+}
+
+.link:hover { background: var(--stage-surface); }
+.link:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 1px; }
+
+.page {
+  position: absolute;
+  inset: 0;
+  padding: 14px 16px;
+  background: var(--stage-surface);
+  transform-origin: 0 50%;
+  transition: transform 420ms var(--ease-out), border-radius 420ms var(--ease-out), filter 420ms;
+}
+
+.shell[data-open] .drawer { transform: none; }
+.shell[data-open] .link { opacity: 1; transform: none; transition-delay: calc(120ms + var(--i) * 60ms); }
+
+.shell[data-open] .page {
+  transform: translateX(140px) scale(0.92);
+  border-radius: 16px;
+  filter: brightness(0.7);
+  cursor: pointer;
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.menu {
+  height: 32px;
+  padding: 0 10px;
+  border: 1px solid var(--stage-rule);
+  border-radius: 8px;
+  background: var(--stage-bg);
+  color: var(--stage-ink);
+  font: 500 var(--text-sm) / 1 var(--font-body);
+  cursor: pointer;
+}
+
+.menu:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
+
+.title { font: 600 var(--text-base) / 1 var(--font-display); color: var(--stage-ink); }
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.grid span { height: 64px; border-radius: 10px; background: var(--stage-bg); }
+
+@media (prefers-reduced-motion: reduce) {
+  .drawer, .link, .page { transition: none; }
+  .shell[data-open] .page { transform: none; filter: brightness(0.5); }
+}

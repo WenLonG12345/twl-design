@@ -1,0 +1,51 @@
+.wrap { display: grid; justify-items: center; gap: 12px; width: min(300px, 100%); }
+
+.svg { width: 100%; height: auto; overflow: visible; }
+
+.svg path {
+  fill: none;
+  stroke: var(--stage-ink);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: var(--len, 1000);
+  stroke-dashoffset: var(--len, 1000);
+  animation: draw 1.6s var(--ease-in-out) forwards;
+  animation-delay: calc(var(--d) * 250ms);
+}
+
+.svg .grid { stroke: var(--stage-rule); }
+.svg .route { stroke: var(--stage-accent); stroke-width: 3; stroke-dasharray: var(--len, 1000); }
+
+.dot {
+  fill: var(--stage-ink);
+  offset-distance: 0%;
+  opacity: 0;
+  animation: ride 1.8s 2.2s var(--ease-in-out) forwards;
+}
+
+@keyframes draw { to { stroke-dashoffset: 0; } }
+@keyframes ride {
+  0% { offset-distance: 0%; opacity: 1; }
+  100% { offset-distance: 100%; opacity: 1; }
+}
+
+.button {
+  height: 32px;
+  padding: 0 12px;
+  border: 1px solid var(--stage-rule);
+  border-radius: 8px;
+  background: var(--stage-surface);
+  color: var(--stage-ink);
+  font: 500 var(--text-sm) / 1 var(--font-body);
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.button:hover { border-color: var(--stage-accent); }
+.button:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .svg path { animation: none; stroke-dashoffset: 0; }
+  .dot { animation: none; opacity: 1; offset-distance: 100%; }
+}

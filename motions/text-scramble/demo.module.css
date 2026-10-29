@@ -1,0 +1,14 @@
+.text {
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  font: 600 var(--text-2xl) / 1.2 var(--font-mono);
+  letter-spacing: -0.01em;
+  color: var(--stage-ink);
+  white-space: nowrap;
+  cursor: default;
+}
+
+.text:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}

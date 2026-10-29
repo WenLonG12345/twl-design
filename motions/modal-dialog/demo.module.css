@@ -1,0 +1,108 @@
+.open {
+  height: 44px;
+  padding: 0 20px;
+  border: 1px solid var(--stage-rule);
+  border-radius: var(--radius-sm);
+  background: var(--stage-surface);
+  color: var(--stage-ink);
+  font: 500 var(--text-sm) / 1 var(--font-body);
+  cursor: pointer;
+}
+
+.open:hover { border-color: var(--stage-accent); }
+.open:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
+
+.dialog {
+  width: min(360px, calc(100vw - 32px));
+  padding: 0;
+  border: 1px solid var(--stage-rule);
+  border-radius: var(--radius-md);
+  background: var(--stage-surface);
+  color: var(--stage-ink);
+  box-shadow: 0 24px 60px oklch(0% 0 0 / 0.45);
+  opacity: 0;
+  transform: translateY(12px) scale(0.96);
+  transition:
+    opacity 260ms var(--ease-out),
+    transform 260ms var(--ease-out),
+    overlay 260ms allow-discrete,
+    display 260ms allow-discrete;
+}
+
+.dialog[open] {
+  opacity: 1;
+  transform: none;
+}
+
+@starting-style {
+  .dialog[open] {
+    opacity: 0;
+    transform: translateY(12px) scale(0.96);
+  }
+}
+
+.dialog::backdrop {
+  background: oklch(0% 0 0 / 0);
+  backdrop-filter: blur(0);
+  transition:
+    background-color 260ms var(--ease-out),
+    backdrop-filter 260ms var(--ease-out),
+    overlay 260ms allow-discrete,
+    display 260ms allow-discrete;
+}
+
+.dialog[open]::backdrop {
+  background: oklch(0% 0 0 / 0.55);
+  backdrop-filter: blur(3px);
+}
+
+@starting-style {
+  .dialog[open]::backdrop {
+    background: oklch(0% 0 0 / 0);
+    backdrop-filter: blur(0);
+  }
+}
+
+.body {
+  display: grid;
+  gap: 10px;
+  padding: 22px;
+}
+
+.title {
+  margin: 0;
+  font: 600 var(--text-lg) / 1.3 var(--font-display);
+  color: var(--stage-ink);
+}
+
+.text {
+  margin: 0;
+  font: 400 var(--text-sm) / 1.5 var(--font-body);
+  color: var(--stage-muted);
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.ghost, .danger {
+  height: 38px;
+  padding: 0 16px;
+  border-radius: var(--radius-sm);
+  font: 500 var(--text-sm) / 1 var(--font-body);
+  cursor: pointer;
+}
+
+.ghost { border: 1px solid var(--stage-rule); background: transparent; color: var(--stage-ink); }
+.danger { border: 0; background: var(--stage-accent); color: var(--stage-accent-ink); }
+.ghost:focus-visible, .danger:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .dialog, .dialog[open] { transform: none; }
+  @starting-style {
+    .dialog[open] { transform: none; }
+  }
+}

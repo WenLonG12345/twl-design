@@ -1,0 +1,89 @@
+.wrap {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  justify-items: center;
+  align-content: start;
+  padding-top: 36px;
+}
+
+.trigger {
+  height: 40px;
+  padding: 0 20px;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: var(--stage-accent);
+  color: var(--stage-accent-ink);
+  font: 500 var(--text-sm) / 1 var(--font-body);
+  cursor: pointer;
+}
+
+.trigger:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 3px; }
+
+.area {
+  position: absolute;
+  left: 50%;
+  bottom: 24px;
+  width: min(260px, calc(100% - 32px));
+  translate: -50% 0;
+}
+
+.toast {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 48px;
+  padding: 0 8px 0 14px;
+  border: 1px solid var(--stage-rule);
+  border-radius: 12px;
+  background: var(--stage-surface);
+  box-shadow: 0 10px 24px oklch(0% 0 0 / 0.35);
+  transform-origin: 50% 100%;
+  transform: translateY(calc(var(--i) * -10px)) scale(calc(1 - var(--i) * 0.06));
+  opacity: calc(1 - var(--i) * 0.25);
+  transition: transform 360ms var(--ease-out), opacity 360ms var(--ease-out);
+  animation: enter 360ms var(--ease-out);
+}
+
+@keyframes enter {
+  from { transform: translateY(100%); opacity: 0; }
+}
+
+@keyframes fade {
+  from { opacity: 0; }
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--stage-accent);
+}
+
+.msg {
+  flex: 1;
+  font: 500 var(--text-sm) / 1 var(--font-body);
+  color: var(--stage-ink);
+}
+
+.close {
+  width: 30px;
+  height: 30px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--stage-muted);
+  font-size: var(--text-lg);
+  cursor: pointer;
+}
+
+.close:hover { color: var(--stage-ink); background: var(--stage-bg); }
+.close:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 1px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .toast { transition: opacity 150ms; animation-name: fade; }
+}

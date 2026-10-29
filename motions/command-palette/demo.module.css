@@ -1,0 +1,91 @@
+.trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  height: 40px;
+  padding: 0 10px 0 16px;
+  border: 1px solid var(--stage-rule);
+  border-radius: var(--radius-sm);
+  background: var(--stage-surface);
+  color: var(--stage-ink);
+  font: 500 var(--text-sm) / 1 var(--font-body);
+  cursor: pointer;
+}
+
+.trigger:hover { border-color: var(--stage-accent); }
+.trigger:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
+
+.kbd {
+  padding: 3px 6px;
+  border-radius: 5px;
+  background: var(--stage-bg);
+  color: var(--stage-muted);
+  font: 500 var(--text-xs) / 1 var(--font-mono);
+}
+
+.panel {
+  width: min(280px, 100%);
+  border: 1px solid var(--stage-rule);
+  border-radius: 14px;
+  background: var(--stage-surface);
+  box-shadow: 0 16px 40px oklch(0% 0 0 / 0.45);
+  overflow: hidden;
+  transform-origin: 50% 0;
+  animation: pop 180ms var(--ease-out);
+}
+
+@keyframes pop {
+  from { opacity: 0; transform: translateY(-6px) scale(0.96); }
+}
+
+.input {
+  width: 100%;
+  height: 42px;
+  padding: 0 14px;
+  border: 0;
+  border-bottom: 1px solid var(--stage-rule);
+  outline: none;
+  background: transparent;
+  color: var(--stage-ink);
+  font: 400 var(--text-sm) / 1 var(--font-body);
+}
+
+.input::placeholder { color: var(--stage-muted); }
+
+.list {
+  position: relative;
+  margin: 0;
+  padding: 6px;
+  list-style: none;
+}
+
+.highlight {
+  position: absolute;
+  left: 6px;
+  right: 6px;
+  top: 6px;
+  height: 34px;
+  border-radius: 8px;
+  background: var(--stage-bg);
+  box-shadow: inset 2px 0 0 var(--stage-accent);
+  transition: transform 160ms var(--ease-out);
+}
+
+.option, .empty {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 34px;
+  padding: 0 10px;
+  font: 400 var(--text-sm) / 1 var(--font-body);
+  color: var(--stage-muted);
+  cursor: pointer;
+}
+
+.option[aria-selected='true'] { color: var(--stage-ink); }
+.empty { cursor: default; }
+
+@media (prefers-reduced-motion: reduce) {
+  .panel { animation: none; }
+  .highlight { transition: none; }
+}

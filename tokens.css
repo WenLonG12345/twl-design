@@ -1,0 +1,147 @@
+/* Hallmark · genre: modern-minimal · macrostructure: Component Playground · theme: custom (tuned) · enrichment: none · nav: N13 · footer: Ft2
+ * vibe: "cream paper, charcoal stage, terracotta signal" · anchor: twlworks logo (#F2EEE6 / #1C1A18 / #C4702C)
+ * paper oklch(95% 0.012 82) · accent oklch(58% 0.13 55) terracotta · Outfit + IBM Plex Sans + IBM Plex Mono
+ * axes: light paper / geometric-sans / warm accent  (dark mode: dark paper, same type + accent)
+ */
+:root {
+  color-scheme: light;
+
+  /* page: the logo's cream, charcoal ink */
+  --color-paper: oklch(95% 0.012 82);
+  --color-paper-2: oklch(92.6% 0.014 80);
+  --color-paper-3: oklch(89.5% 0.016 78);
+  --color-card: oklch(97.4% 0.008 82);
+  --color-ink: oklch(21% 0.006 60);
+  --color-ink-2: oklch(34% 0.008 60);
+  --color-muted: oklch(47% 0.012 62);
+  --color-rule: oklch(86.5% 0.014 78);
+  --color-rule-2: oklch(79% 0.016 74);
+  --color-nav: oklch(95% 0.012 82 / 0.86);
+
+  /* terracotta signal: fills use --accent, small text uses the darker --accent-text */
+  --color-accent: oklch(58% 0.13 55);
+  --color-accent-hover: oklch(52% 0.13 52);
+  --color-accent-text: oklch(49% 0.12 50);
+  --color-accent-ink: oklch(97.4% 0.008 82);
+  --color-accent-soft: oklch(90% 0.04 65);
+  --color-focus: oklch(52% 0.13 52);
+  --color-ok: oklch(46% 0.1 150);
+  --color-error: oklch(50% 0.17 27);
+  --color-shadow: oklch(21% 0.006 60 / 0.22);
+  --color-scrim: oklch(21% 0.006 60 / 0.35);
+
+  /* the stage: every demo plays on charcoal, in both modes */
+  --stage-bg: oklch(21% 0.006 60);
+  --stage-surface: oklch(26% 0.007 60);
+  --stage-rule: oklch(34% 0.008 60);
+  --stage-ink: oklch(94.5% 0.012 80);
+  --stage-muted: oklch(72% 0.012 70);
+  --stage-accent: oklch(66% 0.13 55);
+  --stage-accent-hover: oklch(60% 0.13 52);
+  --stage-accent-ink: oklch(19% 0.006 60);
+  --stage-sheen: oklch(100% 0 0 / 0.4);
+
+  /* logo mark (light mode uses the dark square, like logo-light.svg) */
+  --logo-bg: oklch(21% 0.006 60);
+  --logo-fg: oklch(94.5% 0.012 80);
+  --logo-bar: oklch(60% 0.13 55);
+
+  /* type: Latin from next/font, CJK falls back to the system Simplified Chinese face */
+  --font-cjk: 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans SC', 'Microsoft YaHei', sans-serif;
+  --font-display: var(--ff-display), var(--font-cjk), system-ui, sans-serif;
+  --font-body: var(--ff-body), var(--font-cjk), system-ui, sans-serif;
+  --font-mono: var(--ff-mono), ui-monospace, var(--font-cjk), monospace;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.375rem;
+  --text-2xl: 1.75rem;
+  --text-display: clamp(2.4rem, 5vw + 0.5rem, 4.6rem);
+
+  /* 4pt spacing */
+  --space-2xs: 4px;
+  --space-xs: 8px;
+  --space-sm: 12px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+  --space-4xl: 96px;
+
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --rule-1: 1px solid var(--color-rule);
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in: cubic-bezier(0.7, 0, 0.84, 0);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-micro: 120ms;
+  --dur-short: 220ms;
+  --dur-long: 420ms;
+
+  --page-max: 1240px;
+  --gutter: clamp(16px, 4vw, 40px);
+}
+
+/* Dark mode: the charcoal of the logo becomes the page; the stage goes one step darker. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    color-scheme: dark;
+    --color-paper: oklch(19.5% 0.006 60);
+    --color-paper-2: oklch(23% 0.007 60);
+    --color-paper-3: oklch(27% 0.008 60);
+    --color-card: oklch(22% 0.007 60);
+    --color-ink: oklch(94.5% 0.012 80);
+    --color-ink-2: oklch(83% 0.012 76);
+    --color-muted: oklch(68% 0.012 70);
+    --color-rule: oklch(30% 0.008 60);
+    --color-rule-2: oklch(38% 0.009 60);
+    --color-nav: oklch(19.5% 0.006 60 / 0.86);
+    --color-accent: oklch(66% 0.13 55);
+    --color-accent-hover: oklch(71% 0.12 58);
+    --color-accent-text: oklch(73% 0.12 60);
+    --color-accent-ink: oklch(17% 0.006 60);
+    --color-accent-soft: oklch(32% 0.05 55);
+    --color-focus: oklch(71% 0.12 58);
+    --color-ok: oklch(74% 0.11 150);
+    --color-error: oklch(70% 0.15 27);
+    --color-shadow: oklch(0% 0 0 / 0.5);
+    --color-scrim: oklch(0% 0 0 / 0.55);
+    --stage-bg: oklch(15.5% 0.006 60);
+    --stage-surface: oklch(21% 0.007 60);
+    --stage-rule: oklch(29% 0.008 60);
+    --logo-bg: oklch(94.5% 0.012 80);
+    --logo-fg: oklch(21% 0.006 60);
+  }
+}
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --color-paper: oklch(19.5% 0.006 60);
+  --color-paper-2: oklch(23% 0.007 60);
+  --color-paper-3: oklch(27% 0.008 60);
+  --color-card: oklch(22% 0.007 60);
+  --color-ink: oklch(94.5% 0.012 80);
+  --color-ink-2: oklch(83% 0.012 76);
+  --color-muted: oklch(68% 0.012 70);
+  --color-rule: oklch(30% 0.008 60);
+  --color-rule-2: oklch(38% 0.009 60);
+  --color-nav: oklch(19.5% 0.006 60 / 0.86);
+  --color-accent: oklch(66% 0.13 55);
+  --color-accent-hover: oklch(71% 0.12 58);
+  --color-accent-text: oklch(73% 0.12 60);
+  --color-accent-ink: oklch(17% 0.006 60);
+  --color-accent-soft: oklch(32% 0.05 55);
+  --color-focus: oklch(71% 0.12 58);
+  --color-ok: oklch(74% 0.11 150);
+  --color-error: oklch(70% 0.15 27);
+  --color-shadow: oklch(0% 0 0 / 0.5);
+  --color-scrim: oklch(0% 0 0 / 0.55);
+  --stage-bg: oklch(15.5% 0.006 60);
+  --stage-surface: oklch(21% 0.007 60);
+  --stage-rule: oklch(29% 0.008 60);
+  --logo-bg: oklch(94.5% 0.012 80);
+  --logo-fg: oklch(21% 0.006 60);
+}

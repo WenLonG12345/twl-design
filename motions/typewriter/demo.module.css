@@ -1,0 +1,21 @@
+.line {
+  display: flex;
+  align-items: center;
+  min-height: 1.4em;
+  margin: 0;
+  font: 600 var(--text-2xl) / 1.2 var(--font-display);
+  letter-spacing: -0.02em;
+  color: var(--stage-ink);
+  white-space: nowrap;
+}
+
+.caret {
+  width: 2px;
+  height: 1.05em;
+  margin-left: 3px;
+  background: var(--stage-accent);
+}
+
+.blink { animation: blink 1s steps(1) infinite; }
+
+@keyframes blink { 50% { opacity: 0; } }

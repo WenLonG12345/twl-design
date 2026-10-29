@@ -1,0 +1,46 @@
+.area {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  cursor: none;
+  background:
+    repeating-linear-gradient(90deg, var(--stage-surface) 0 1px, transparent 1px 24px),
+    repeating-linear-gradient(0deg, var(--stage-surface) 0 1px, transparent 1px 24px),
+    var(--stage-bg);
+}
+
+.hint {
+  font: 500 var(--text-xs) / 1 var(--font-mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--stage-muted);
+  transition: opacity 150ms;
+}
+
+.h, .v, .tag {
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 150ms;
+}
+
+.h { width: 100%; height: 1px; background: color-mix(in oklch, var(--stage-accent) 60%, transparent); }
+.v { width: 1px; height: 100%; background: color-mix(in oklch, var(--stage-accent) 60%, transparent); }
+
+.tag {
+  padding: 3px 6px;
+  border-radius: 4px;
+  background: var(--stage-accent);
+  color: var(--stage-accent-ink);
+  font: 600 0.6875rem / 1 var(--font-mono);
+  white-space: nowrap;
+}
+
+.area[data-on] .h,
+.area[data-on] .v,
+.area[data-on] .tag { opacity: 1; }
+.area[data-on] .hint { opacity: 0; }

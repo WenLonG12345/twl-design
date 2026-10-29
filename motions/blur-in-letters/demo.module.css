@@ -1,0 +1,42 @@
+.wrap { display: grid; justify-items: center; gap: 16px; }
+
+.text {
+  display: flex;
+  margin: 0;
+  font: 700 2.6rem / 1.1 var(--font-display);
+  letter-spacing: -0.03em;
+  color: var(--stage-ink);
+  white-space: nowrap;
+}
+
+.ch {
+  display: inline-block;
+  animation: focus-in 700ms var(--ease-out) both;
+  animation-delay: calc(var(--i) * 45ms);
+}
+
+@keyframes focus-in {
+  from { opacity: 0; filter: blur(12px); transform: translateY(0.25em); }
+}
+
+.button {
+  height: 32px;
+  padding: 0 12px;
+  border: 1px solid var(--stage-rule);
+  border-radius: 8px;
+  background: var(--stage-surface);
+  color: var(--stage-ink);
+  font: 500 var(--text-sm) / 1 var(--font-body);
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.button:hover { border-color: var(--stage-accent); }
+.button:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .ch { animation: none; }
+  .text { animation: fade 150ms linear both; }
+}
+
+@keyframes fade { from { opacity: 0; } }

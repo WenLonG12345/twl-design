@@ -1,0 +1,79 @@
+.wrap {
+  display: grid;
+  justify-items: center;
+  gap: 12px;
+  width: min(280px, 100%);
+}
+
+.track {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 56px;
+  padding: 4px;
+  border-radius: 999px;
+  background: var(--stage-surface);
+  box-shadow: inset 0 0 0 1px var(--stage-rule);
+  transition: background-color var(--dur-long) var(--ease-out);
+}
+
+.track[data-done] { background: var(--stage-accent); }
+
+.hint, .doneLabel {
+  grid-area: 1 / 1;
+  font: 500 var(--text-sm) / 1 var(--font-body);
+  letter-spacing: 0.02em;
+  color: var(--stage-muted);
+  pointer-events: none;
+}
+
+.doneLabel { color: var(--stage-accent-ink); font-weight: 600; }
+
+.knob {
+  position: absolute;
+  left: 4px;
+  top: 4px;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--stage-accent);
+  color: var(--stage-accent-ink);
+  cursor: grab;
+  touch-action: none;
+  transition: transform 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.knob:active { cursor: grabbing; }
+.knob:disabled { cursor: default; background: var(--stage-accent-ink); color: var(--stage-accent); }
+.knob:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 3px; }
+
+.knob svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.reset {
+  height: 28px;
+  padding: 0 10px;
+  border: 1px solid var(--stage-rule);
+  border-radius: var(--radius-sm);
+  background: var(--stage-surface);
+  color: var(--stage-ink);
+  font: 500 var(--text-xs) / 1 var(--font-body);
+  cursor: pointer;
+}
+
+.reset[hidden] { visibility: hidden; display: block; }
+
+@media (prefers-reduced-motion: reduce) {
+  .knob { transition: transform 120ms linear; }
+}

@@ -1,0 +1,35 @@
+.wrap { display: grid; justify-items: center; gap: 8px; }
+
+.ring { position: relative; width: 120px; height: 120px; }
+.ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+
+.track, .bar { fill: none; stroke-width: 10; }
+.track { stroke: var(--stage-rule); }
+.bar { stroke: var(--stage-accent); stroke-linecap: round; }
+
+.value {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font: 600 var(--text-2xl) / 1 var(--font-display);
+  font-variant-numeric: tabular-nums;
+  color: var(--stage-ink);
+}
+
+.label { font-size: var(--text-xs); color: var(--stage-muted); }
+
+.button {
+  height: 32px;
+  padding: 0 12px;
+  border: 1px solid var(--stage-rule);
+  border-radius: 8px;
+  background: var(--stage-surface);
+  color: var(--stage-ink);
+  font: 500 var(--text-sm) / 1 var(--font-body);
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.button:hover { border-color: var(--stage-accent); }
+.button:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
