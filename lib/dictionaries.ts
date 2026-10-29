@@ -80,7 +80,7 @@ const en = {
     close: 'close',
   },
   skip: 'Skip to content',
-  footer: '© 2026 TWL Motions by twlworks · Demos and prompts are original work.',
+  footer: '© 2026 Motion Library by twlworks · Demos and prompts are original work.',
 }
 
 export type Dictionary = typeof en
@@ -163,7 +163,7 @@ const zhCN: Dictionary = {
     close: '关闭',
   },
   skip: '跳到主要内容',
-  footer: '© 2026 TWL Motions · twlworks 出品 · 演示与提示词均为原创内容。',
+  footer: '© 2026 Motion Library · twlworks 出品 · 演示与提示词均为原创内容。',
 }
 
 const dictionaries: Record<Locale, Dictionary> = { en, 'zh-CN': zhCN }

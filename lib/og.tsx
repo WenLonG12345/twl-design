@@ -20,7 +20,7 @@ async function googleFont(family: string, weight: number, text: string) {
 }
 
 export async function renderOg({ title, subtitle, footer }: { title: string; subtitle: string; footer: string }) {
-  const all = `TWL Motions${title}${subtitle}${footer}`
+  const all = `Motion Library${title}${subtitle}${footer}`
   const fonts = (
     await Promise.all([
       googleFont('Outfit', 600, all).then((data) => data && { name: 'Outfit', data, weight: 600 as const }),
@@ -38,7 +38,7 @@ export async function renderOg({ title, subtitle, footer }: { title: string; sub
               <path d={LOGO_PATH} fill={C.cream} />
               <rect x="67.7" y="136" width="64.5" height="9" rx="4.5" fill={C.terracotta} />
             </svg>
-            <span style={{ fontSize: 34, color: C.charcoal, letterSpacing: -0.5 }}>TWL Motions</span>
+            <span style={{ fontSize: 34, color: C.charcoal, letterSpacing: -0.5 }}>Motion Library</span>
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 22 }}>
             <span style={{ fontSize: title.length > 28 ? 64 : 80, lineHeight: 1.05, color: C.charcoal, letterSpacing: -2 }}>{title}</span>

@@ -1,4 +1,4 @@
-# TWL Motions
+# Motion Library
 
 A twlworks project. Bilingual (English / Simplified Chinese) library of web animations. Each motion has a live demo, its source, and an AI prompt that recreates it. The prompt and the words inside the demo follow the site language.
 

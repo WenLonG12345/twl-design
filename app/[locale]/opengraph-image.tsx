@@ -5,7 +5,7 @@ import { motions } from '@/motions'
 
 export const size = ogSize
 export const contentType = 'image/png'
-export const alt = 'TWL Motions'
+export const alt = 'Motion Library'
 
 export default async function Image({ params }: { params: Promise<{ locale: string }> }) {
   const { locale: raw } = await params
