@@ -2,7 +2,7 @@ import type { Locale } from './i18n'
 import type { Component, Trigger } from './motions'
 
 const en = {
-  brand: 'TWL Motions',
+  brand: 'Motion Library',
   meta: {
     title: 'Motion Library',
     description:
@@ -86,7 +86,7 @@ const en = {
 export type Dictionary = typeof en
 
 const zhCN: Dictionary = {
-  brand: 'TWL Motions',
+  brand: 'Motion Library',
   meta: {
     title: 'Motion Library',
     description:
