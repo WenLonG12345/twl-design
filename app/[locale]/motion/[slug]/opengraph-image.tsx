@@ -13,8 +13,9 @@ export default async function Image({ params }: { params: Promise<{ locale: stri
   const locale = hasLocale(raw) ? raw : defaultLocale
   const dict = getDictionary(locale)
   const motion = getMotion(slug)
-  if (!motion) return renderOg({ title: dict.brand, subtitle: dict.meta.description, footer: 'twlworks.com' })
+  if (!motion) return renderOg({ locale, title: dict.brand, subtitle: dict.meta.description, footer: 'twlworks.com' })
   return renderOg({
+    locale,
     title: motion.i18n[locale].title,
     subtitle: [techLabel[motion.tech], dict.component[motion.component], dict.trigger[motion.trigger]].join(' · '),
     footer: `${dict.copy.idle} · twlworks.com`,

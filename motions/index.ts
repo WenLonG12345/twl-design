@@ -3,7 +3,7 @@ import type { Motion } from '@/lib/motions'
 import { registry } from './registry.generated'
 
 // To add a motion: create motions/<slug>/meta.ts and Demo.tsx (+ optional demo.module.css).
-// `npm run gen` (runs before dev and build) registers it everywhere.
+// `bun run gen` (runs before dev and build) registers it everywhere.
 export const motions: Motion[] = [...registry].sort((a, b) => b.added.localeCompare(a.added) || a.slug.localeCompare(b.slug))
 
 export const getMotion = (slug: string) => motions.find((m) => m.slug === slug)

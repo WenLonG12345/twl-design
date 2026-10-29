@@ -1,8 +1,11 @@
 /* Hallmark · component: og-image · genre: modern-minimal · theme: custom (Cream Paper)
- * right panel: the site's --ease-out curve plotted as time → progress, with the same frames on a track below
+ * right panel: a bento of charcoal mini-stages, each a still frame of a real motion from the library
+ * pre-emit critique: P5 H4 E4 S5 R4 V5
  */
 import { ImageResponse } from 'next/og'
 import { LOGO_PATH } from '@/components/Logo'
+import type { Locale } from '@/lib/i18n'
+import { getMotion } from '@/motions'
 
 export const ogSize = { width: 1200, height: 630 }
 
@@ -15,68 +18,139 @@ const C = {
   stageInk: '#EDE8DF',
   stageRule: '#403B36',
   stageMuted: '#ABA59C',
+  stageSurface: '#2A2724',
+  flap: '#36322E',
 }
 
-// --ease-out from tokens.css: cubic-bezier(0.16, 1, 0.3, 1)
-const EASE = [0.16, 1, 0.3, 1] as const
-const FRAMES = 11
+const mono = '"IBM Plex Mono", "Noto Sans SC"'
 
-const bez = (t: number, a: number, b: number) => 3 * (1 - t) ** 2 * t * a + 3 * (1 - t) * t * t * b + t ** 3
-/** Progress at time x for the ease curve; x(t) is monotonic, so bisection is enough. */
-function easeAt(x: number) {
-  let lo = 0
-  let hi = 1
-  for (let i = 0; i < 30; i++) {
-    const mid = (lo + hi) / 2
-    if (bez(mid, EASE[0], EASE[2]) < x) lo = mid
-    else hi = mid
-  }
-  return bez((lo + hi) / 2, EASE[1], EASE[3])
-}
-// One sample per frame, evenly spaced in time: early frames spread out, late frames bunch up.
-const frames = Array.from({ length: FRAMES + 1 }, (_, i) => ({ t: i / FRAMES, p: easeAt(i / FRAMES) }))
+/** Real motions from the library, drawn as one still frame each, so the card previews what is inside. */
+const SHOWCASE = ['split-flap', 'stack-fan', 'toggle-switch', 'gradient-border'] as const
 
-// Graph geometry inside the stage panel (px).
-const G = { w: 320, h: 250, pad: 14 }
-const gx = (t: number) => G.pad + t * (G.w - G.pad * 2)
-const gy = (p: number) => G.h - G.pad - p * (G.h - G.pad * 2)
-const TRACK = { w: 320, h: 56, r: 14 }
-const tx = (p: number) => TRACK.r + 2 + p * (TRACK.w - TRACK.r * 2 - 4)
-
-function EaseStage() {
-  const curve = `M${gx(0)} ${gy(0)} C${gx(EASE[0])} ${gy(EASE[1])} ${gx(EASE[2])} ${gy(EASE[3])} ${gx(1)} ${gy(1)}`
+function Tile({ w, h, caption, children }: { w: number; h: number; caption: string; children: React.ReactNode }) {
   return (
     <div
       style={{
-        display: 'flex', flexDirection: 'column', justifyContent: 'space-between',
-        width: 400, margin: 40, padding: '40px 40px 34px', borderRadius: 32, background: C.charcoal,
+        display: 'flex', position: 'relative', alignItems: 'center', justifyContent: 'center',
+        width: w, height: h, paddingBottom: 26, borderRadius: 22, background: C.charcoal, overflow: 'hidden',
       }}
     >
-      <svg width={G.w} height={G.h} viewBox={`0 0 ${G.w} ${G.h}`}>
-        <path d={`M${gx(0)} ${gy(1)} H${gx(1)}`} stroke={C.stageRule} strokeWidth="2" strokeDasharray="4 6" />
-        <path d={`M${gx(0)} ${gy(1)} V${gy(0)} H${gx(1)}`} fill="none" stroke={C.stageRule} strokeWidth="2" />
-        {frames.map((f) => (
-          <path key={f.t} d={`M${gx(f.t)} ${gy(0)} v-7`} stroke={C.stageRule} strokeWidth="2" />
-        ))}
-        <path d={curve} fill="none" stroke={C.terracotta} strokeWidth="3" strokeLinecap="round" />
-        {frames.map((f, i) => (
-          <circle key={f.t} cx={gx(f.t)} cy={gy(f.p)} r={i === FRAMES ? 8 : 5} fill={i === FRAMES ? C.terracotta : C.stageInk} />
-        ))}
-      </svg>
-      <svg width={TRACK.w} height={TRACK.h} viewBox={`0 0 ${TRACK.w} ${TRACK.h}`}>
-        <path d={`M0 ${TRACK.h - 2} H${TRACK.w}`} stroke={C.stageRule} strokeWidth="2" />
-        {frames.slice(0, -1).map((f) => (
-          <circle key={f.t} cx={tx(f.p)} cy={TRACK.h - TRACK.r - 6} r={TRACK.r} fill="none" stroke={C.terracotta} strokeOpacity="0.45" strokeWidth="2" />
-        ))}
-        <circle cx={tx(1)} cy={TRACK.h - TRACK.r - 6} r={TRACK.r} fill={C.terracotta} />
-      </svg>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 6, fontFamily: '"IBM Plex Mono"' }}>
-        <span style={{ fontSize: 20, color: C.stageInk }}>ease-out</span>
-        <span style={{ fontSize: 16, color: C.stageMuted }}>cubic-bezier(0.16, 1, 0.3, 1)</span>
-      </div>
+      {children}
+      <span style={{ position: 'absolute', left: 18, bottom: 14, fontFamily: mono, fontSize: 14, color: C.stageMuted }}>{caption}</span>
     </div>
   )
 }
+
+function SplitFlap() {
+  return (
+    <div style={{ display: 'flex', gap: 7 }}>
+      {Array.from('MOTION').map((c, i) => (
+        <div
+          key={i}
+          style={{
+            display: 'flex', position: 'relative', alignItems: 'center', justifyContent: 'center', overflow: 'hidden',
+            width: 52, height: 72, borderRadius: 9, background: C.stageSurface, fontFamily: mono, fontSize: 40, color: C.stageInk,
+          }}
+        >
+          {c}
+          {/* the last tile is caught mid-flip: its top flap tilts down over the letter */}
+          {i === 5 && (
+            <span style={{ position: 'absolute', left: 0, right: 0, top: 0, height: 36, background: C.flap, transform: 'scaleY(0.55)', transformOrigin: '50% 100%', borderRadius: '9px 9px 0 0' }} />
+          )}
+          <span style={{ position: 'absolute', left: 0, right: 0, top: 35, height: 2, background: C.charcoal }} />
+        </div>
+      ))}
+    </div>
+  )
+}
+
+function StackFan() {
+  const card = { position: 'absolute', left: 62, top: 14, width: 58, height: 84, borderRadius: 10, transformOrigin: '50% 100%' } as const
+  return (
+    <div style={{ display: 'flex', position: 'relative', width: 182, height: 112 }}>
+      <span style={{ ...card, background: C.stageSurface, border: `1.5px solid ${C.stageRule}`, transform: 'translateX(-38px) rotate(-16deg)' }} />
+      <span style={{ ...card, background: C.stageInk, transform: 'translateY(-6px)' }} />
+      <span style={{ ...card, background: C.terracotta, transform: 'translateX(38px) rotate(16deg)' }} />
+    </div>
+  )
+}
+
+function ToggleStars() {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 18 }}>
+      <div style={{ display: 'flex', position: 'relative', width: 104, height: 52, borderRadius: 26, background: C.terracotta }}>
+        {/* ghost knobs trace the slide from off to on */}
+        <span style={{ position: 'absolute', left: 6, top: 6, width: 40, height: 40, borderRadius: 20, background: C.stageInk, opacity: 0.18 }} />
+        <span style={{ position: 'absolute', left: 26, top: 6, width: 44, height: 40, borderRadius: 20, background: C.stageInk, opacity: 0.32 }} />
+        <span style={{ position: 'absolute', left: 58, top: 6, width: 40, height: 40, borderRadius: 20, background: C.stageInk }} />
+      </div>
+      <svg width="146" height="26" viewBox="0 0 146 26">
+        {[0, 1, 2, 3, 4].map((i) => (
+          <path
+            key={i}
+            transform={`translate(${i * 30} 0)`}
+            d="M13 1.5l3.5 7.3 8 1-5.9 5.5 1.5 7.9L13 19.4l-7.1 3.8 1.5-7.9L1.5 9.8l8-1z"
+            fill={i < 4 ? C.terracotta : C.stageRule}
+          />
+        ))}
+      </svg>
+    </div>
+  )
+}
+
+function GradientButton({ label }: { label: string }) {
+  return (
+    <div style={{ display: 'flex', position: 'relative', alignItems: 'center', justifyContent: 'center', width: 300, height: 70 }}>
+      <svg width="260" height="64" viewBox="0 0 260 64" style={{ position: 'absolute', left: 20, top: 3 }}>
+        <defs>
+          <linearGradient id="edge" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stopColor={C.terracotta} stopOpacity="0.15" />
+            <stop offset="0.55" stopColor={C.terracotta} />
+            <stop offset="0.8" stopColor={C.stageInk} />
+            <stop offset="1" stopColor={C.terracotta} stopOpacity="0.3" />
+          </linearGradient>
+        </defs>
+        <rect x="1.5" y="1.5" width="257" height="61" rx="30.5" fill={C.stageSurface} stroke="url(#edge)" strokeWidth="3" />
+      </svg>
+      <span style={{ position: 'relative', fontSize: 24, color: C.stageInk }}>{label}</span>
+      {/* cursor mid-click with ripple rings */}
+      <svg width="70" height="70" viewBox="0 0 70 70" style={{ position: 'absolute', right: -34, top: 30 }}>
+        <circle cx="16" cy="16" r="14" fill="none" stroke={C.terracotta} strokeOpacity="0.55" strokeWidth="2" />
+        <circle cx="16" cy="16" r="26" fill="none" stroke={C.terracotta} strokeOpacity="0.25" strokeWidth="2" />
+        <path d="M16 16 L16 44 L23 37 L28 48 L33 46 L28 35 L38 35 Z" fill={C.stageInk} stroke={C.charcoal} strokeWidth="2" strokeLinejoin="round" />
+      </svg>
+    </div>
+  )
+}
+
+function Showcase({ locale }: { locale: Locale }) {
+  const [flap, fan, toggle, border] = SHOWCASE.map((slug) => getMotion(slug)!.i18n[locale])
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 14, width: 440, margin: '40px 40px 40px 0' }}>
+      <Tile w={440} h={176} caption={flap.title}>
+        <SplitFlap />
+      </Tile>
+      <div style={{ display: 'flex', gap: 14 }}>
+        <Tile w={213} h={196} caption={fan.title}>
+          <StackFan />
+        </Tile>
+        <Tile w={213} h={196} caption={toggle.title}>
+          <ToggleStars />
+        </Tile>
+      </div>
+      <Tile w={440} h={150} caption={border.title}>
+        <GradientButton label={border.labels.cta} />
+      </Tile>
+    </div>
+  )
+}
+
+/** Every string drawn on the card, so the font requests subset to exactly these glyphs. */
+const showcaseText = (locale: Locale) =>
+  SHOWCASE.map((slug) => {
+    const copy = getMotion(slug)!.i18n[locale]
+    return copy.title + (copy.labels.cta ?? '')
+  }).join('') + 'MOTION'
 
 /** Loads only the glyphs in `text` from Google Fonts. Returns null offline so the image still renders with the default font. */
 async function googleFont(family: string, weight: number, text: string) {
@@ -91,13 +165,13 @@ async function googleFont(family: string, weight: number, text: string) {
   }
 }
 
-export async function renderOg({ title, subtitle, footer }: { title: string; subtitle: string; footer: string }) {
-  const all = `Motion Library${title}${subtitle}${footer}`
+export async function renderOg({ title, subtitle, footer, locale }: { title: string; subtitle: string; footer: string; locale: Locale }) {
+  const all = `Motion Library${title}${subtitle}${footer}${showcaseText(locale)}`
   const fonts = (
     await Promise.all([
       googleFont('Outfit', 600, all).then((data) => data && { name: 'Outfit', data, weight: 600 as const }),
       googleFont('Noto Sans SC', 600, all).then((data) => data && { name: 'Noto Sans SC', data, weight: 600 as const }),
-      googleFont('IBM Plex Mono', 500, 'ease-outcubic-bezier(0.16, 1, 0.3, 1)').then(
+      googleFont('IBM Plex Mono', 500, all).then(
         (data) => data && { name: 'IBM Plex Mono', data, weight: 500 as const },
       ),
     ])
@@ -122,7 +196,7 @@ export async function renderOg({ title, subtitle, footer }: { title: string; sub
           </div>
           <span style={{ fontSize: 22, color: C.ink2 }}>{footer}</span>
         </div>
-        <EaseStage />
+        <Showcase locale={locale} />
       </div>
     ),
     { ...ogSize, fonts },

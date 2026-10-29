@@ -9,8 +9,10 @@ export const alt = 'Motion Library'
 
 export default async function Image({ params }: { params: Promise<{ locale: string }> }) {
   const { locale: raw } = await params
-  const dict = getDictionary(hasLocale(raw) ? raw : defaultLocale)
+  const locale = hasLocale(raw) ? raw : defaultLocale
+  const dict = getDictionary(locale)
   return renderOg({
+    locale,
     title: dict.hero.title.join(''),
     subtitle: fmt(dict.hero.count, motions.length) + ' · CSS · GSAP · SVG · Canvas',
     footer: 'twlworks.com · EN / 中文',
