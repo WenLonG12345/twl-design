@@ -2,6 +2,8 @@
 
 A twlworks project. Bilingual (English / Simplified Chinese) library of web animations. Each motion has a live demo, its source, and an AI prompt that recreates it. The prompt and the words inside the demo follow the site language.
 
+[![Motion Library tour: a 45-second video of the site](docs/intro-poster.jpg)](intro.mp4)
+
 ## Run
 
 ```bash
