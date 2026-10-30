@@ -1,0 +1,79 @@
+.wrap {
+  display: grid;
+  justify-items: center;
+  gap: 24px;
+  width: min(320px, 100%);
+}
+
+.tabs {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 4px;
+  border: 1px solid var(--stage-rule);
+  border-radius: 999px;
+  background: var(--stage-surface);
+}
+
+/* the pill slides under the active tab */
+.tabs::before {
+  content: '';
+  position: absolute;
+  inset: 4px auto 4px 4px;
+  width: calc(50% - 4px);
+  border-radius: 999px;
+  background: var(--stage-accent);
+  transform: translateX(calc(var(--cur) * 100%));
+  transition: transform 360ms var(--ease-out);
+}
+
+.tab {
+  position: relative;
+  height: 30px;
+  padding: 0 14px;
+  border: 0;
+  border-radius: 999px;
+  background: none;
+  color: var(--stage-muted);
+  font: 500 var(--text-sm) / 1 var(--font-body);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color var(--dur-short);
+}
+
+.tab[aria-pressed='true'] { color: var(--stage-accent-ink); }
+.tab:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
+
+.stack { display: grid; }
+
+.line {
+  grid-area: 1 / 1;
+  margin: 0;
+  font: 600 var(--text-2xl) / 1.2 var(--font-display);
+  letter-spacing: -0.02em;
+  text-align: center;
+  text-wrap: balance;
+  color: var(--stage-ink);
+}
+
+.line[data-state='hidden'] { visibility: hidden; }
+
+.word { display: inline-block; }
+
+.line[data-state='in'] .word { animation: in 620ms var(--ease-out) calc(var(--i) * 45ms) both; }
+.line[data-state='out'] .word { animation: out 360ms var(--ease-in) calc(var(--i) * 25ms) both; }
+
+@keyframes in {
+  from { opacity: 0; transform: translateY(0.6em) rotate(4deg); filter: blur(6px); }
+}
+
+@keyframes out {
+  to { opacity: 0; transform: translateY(-0.6em) rotate(-4deg); filter: blur(6px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tabs::before { transition: none; }
+  .line[data-state='in'] .word { animation: fade 200ms both; }
+  .line[data-state='out'] .word { animation: none; opacity: 0; }
+  @keyframes fade { from { opacity: 0; } }
+}

@@ -1,0 +1,102 @@
+.text {
+  align-self: end;
+  max-width: 300px;
+  margin: 0 0 12px;
+  font: 400 var(--text-base) / 1.6 var(--font-body);
+  text-align: center;
+  color: var(--stage-muted);
+}
+
+.anchor { position: relative; }
+
+.link {
+  color: var(--stage-ink);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: var(--stage-accent);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+.link:hover { color: var(--stage-accent); }
+.link:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; border-radius: 2px; }
+
+.card {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  z-index: 1;
+  display: grid;
+  gap: 4px;
+  width: 220px;
+  padding: 8px 8px 12px;
+  border: 1px solid var(--stage-rule);
+  border-radius: 14px;
+  background: var(--stage-surface);
+  box-shadow: 0 18px 40px -12px oklch(0% 0 0 / 0.6);
+  text-align: left;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-50%) translateY(6px) scale(0.92);
+  transform-origin: 50% 100%;
+  transition:
+    opacity 160ms,
+    transform 160ms var(--ease-in),
+    visibility 0s 160ms;
+}
+
+.card[data-open] {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%);
+  transition:
+    opacity 200ms,
+    transform 320ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* a small pointer that joins the card to the link */
+.card::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  border: solid var(--stage-rule);
+  border-width: 0 1px 1px 0;
+  background: var(--stage-surface);
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.thumb {
+  height: 64px;
+  margin-bottom: 6px;
+  border-radius: 8px;
+  background:
+    radial-gradient(circle at 26% 58%, var(--stage-accent) 0 14px, transparent 15px),
+    linear-gradient(transparent 62%, var(--stage-rule) 62% 66%, transparent 66%),
+    linear-gradient(135deg, var(--stage-bg), var(--stage-rule));
+}
+
+.title {
+  padding: 0 4px;
+  font: 600 var(--text-sm) / 1.2 var(--font-display);
+  color: var(--stage-ink);
+}
+
+.desc {
+  padding: 0 4px;
+  font: 400 var(--text-xs) / 1.4 var(--font-body);
+  color: var(--stage-muted);
+}
+
+.domain {
+  padding: 0 4px;
+  font: 500 var(--text-xs) / 1 var(--font-mono);
+  color: var(--stage-accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card, .card[data-open] { transform: translateX(-50%); transition: opacity 150ms, visibility 0s 150ms; }
+  .card[data-open] { transition: opacity 150ms; }
+}

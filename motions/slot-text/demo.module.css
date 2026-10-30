@@ -1,0 +1,75 @@
+.wrap {
+  display: grid;
+  justify-items: center;
+  gap: 24px;
+}
+
+.machine {
+  display: flex;
+  gap: 4px;
+  padding: 8px;
+  border: 1px solid var(--stage-rule);
+  border-radius: 14px;
+  background: var(--stage-surface);
+}
+
+.reel {
+  height: 1.2em;
+  overflow: hidden;
+  padding: 0 0.12em;
+  border-radius: 8px;
+  background: var(--stage-bg);
+  font: 700 2.25rem / 1 var(--font-mono);
+  color: var(--stage-ink);
+  mask-image: linear-gradient(transparent, black 22%, black 78%, transparent);
+}
+
+.strip {
+  display: grid;
+  transform: translateY(calc(var(--n) * -1.2em));
+}
+
+.strip[data-spin] {
+  animation: roll calc(900ms + var(--col) * 160ms) cubic-bezier(0.2, 0.9, 0.3, 1.08) backwards;
+}
+
+@keyframes roll {
+  from { transform: translateY(0); filter: blur(0); }
+  15% { filter: blur(1.5px); }
+  80% { filter: blur(0); }
+}
+
+.cell {
+  display: grid;
+  place-items: center;
+  height: 1.2em;
+}
+
+.reel:last-child .cell { color: var(--stage-accent); }
+
+.button {
+  height: 32px;
+  padding: 0 18px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--stage-accent);
+  color: var(--stage-accent-ink);
+  font: 600 var(--text-sm) / 1 var(--font-body);
+  cursor: pointer;
+}
+
+.button:hover { background: var(--stage-accent-hover); }
+.button:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
+
+.sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .strip[data-spin] { animation: none; }
+}
