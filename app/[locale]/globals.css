@@ -230,6 +230,7 @@ main { display: block; }
 
 .source { display: grid; gap: var(--space-lg); margin-top: var(--space-3xl); }
 .source__title { font-size: var(--text-xl); font-weight: 600; letter-spacing: -0.02em; }
+.source__note { margin-top: calc(var(--space-sm) - var(--space-lg)); font-size: var(--text-sm); line-height: 1.6; color: var(--color-muted); }
 .code { overflow: hidden; border: 1px solid var(--stage-rule); border-radius: var(--radius-md); background: var(--stage-bg); }
 .code__bar {
   display: flex; align-items: center; justify-content: space-between; gap: var(--space-sm);

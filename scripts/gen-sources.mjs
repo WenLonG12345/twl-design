@@ -2,7 +2,8 @@
 //   motions/registry.generated.ts     every meta.ts, so new motions need no manual registration
 //   motions/demos.generated.tsx       slug → Demo component map for the client
 //   motions/sources.generated.json    each motion's source, shown on its detail page
-import { readdir, readFile, writeFile } from 'node:fs/promises'
+//   public/r/<slug>.json              each motion as a shadcn registry item
+import { mkdir, readdir, readFile, rm, writeFile } from 'node:fs/promises'
 import { existsSync } from 'node:fs'
 
 const sourceFiles = ['Demo.tsx', 'demo.module.css']
@@ -41,4 +42,56 @@ for (const s of slugs) {
   }
 }
 await writeFile('motions/sources.generated.json', JSON.stringify(sources, null, 2) + '\n')
+
+// public/r/<slug>.json: shadcn registry items, so `npx shadcn add <site>/r/<slug>.json` installs a motion.
+// Outside this site our tokens don't exist: --stage-*/--color-* keep a var() with our value as fallback so users can
+// retheme, fonts use the project's Tailwind fonts, and the rest are inlined because Tailwind defines the same names
+// (--radius-sm, --ease-out…) with different values.
+const tokens = Object.fromEntries(
+  [...(await readFile('tokens.css', 'utf8')).split('}')[0].matchAll(/(--[\w-]+):\s*([^;]+);/g)].map((m) => [m[1], m[2]]),
+)
+const fonts = {
+  '--font-display': 'var(--font-sans, system-ui, sans-serif)',
+  '--font-body': 'var(--font-sans, system-ui, sans-serif)',
+  '--font-mono': 'var(--font-mono, ui-monospace, monospace)',
+}
+const portable = (code) =>
+  code.replace(/var\((--[\w-]+)\)/g, (m, name) =>
+    fonts[name] ?? (!(name in tokens) ? m : /^--(stage|color)-/.test(name) ? `var(${name}, ${tokens[name]})` : tokens[name]),
+  )
+const signature = '({ labels }: { labels: Record<string, string> })'
+
+await rm('public/r', { recursive: true, force: true })
+await mkdir('public/r', { recursive: true })
+for (const s of slugs) {
+  const { default: meta } = await import(`../motions/${s}/meta.ts`)
+  const files = sources[s].map(({ name, code }) => {
+    if (name === 'Demo.tsx') {
+      if (!code.includes(signature)) throw new Error(`motions/${s}/Demo.tsx: expected ${signature}`)
+      // English labels become the default, so the installed component renders without props.
+      code = code
+        .replace(signature, '({ labels = defaultLabels }: { labels?: Record<string, string> })')
+        .replace(
+          'export default function',
+          `const defaultLabels: Record<string, string> = ${JSON.stringify(meta.i18n.en.labels, null, 2)}\n\nexport default function`,
+        )
+    }
+    return {
+      path: `motions/${s}/${name}`,
+      content: portable(code),
+      type: 'registry:component',
+      target: `@components/motions/${s}/${name === 'Demo.tsx' ? `${s}.tsx` : name}`,
+    }
+  })
+  const item = {
+    $schema: 'https://ui.shadcn.com/schema/registry-item.json',
+    name: s,
+    type: 'registry:component',
+    title: meta.i18n.en.title,
+    description: meta.i18n.en.summary,
+    dependencies: files.some((f) => /from 'gsap/.test(f.content)) ? ['gsap'] : [],
+    files,
+  }
+  await writeFile(`public/r/${s}.json`, JSON.stringify(item, null, 2) + '\n')
+}
 console.log(`gen-sources: ${slugs.length} motions`)

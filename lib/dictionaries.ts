@@ -68,6 +68,9 @@ const en = {
     back: 'All motions',
     prompt: 'AI prompt',
     source: 'Source',
+    install: 'Install with shadcn',
+    installNote:
+      'Installs to components/motions/. It is built for a dark surface: place it on a dark background or set the --stage-* variables. Text defaults to English; pass your own through the labels prop.',
     added: 'Added',
     readOther: '阅读简体中文版',
   },
@@ -166,6 +169,9 @@ const zhCN: Dictionary = {
     back: '全部动效',
     prompt: 'AI 提示词',
     source: '源代码',
+    install: '用 shadcn 安装',
+    installNote:
+      '安装到 components/motions/。动效为深色背景设计：请放在深色背景上，或设置 --stage-* 变量。文字默认为英文，可通过 labels 属性传入你自己的文案。',
     added: '收录于',
     readOther: 'Read in English',
   },

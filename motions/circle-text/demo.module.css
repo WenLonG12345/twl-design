@@ -1,0 +1,57 @@
+.badge {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 176px;
+  height: 176px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--stage-ink);
+  cursor: pointer;
+}
+
+.badge:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 4px; }
+
+.ring {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.text {
+  fill: var(--stage-ink);
+  font: 600 15px / 1 var(--font-mono);
+  text-transform: uppercase;
+}
+
+.core {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--stage-accent);
+  color: var(--stage-accent-ink);
+  transition: transform var(--dur-long) var(--ease-out);
+}
+
+.core svg {
+  width: 26px;
+  height: 26px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.badge:hover .core,
+.badge:focus-visible .core { transform: scale(1.1) rotate(45deg); }
+
+@media (prefers-reduced-motion: reduce) {
+  .core { transition: none; }
+}
