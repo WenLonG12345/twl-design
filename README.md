@@ -1,6 +1,6 @@
 # Motion Library
 
-A twlworks project. Bilingual (English / Simplified Chinese) library of web animations. Each motion has a live demo, its source, and an AI prompt that recreates it. The prompt and the words inside the demo follow the site language.
+A twlworks project, live at [motion.twlworks.com](https://motion.twlworks.com). Bilingual (English / Simplified Chinese) library of web animations. Each motion has a live demo, its source, and an AI prompt that recreates it. The prompt and the words inside the demo follow the site language.
 
 [![Motion Library tour: a 45-second video of the site](docs/intro-poster.jpg)](intro.mp4)
 
@@ -13,6 +13,16 @@ bun run build
 ```
 
 No environment variables are required on Vercel: canonical URLs, hreflang, the sitemap and llms.txt use the project's production domain automatically. Set `NEXT_PUBLIC_SITE_URL` (e.g. `https://motion.example.com`) only to override it, such as for a custom domain.
+
+## Install a motion
+
+Every motion is also a [shadcn](https://ui.shadcn.com/docs/registry) registry item, so a React project with a `components.json` can install it in one line:
+
+```bash
+npx shadcn@latest add https://motion.twlworks.com/r/accordion.json
+```
+
+It lands in `components/motions/<slug>/`, with `gsap` added when the motion needs it. The site's tokens are baked in, so it works without this repo's CSS: `--stage-*` colours fall back to the charcoal stage (set them to retheme), fonts use the project's `--font-sans` / `--font-mono`, and text defaults to English (pass `labels` to change it). Each motion's page shows its exact command. `bun run gen` writes the items to `public/r/`.
 
 ## Contributing
 

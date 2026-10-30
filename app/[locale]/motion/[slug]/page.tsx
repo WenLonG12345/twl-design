@@ -34,6 +34,7 @@ export default async function MotionPage({ params }: PageProps<'/[locale]/motion
   const copy = motion.i18n[locale]
   const other = otherLocale(locale)
   const source = sources[slug as keyof typeof sources] ?? []
+  const install = `npx shadcn@latest add ${SITE_URL}/r/${slug}.json`
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -94,6 +95,16 @@ export default async function MotionPage({ params }: PageProps<'/[locale]/motion
         <h2 id="source-title" className="source__title">
           {dict.detail.source}
         </h2>
+        <figure className="code">
+          <figcaption className="code__bar">
+            <span>{dict.detail.install}</span>
+            <CopyButton text={install} labels={{ ...dict.copy, idle: dict.copy.code }} variant="dark" />
+          </figcaption>
+          <pre>
+            <code>{install}</code>
+          </pre>
+        </figure>
+        <p className="source__note">{dict.detail.installNote}</p>
         {source.map((f) => (
           <figure key={f.name} className="code">
             <figcaption className="code__bar">
