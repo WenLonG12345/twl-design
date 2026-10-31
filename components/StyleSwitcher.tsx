@@ -21,7 +21,7 @@ export default function StyleSwitcher({
 }: {
   locale: Locale
   items: Item[]
-  dict: Pick<Dictionary, 'copy'> & { styles: Pick<Dictionary['styles'], 'switcher'> }
+  dict: Pick<Dictionary, 'copy'> & { styles: Pick<Dictionary['styles'], 'switcher' | 'preview'> }
 }) {
   const [index, setIndex] = useState(0)
   const [playing, setPlaying] = useState(false)
@@ -98,6 +98,9 @@ export default function StyleSwitcher({
             <CopyButton text={current.prompt} labels={dict.copy} variant="primary" />
             <Link className="link" href={`/${locale}/themes/${current.slug}`}>
               {t.details} →
+            </Link>
+            <Link className="link" href={`/${locale}/themes/${current.slug}/preview`} target="_blank">
+              {dict.styles.preview.open} ↗<span className="sr-only"> ({dict.styles.preview.newTab})</span>
             </Link>
           </div>
         </aside>

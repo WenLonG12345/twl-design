@@ -68,7 +68,7 @@ export default async function ThemesPage({ params }: PageProps<'/[locale]/themes
         </div>
       </section>
 
-      <StyleSwitcher locale={locale} items={items} dict={{ copy: dict.copy, styles: { switcher: t.switcher } }} />
+      <StyleSwitcher locale={locale} items={items} dict={{ copy: dict.copy, styles: { switcher: t.switcher, preview: t.preview } }} />
 
       <section className="band" aria-labelledby="all-styles">
         <h2 id="all-styles" className="band__title">
@@ -95,9 +95,14 @@ export default async function ThemesPage({ params }: PageProps<'/[locale]/themes
               </div>
               <div className="card__actions">
                 <CopyButton text={s.prompt} labels={dict.copy} variant="ghost" />
-                <Link className="link" href={`/${locale}/themes/${s.slug}`}>
-                  {dict.card.details}
-                </Link>
+                <span className="card__links">
+                  <Link className="link" href={`/${locale}/themes/${s.slug}/preview`} target="_blank">
+                    {t.preview.open} ↗<span className="sr-only"> ({t.preview.newTab})</span>
+                  </Link>
+                  <Link className="link" href={`/${locale}/themes/${s.slug}`}>
+                    {dict.card.details}
+                  </Link>
+                </span>
               </div>
             </li>
           ))}

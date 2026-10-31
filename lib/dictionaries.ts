@@ -129,6 +129,14 @@ const en = {
       previewOf: 'Sample page in the theme:',
     },
     grid: { title: 'All themes' },
+    preview: {
+      open: 'Full preview',
+      newTab: 'opens in a new tab',
+      title: 'Full preview',
+      back: 'Theme details',
+      label: 'Screen width',
+      devices: { mobile: 'Mobile', tablet: 'Tablet', desktop: 'Desktop' },
+    },
     detail: {
       back: 'All themes',
       prompt: 'AI prompt',
@@ -295,6 +303,14 @@ const zhCN: Dictionary = {
       previewOf: '示例网页，当前主题：',
     },
     grid: { title: '全部主题' },
+    preview: {
+      open: '全屏预览',
+      newTab: '在新标签页打开',
+      title: '全屏预览',
+      back: '主题详情',
+      label: '屏幕宽度',
+      devices: { mobile: '手机', tablet: '平板', desktop: '桌面' },
+    },
     detail: {
       back: '全部主题',
       prompt: 'AI 提示词',

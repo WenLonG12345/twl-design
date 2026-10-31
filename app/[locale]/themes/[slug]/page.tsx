@@ -78,6 +78,16 @@ export default async function ThemePage({ params }: PageProps<'/[locale]/themes/
             <li key={b}>{b}</li>
           ))}
         </ul>
+        <Link className="btn btn--ghost previewbtn" href={`/${locale}/themes/${slug}/preview`} target="_blank">
+          <svg className="ico" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M2.5 6V2.5H6M10 2.5h3.5V6M13.5 10v3.5H10M6 13.5H2.5V10" />
+          </svg>
+          {t.preview.open}
+          <span className="sr-only"> ({t.preview.newTab})</span>
+          <svg className="ico previewbtn__go" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M5.5 10.5l5-5M6.5 5.5h4v4" />
+          </svg>
+        </Link>
       </header>
 
       <div className="stylestage">
