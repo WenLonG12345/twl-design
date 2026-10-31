@@ -7,9 +7,8 @@ import StylePreview from '@/components/StylePreview'
 import StyleSwitcher from '@/components/StyleSwitcher'
 import { getDictionary } from '@/lib/dictionaries'
 import { fmt, hasLocale, languageAlternates, SITE_URL } from '@/lib/i18n'
-import { styleFontVars } from '@/lib/styleFonts'
+import { cjkFontsHref, styleFontVars } from '@/lib/styleFonts'
 import { designStyles } from '@/styles'
-import { sample } from '@/styles/sample'
 
 export async function generateMetadata({ params }: PageProps<'/[locale]/styles'>): Promise<Metadata> {
   const { locale } = await params
@@ -52,6 +51,7 @@ export default async function StylesPage({ params }: PageProps<'/[locale]/styles
 
   return (
     <div className={styleFontVars}>
+      {locale === 'zh-CN' && <link rel="stylesheet" href={cjkFontsHref} precedence="default" />}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c') }}
@@ -68,7 +68,7 @@ export default async function StylesPage({ params }: PageProps<'/[locale]/styles
         </div>
       </section>
 
-      <StyleSwitcher locale={locale} items={items} sample={sample[locale]} dict={{ copy: dict.copy, styles: { switcher: t.switcher } }} />
+      <StyleSwitcher locale={locale} items={items} dict={{ copy: dict.copy, styles: { switcher: t.switcher } }} />
 
       <section className="band" aria-labelledby="all-styles">
         <h2 id="all-styles" className="band__title">
@@ -79,7 +79,7 @@ export default async function StylesPage({ params }: PageProps<'/[locale]/styles
             <li key={s.slug} className="card">
               <Link href={`/${locale}/styles/${s.slug}`} className="stylecard__thumb" tabIndex={-1} aria-hidden="true">
                 <ScaledPreview>
-                  <StylePreview style={s.slug} copy={sample[locale]} />
+                  <StylePreview style={s.slug} copy={s.sample} />
                 </ScaledPreview>
               </Link>
               <div className="card__body">

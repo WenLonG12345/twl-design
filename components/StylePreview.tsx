@@ -1,8 +1,8 @@
-import type { SampleCopy } from '@/styles/sample'
+import type { SampleCopy } from '@/lib/styles'
 import s from './StylePreview.module.css'
 
 /**
- * The sample page (the twlworks homepage), dressed in one style. No hooks, so it renders on the server or inside client components.
+ * A style's sample page: the fictional business it suits, in one shared structure. No hooks, so it renders on the server or inside client components.
  * It is a picture of a page, not a working one: links and buttons are plain spans so they never steal focus.
  */
 export default function StylePreview({ style, copy, label }: { style: string; copy: SampleCopy; label?: string }) {

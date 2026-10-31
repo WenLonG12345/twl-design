@@ -45,5 +45,14 @@ const playfair = Playfair_Display({ subsets: ['latin'], display: 'swap', preload
 const caslon = Libre_Caslon_Text({ subsets: ['latin'], display: 'swap', preload: false, variable: '--sf-caslon', weight: ['400', '700'], style: ['normal', 'italic'] })
 const alfaSlab = Alfa_Slab_One({ subsets: ['latin'], display: 'swap', preload: false, variable: '--sf-alfa-slab', weight: '400' })
 
+
 /** Put on any element that renders a StylePreview, so every --sf-* variable is defined. */
 export const styleFontVars = [fraunces, hanken, interTight, shippori, zenKaku, archivoBlack, spaceGrotesk, jakarta, cormorant, bricolage, dmSans, rubikMono, fredoka, nunito, manrope, lora, jetbrains, playfair, caslon, alfaSlab].map((f) => f.variable).join(' ')
+
+/**
+ * The Chinese faces load from Google Fonts' CDN, which splits each one into unicode-range slices so a page fetches only the
+ * characters it shows. Self-hosting them through next/font means ~480 slice downloads per build, which Google throttles.
+ * Only the zh-CN style pages link this; the families are referenced by name in StylePreview.module.css.
+ */
+export const cjkFontsHref =
+  'https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300..900&family=Noto+Serif+SC:wght@400..900&family=ZCOOL+QingKe+HuangYou&family=ZCOOL+KuaiLe&family=Ma+Shan+Zheng&display=swap'

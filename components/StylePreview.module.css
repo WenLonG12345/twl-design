@@ -1,7 +1,7 @@
 /* Hallmark · redesign: style specimens (01 02 03 05 06 08 09 10 13 14 15; 06 14 15 again) · one signature move per style · CSS-only, genre-true
  * Hallmark · pre-emit critique: P4 H4 E4 S5 R4 V5
  */
-/* The sample page every style dresses. .frame is the size container; .page carries one style's tokens via [data-style].
+/* The sample page every style dresses (each with its own fictional business). .frame is the size container; .page carries one style's tokens via [data-style].
  * Base rules read only the custom properties below, so a new style is mostly a token block plus a few signature overrides. */
 
 .frame { container-type: inline-size; width: 100%; }
@@ -22,6 +22,9 @@
   --card-shadow: none;
   --fd: system-ui, sans-serif;
   --fb: system-ui, sans-serif;
+  /* Chinese faces each style's stack falls back to (linked on zh-CN pages, see cjkFontsHref in lib/styleFonts.ts) */
+  --cjk-sans: 'Noto Sans SC', var(--font-cjk);
+  --cjk-serif: 'Noto Serif SC', 'Songti SC', serif;
   --tw: 600;
   --tt: none;
   --ts: -0.02em;
@@ -110,7 +113,7 @@
 .page[data-style='warm-editorial'] {
   --bg: #f2eee6; --surface: #fbf8f2; --ink: #1c1a18; --muted: #6b645b; --accent: #c4702c; --accent-ink: #fbf8f2;
   --accent-text: #a5571c; --line: #d9d1c3; --r: 14px;
-  --fd: var(--sf-fraunces), var(--font-cjk), Georgia, serif; --fb: var(--sf-hanken), var(--font-cjk), system-ui, sans-serif;
+  --fd: var(--sf-fraunces), var(--cjk-serif); --fb: var(--sf-hanken), var(--cjk-sans), system-ui, sans-serif;
   --tw: 600; --ts: -0.025em; --tl: 1.02;
 }
 /* a magazine spread: masthead rule, captioned photo, column rules, pull-quote */
@@ -146,7 +149,7 @@
 .page[data-style='swiss-minimal'] {
   --bg: #ffffff; --surface: #ffffff; --ink: #111111; --muted: #6e6e6e; --accent: #e2231a; --accent-ink: #ffffff;
   --accent-text: #c81d15; --line: #111111; --r: 0px;
-  --fd: var(--sf-inter-tight), var(--font-cjk), Helvetica, Arial, sans-serif; --fb: var(--fd);
+  --fd: var(--sf-inter-tight), var(--cjk-sans), Helvetica, Arial, sans-serif; --fb: var(--fd);
   --tw: 700; --ts: -0.05em; --tl: 0.88; --label-ls: 0.02em;
   /* the 12-column grid stays visible behind everything */
   background: repeating-linear-gradient(90deg, transparent 0 calc(100% / 12 - 1px), rgb(17 17 17 / 0.06) calc(100% / 12 - 1px) calc(100% / 12)) content-box, #ffffff;
@@ -179,7 +182,7 @@
 .page[data-style='japanese-minimal'] {
   --bg: #f7f5f0; --surface: #ffffff; --ink: #2b2b2b; --muted: #6e6a64; --accent: #6f8160; --accent-ink: #ffffff;
   --accent-text: #5a6b4d; --line: #e4e0d8; --r: 2px;
-  --fd: var(--sf-shippori), 'Songti SC', serif; --fb: var(--sf-zen-kaku), var(--font-cjk), sans-serif;
+  --fd: var(--sf-shippori), var(--cjk-serif); --fb: var(--sf-zen-kaku), var(--cjk-sans), sans-serif;
   --tw: 500; --ts: 0.02em; --tl: 1.3; --label-ls: 0.28em;
   gap: clamp(36px, 7.5cqi, 84px);
   padding: clamp(24px, 6.5cqi, 72px);
@@ -225,7 +228,7 @@
   --bg: #fff4d6; --surface: #ffffff; --ink: #000000; --muted: #3a3a3a; --accent: #ff5c39; --accent-ink: #000000;
   --accent-text: #000000; --line: #000000; --r: 10px; --bw: 3px;
   --shadow: 5px 5px 0 #000000; --card-shadow: 6px 6px 0 #000000;
-  --fd: var(--sf-archivo-black), var(--font-cjk), Impact, sans-serif; --fb: var(--sf-space-grotesk), var(--font-cjk), system-ui, sans-serif;
+  --fd: var(--sf-archivo-black), 'ZCOOL QingKe HuangYou', var(--cjk-sans), Impact, sans-serif; --fb: var(--sf-space-grotesk), var(--cjk-sans), system-ui, sans-serif;
   --tw: 400; --ts: -0.01em; --tl: 0.95; --tt: uppercase; --label-ls: 0.04em;
   --art-1: #7bdcb5; --art-2: #ff5c39; --art-3: #ffffff;
 }
@@ -256,7 +259,7 @@
   --shadow: 0 0 32px rgb(165 243 252 / 0.45);
   --card-shadow: inset 0 1px 0 rgb(255 255 255 / 0.3), 0 20px 40px -24px rgb(0 0 0 / 0.6);
   --glass: rgb(255 255 255 / 0.1);
-  --fd: var(--sf-jakarta), var(--font-cjk), system-ui, sans-serif; --fb: var(--fd);
+  --fd: var(--sf-jakarta), var(--cjk-sans), system-ui, sans-serif; --fb: var(--fd);
   --tw: 600; --ts: -0.035em; --tl: 1.04;
   background:
     radial-gradient(38% 46% at 82% 18%, rgb(124 58 237 / 0.85), transparent 70%),
@@ -317,7 +320,7 @@
   --bg: #0e0d0b; --surface: transparent; --ink: #ede6d6; --muted: #9c9481; --accent: #c8a96a; --accent-ink: #0e0d0b;
   --line: #3a3326; --r: 0px;
   --foil: linear-gradient(120deg, #8a6d3b, #e8cf96 30%, #b8955a 52%, #f3e2b3 72%, #9c7a43);
-  --fd: var(--sf-cormorant), 'Songti SC', serif; --fb: var(--sf-dm-sans), var(--font-cjk), system-ui, sans-serif;
+  --fd: var(--sf-cormorant), var(--cjk-serif); --fb: var(--sf-dm-sans), var(--cjk-sans), system-ui, sans-serif;
   --tw: 500; --ts: -0.01em; --tl: 1; --label-ls: 0.32em;
   text-align: center;
   /* a warm spotlight falls on the arch; the rest stays in shadow */
@@ -391,7 +394,7 @@
   --bg: #f4f4f5; --surface: #ffffff; --ink: #18181b; --muted: #71717a; --accent: #4f46e5; --accent-ink: #ffffff;
   --line: #e4e4e7; --r: 24px; --btn-r: 999px;
   --card-shadow: 0 1px 2px rgb(24 24 27 / 0.04);
-  --fd: var(--sf-bricolage), var(--font-cjk), system-ui, sans-serif; --fb: var(--sf-dm-sans), var(--font-cjk), system-ui, sans-serif;
+  --fd: var(--sf-bricolage), var(--cjk-sans), system-ui, sans-serif; --fb: var(--sf-dm-sans), var(--cjk-sans), system-ui, sans-serif;
   --tw: 700; --ts: -0.04em; --tl: 0.98; --label-ls: 0.02em;
   gap: 14px;
 }
@@ -423,7 +426,7 @@
   --accent-text: #c4127a; --line: #1b0b3a; --r: 20px; --btn-r: 999px; --bw: 2px;
   --shadow: inset 0 2px 0 rgb(255 255 255 / 0.6), 0 6px 0 #1b0b3a;
   --card-shadow: 0 6px 0 #1b0b3a;
-  --fd: var(--sf-rubik-mono), var(--font-cjk), system-ui, sans-serif; --fb: var(--sf-space-grotesk), var(--font-cjk), system-ui, sans-serif;
+  --fd: var(--sf-rubik-mono), 'ZCOOL QingKe HuangYou', var(--cjk-sans), system-ui, sans-serif; --fb: var(--sf-space-grotesk), var(--cjk-sans), system-ui, sans-serif;
   --tw: 400; --ts: -0.03em; --tl: 1; --tt: uppercase;
   background:
     radial-gradient(circle at 20% 20%, rgb(255 255 255 / 0.9) 0 1.5px, transparent 2px) 0 0 / 46px 46px,
@@ -474,7 +477,7 @@
   --bg: #fff7f0; --surface: #ffffff; --ink: #3d2c2e; --muted: #7a6466; --accent: #ff8fab; --accent-ink: #3d2c2e;
   --accent-text: #c23560; --line: #f3e3da; --r: 28px; --btn-r: 999px; --bw: 2px;
   --shadow: 0 5px 0 #e56f8f;
-  --fd: var(--sf-fredoka), var(--font-cjk), system-ui, sans-serif; --fb: var(--sf-nunito), var(--font-cjk), system-ui, sans-serif;
+  --fd: var(--sf-fredoka), 'ZCOOL KuaiLe', var(--cjk-sans), system-ui, sans-serif; --fb: var(--sf-nunito), var(--cjk-sans), system-ui, sans-serif;
   --tw: 600; --ts: -0.015em; --tl: 1.04; --label-ls: 0.04em;
   --art-1: #a8e6cf; --art-3: #ffe9a8;
 }
@@ -523,7 +526,7 @@
   --shadow: 0 1px 2px rgb(11 31 58 / 0.12);
   --card-shadow: 0 1px 2px rgb(11 31 58 / 0.05), 0 8px 24px -16px rgb(11 31 58 / 0.35);
   --bar: #c7d7fe;
-  --fd: var(--sf-manrope), var(--font-cjk), system-ui, sans-serif; --fb: var(--fd);
+  --fd: var(--sf-manrope), var(--cjk-sans), system-ui, sans-serif; --fb: var(--fd);
   --tw: 700; --ts: -0.03em; --tl: 1.08; --label-ls: 0;
 }
 .page[data-style='corporate-trust'] .bar { margin: calc(clamp(18px, 4.5cqi, 48px) * -1) calc(clamp(18px, 4.5cqi, 48px) * -1) 0; padding: 16px clamp(18px, 4.5cqi, 48px); border-bottom: 1px solid var(--line); }
@@ -568,7 +571,7 @@
 .page[data-style='organic-natural'] {
   --bg: #eef0e5; --surface: #f8f8f1; --ink: #2f3a2b; --muted: #5f6857; --accent: #a65e3a; --accent-ink: #f8f8f1; --accent-text: #934f2e;
   --line: #d8dccb; --r: 22px; --btn-r: 999px;
-  --fd: var(--sf-lora), 'Songti SC', serif; --fb: var(--sf-dm-sans), var(--font-cjk), system-ui, sans-serif;
+  --fd: var(--sf-lora), var(--cjk-serif); --fb: var(--sf-dm-sans), var(--cjk-sans), system-ui, sans-serif;
   --tw: 500; --ts: -0.02em; --tl: 1.08; --label-ls: 0.14em;
   --art-1: #9db08a; --art-2: #e3d5bc; --art-3: #a65e3a;
   background:
@@ -593,7 +596,7 @@
 .page[data-style='terminal-dev'] {
   --bg: #0b0f0c; --surface: #111812; --ink: #c8f7c5; --muted: #6a8f6a; --accent: #39ff88; --accent-ink: #0b0f0c;
   --line: #1f2e22; --r: 2px;
-  --fd: var(--sf-jetbrains), var(--font-cjk), ui-monospace, monospace; --fb: var(--fd);
+  --fd: var(--sf-jetbrains), var(--cjk-sans), ui-monospace, monospace; --fb: var(--fd);
   --tw: 600; --ts: -0.03em; --tl: 1.08; --label-ls: 0;
   font-size: 14px;
 }
@@ -637,7 +640,7 @@
   --accent-text: #4560d6; --line: transparent; --r: 32px; --btn-r: 999px; --bw: 0px;
   --clay: 12px 12px 24px rgb(108 124 170 / 0.35), -8px -8px 20px rgb(255 255 255 / 0.9), inset 3px 3px 6px rgb(255 255 255 / 0.7), inset -3px -3px 6px rgb(108 124 170 / 0.18);
   --shadow: var(--clay); --card-shadow: var(--clay);
-  --fd: var(--sf-nunito), var(--font-cjk), system-ui, sans-serif; --fb: var(--fd);
+  --fd: var(--sf-nunito), var(--cjk-sans), system-ui, sans-serif; --fb: var(--fd);
   --tw: 800; --ts: -0.025em; --tl: 1.04; --label-ls: 0.06em;
   font-weight: 500;
 }
@@ -679,7 +682,7 @@
 .page[data-style='newspaper'] {
   --bg: #f4efe4; --surface: transparent; --ink: #1a1a1a; --muted: #555049; --accent: #9e1b1b; --accent-ink: #f4efe4;
   --line: #1a1a1a; --r: 0px;
-  --fd: var(--sf-playfair), 'Songti SC', serif; --fb: var(--sf-caslon), 'Songti SC', Georgia, serif;
+  --fd: var(--sf-playfair), var(--cjk-serif); --fb: var(--sf-caslon), var(--cjk-serif);
   --tw: 900; --ts: -0.02em; --tl: 0.92; --label-ls: 0.16em;
   gap: clamp(20px, 3.5cqi, 36px);
 }
@@ -747,7 +750,7 @@
   --bg: #f3e7cf; --surface: #fbf3e2; --ink: #2a1e14; --muted: #6e5a45; --accent: #b3261e; --accent-ink: #fbf3e2;
   --line: #2a1e14; --r: 6px; --bw: 2px;
   --gold: #d9a441; --gold-ink: #f1c96b; --teal: #1f5e4e; --cream: #fbf3e2; --tile: #f6e6c4;
-  --fd: var(--sf-alfa-slab), 'Hei', var(--font-cjk), serif; --fb: var(--sf-dm-sans), var(--font-cjk), system-ui, sans-serif;
+  --fd: var(--sf-alfa-slab), 'Ma Shan Zheng', var(--cjk-serif); --fb: var(--sf-dm-sans), var(--cjk-sans), system-ui, sans-serif;
   --tw: 400; --ts: 0.005em; --tl: 1.02; --label-ls: 0.12em;
   padding-bottom: calc(clamp(18px, 4.5cqi, 48px) + 18px);
 }
@@ -808,12 +811,23 @@
 @container (max-width: 680px) {
   /* beats the per-style column overrides above, so every style stacks on narrow screens */
   .page[data-style] .hero, .page[data-style] .cards { grid-template-columns: minmax(0, 1fr); }
+  /* long business names wrap instead of pushing the nav button off the page */
+  .page[data-style] .logo { min-width: 0; white-space: normal; }
+  .page[data-style='dark-luxury'] .bar { grid-template-columns: minmax(0, 1fr) auto; }
+  .page[data-style='dark-luxury'] .logo { grid-column: 1; justify-content: start; font-size: 15px; letter-spacing: 0.18em; }
+  .page[data-style='dark-luxury'] .navCta { grid-column: 2; }
+  .page[data-style='nanyang-heritage'] .bar { gap: 12px; padding: 12px 14px; }
+  .page[data-style='nanyang-heritage'] .logo { font-size: 17px; }
   .page[data-style='warm-editorial'] .card, .page[data-style='warm-editorial'] .card + .card { padding: 18px 0; border-left: 0; }
   .page[data-style='dark-luxury'] .card + .card { border-left: 0; border-top: 1px solid var(--line); }
   .page[data-style='newspaper'] .heroText { padding-right: 0; border-right: 0; }
   .page[data-style='newspaper'] .art { margin-left: 0; aspect-ratio: 4 / 3; }
   .page[data-style='newspaper'] .card + .card { border-left: 0; border-top: 1px solid var(--line); }
 }
+
+/* Chinese has no true italic and needs air: upright, untracked, never tighter than 1.2 */
+.page:lang(zh) :is(.title, .logo, .quote, .tag, .cardTitle, .k) { font-style: normal; }
+.page:lang(zh) .title { letter-spacing: 0; line-height: max(var(--tl), 1.2); }
 
 @media (prefers-reduced-motion: reduce) {
   .page[data-style='terminal-dev'] .title::after { animation: none; }

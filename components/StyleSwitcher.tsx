@@ -6,7 +6,6 @@ import { flushSync } from 'react-dom'
 import type { Dictionary } from '@/lib/dictionaries'
 import type { Locale } from '@/lib/i18n'
 import type { StyleCopy } from '@/lib/styles'
-import type { SampleCopy } from '@/styles/sample'
 import CopyButton from './CopyButton'
 import StylePreview from './StylePreview'
 
@@ -14,16 +13,14 @@ type Item = StyleCopy & { slug: string }
 
 const AUTOPLAY_MS = 2600
 
-/** One sample page, many styles: pick a chip and the same page re-dresses itself. Built for comparing (and screen recording). */
+/** One page structure, many styles: pick a chip and the page re-dresses as that style's business. Built for comparing (and screen recording). */
 export default function StyleSwitcher({
   locale,
   items,
-  sample,
   dict,
 }: {
   locale: Locale
   items: Item[]
-  sample: SampleCopy
   dict: Pick<Dictionary, 'copy'> & { styles: Pick<Dictionary['styles'], 'switcher'> }
 }) {
   const [index, setIndex] = useState(0)
@@ -83,7 +80,7 @@ export default function StyleSwitcher({
 
       <div className="switcher__body">
         <div className="switcher__stage">
-          <StylePreview style={current.slug} copy={sample} label={`${t.previewOf} ${current.name}`} />
+          <StylePreview style={current.slug} copy={current.sample} label={`${t.previewOf} ${current.name}`} />
         </div>
         <aside className="switcher__info" aria-live={playing ? 'off' : 'polite'}>
           <p className="switcher__index">

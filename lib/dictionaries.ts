@@ -101,12 +101,12 @@ const en = {
     meta: {
       title: 'Style Library',
       description:
-        'The same studio homepage in 15 visual styles, from Swiss minimal to Nanyang heritage. Every style comes with a copy-ready AI prompt in English and Simplified Chinese.',
+        '15 visual styles for small-business websites, each shown on a business it suits, from Swiss minimal to Nanyang heritage. Every style comes with a copy-ready AI prompt in English and Simplified Chinese.',
     },
     hero: {
       // The middle part gets the terracotta underline; {n} is the number of styles.
-      title: ['One page, ', '{n}', ' styles.'],
-      lede: 'The same twlworks homepage, dressed {n} different ways. Pick the one that feels like your brand, copy its prompt into an AI coding tool, and your own page follows.',
+      title: ['One layout, ', '{n}', ' styles.'],
+      lede: '{n} styles, each dressed as a business it suits. Find the one that looks most like yours, copy its prompt into an AI coding tool, and your own page follows.',
       count: '{n} styles',
     },
     switcher: {
@@ -139,7 +139,7 @@ const en = {
       accent: 'Accent',
       extra: 'Support',
     } satisfies Record<PaletteRole, string>,
-    note: 'The sample page is the twlworks homepage.',
+    note: 'Sample businesses are fictional.',
     cta: {
       title: 'Want your business to look like this?',
       text: 'I design and build websites and business systems for Malaysian SMEs: landing pages, online ordering, bookings and admin dashboards. Pick a style you like and tell me about your business.',
@@ -257,11 +257,11 @@ const zhCN: Dictionary = {
     meta: {
       title: '风格库',
       description:
-        '同一个工作室首页，用 15 种视觉风格呈现：从瑞士极简到南洋老字号。每个风格都附带可直接复制的 AI 提示词，支持简体中文与英文。',
+        '15 种适合小商家网站的视觉风格，每种都穿在一家适合它的店上：从瑞士极简到南洋老字号。每个风格都附带可直接复制的 AI 提示词，支持简体中文与英文。',
     },
     hero: {
-      title: ['一个网页，', '{n}', ' 种风格。'],
-      lede: '同一个 twlworks 首页，换上 {n} 种不同的风格。挑一个最像你品牌的，把提示词复制到 AI 编程工具里，你的网页就能照着改。',
+      title: ['一个版式，', '{n}', ' 种风格。'],
+      lede: '{n} 种风格，各自穿在一家适合它的店上。找到最像你生意的那一个，把提示词复制到 AI 编程工具里，你的网页就能照着改。',
       count: '共 {n} 种风格',
     },
     switcher: {
@@ -294,7 +294,7 @@ const zhCN: Dictionary = {
       accent: '强调',
       extra: '辅助',
     },
-    note: '示例网页是 twlworks 首页。',
+    note: '示例商家均为虚构。',
     cta: {
       title: '想让你的生意也长这样？',
       text: '我为马来西亚中小企业设计并开发网站和业务系统：品牌网页、线上点单、预约和管理后台。挑一个喜欢的风格，跟我聊聊你的生意。',

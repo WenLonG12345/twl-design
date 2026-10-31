@@ -5,10 +5,9 @@ import CopyButton from '@/components/CopyButton'
 import StylePreview from '@/components/StylePreview'
 import { getDictionary } from '@/lib/dictionaries'
 import { hasLocale, languageAlternates, locales, otherLocale, SITE_URL } from '@/lib/i18n'
-import { styleFontVars } from '@/lib/styleFonts'
+import { cjkFontsHref, styleFontVars } from '@/lib/styleFonts'
 import { getMotion } from '@/motions'
 import { designStyles, getStyle } from '@/styles'
-import { sample } from '@/styles/sample'
 
 export const generateStaticParams = () =>
   locales.flatMap((locale) => designStyles.map((s) => ({ locale, slug: s.slug })))
@@ -54,6 +53,7 @@ export default async function StylePage({ params }: PageProps<'/[locale]/styles/
 
   return (
     <article className={`detail ${styleFontVars}`}>
+      {locale === 'zh-CN' && <link rel="stylesheet" href={cjkFontsHref} precedence="default" />}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c') }}
@@ -81,7 +81,7 @@ export default async function StylePage({ params }: PageProps<'/[locale]/styles/
       </header>
 
       <div className="stylestage">
-        <StylePreview style={style.slug} copy={sample[locale]} label={`${t.switcher.previewOf} ${copy.name}`} />
+        <StylePreview style={style.slug} copy={copy.sample} label={`${t.switcher.previewOf} ${copy.name}`} />
       </div>
       <p className="stylegrid__note">{t.note}</p>
 
