@@ -418,6 +418,10 @@ main { display: block; }
 .pager__label { font: 500 var(--text-xs) / 1.2 var(--font-mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-muted); }
 .pager__name { font: 600 var(--text-lg) / 1.2 var(--font-display); color: var(--color-ink); }
 
+/* inline text arrows (lucide), sized to the surrounding text */
+.arrow { width: 1.1em; height: 1.1em; vertical-align: -0.2em; stroke-width: 2; }
+kbd .arrow { width: 1em; height: 1em; vertical-align: -0.15em; }
+
 /* 16px line icons, drawn in the nav's searchpill style */
 .ico {
   width: 16px; height: 16px; flex: none;

@@ -1,3 +1,4 @@
+import { ArrowRight, ArrowUpRight } from 'lucide-react'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
@@ -97,7 +98,7 @@ export default async function ThemesPage({ params }: PageProps<'/[locale]/themes
                 <CopyButton text={s.prompt} labels={dict.copy} variant="ghost" />
                 <span className="card__links">
                   <Link className="link" href={`/${locale}/themes/${s.slug}/preview`} target="_blank">
-                    {t.preview.open} ↗<span className="sr-only"> ({t.preview.newTab})</span>
+                    {t.preview.open} <ArrowUpRight className="arrow" /><span className="sr-only"> ({t.preview.newTab})</span>
                   </Link>
                   <Link className="link" href={`/${locale}/themes/${s.slug}`}>
                     {dict.card.details}
@@ -129,7 +130,7 @@ export default async function ThemesPage({ params }: PageProps<'/[locale]/themes
         </h2>
         <p className="hire__text">{t.cta.text}</p>
         <a className="btn btn--primary hire__btn" href="https://www.twlworks.com">
-          {t.cta.button} →
+          {t.cta.button} <ArrowRight className="arrow" />
         </a>
       </section>
     </div>

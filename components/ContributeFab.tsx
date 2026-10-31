@@ -1,5 +1,6 @@
 'use client'
 
+import { ArrowUpRight } from 'lucide-react'
 import { usePathname } from 'next/navigation'
 import { useId, useRef, useState } from 'react'
 import type { Dictionary } from '@/lib/dictionaries'
@@ -90,7 +91,7 @@ export default function ContributeFab({ labels, locale }: { labels: Dictionary['
               {labels.cancel}
             </button>
             <button type="submit" className="btn btn--primary">
-              {labels.submit} ↗
+              {labels.submit} <ArrowUpRight className="arrow" />
             </button>
           </div>
         </form>

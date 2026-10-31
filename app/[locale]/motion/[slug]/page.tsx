@@ -1,3 +1,4 @@
+import { ArrowLeft } from 'lucide-react'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
@@ -56,7 +57,7 @@ export default async function MotionPage({ params }: PageProps<'/[locale]/motion
       />
       <nav className="crumbs" aria-label="Breadcrumb">
         <Link className="link" href={`/${locale}`}>
-          ← {dict.detail.back}
+          <ArrowLeft className="arrow" /> {dict.detail.back}
         </Link>
         <Link className="link" href={`/${other}/motion/${slug}`} hrefLang={other} lang={other}>
           {dict.detail.readOther}

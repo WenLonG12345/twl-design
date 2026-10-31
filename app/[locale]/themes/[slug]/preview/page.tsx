@@ -1,3 +1,4 @@
+import { ArrowLeft } from 'lucide-react'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
@@ -41,7 +42,7 @@ export default async function ThemePreviewPage({ params }: PageProps<'/[locale]/
         head={
           <>
             <Link className="viewer__back" href={`/${locale}/themes/${slug}`}>
-              ← {t.preview.back}
+              <ArrowLeft className="arrow" /> {t.preview.back}
             </Link>
             <h1 className="viewer__name">{copy.name}</h1>
           </>

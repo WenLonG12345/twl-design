@@ -1,3 +1,4 @@
+import { ArrowLeft, ArrowRight, ArrowUpRight } from 'lucide-react'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
@@ -60,7 +61,7 @@ export default async function ThemePage({ params }: PageProps<'/[locale]/themes/
       />
       <nav className="crumbs" aria-label="Breadcrumb">
         <Link className="link" href={`/${locale}/themes`}>
-          ← {t.detail.back}
+          <ArrowLeft className="arrow" /> {t.detail.back}
         </Link>
         <Link className="link" href={`/${other}/themes/${slug}`} hrefLang={other} lang={other}>
           {t.detail.readOther}
@@ -84,9 +85,7 @@ export default async function ThemePage({ params }: PageProps<'/[locale]/themes/
           </svg>
           {t.preview.open}
           <span className="sr-only"> ({t.preview.newTab})</span>
-          <svg className="ico previewbtn__go" viewBox="0 0 16 16" aria-hidden="true">
-            <path d="M5.5 10.5l5-5M6.5 5.5h4v4" />
-          </svg>
+          <ArrowUpRight className="ico previewbtn__go" />
         </Link>
       </header>
 
@@ -143,7 +142,7 @@ export default async function ThemePage({ params }: PageProps<'/[locale]/themes/
                 {motions.map((m) => (
                   <li key={m.slug}>
                     <Link className="link" href={`/${locale}/motion/${m.slug}`}>
-                      {m.i18n[locale].title} →
+                      {m.i18n[locale].title} <ArrowRight className="arrow" />
                     </Link>
                   </li>
                 ))}
@@ -157,7 +156,7 @@ export default async function ThemePage({ params }: PageProps<'/[locale]/themes/
             </h2>
             <p>{t.cta.text}</p>
             <a className="btn btn--primary" href="https://www.twlworks.com">
-              {t.cta.button} →
+              {t.cta.button} <ArrowRight className="arrow" />
             </a>
           </section>
         </aside>
@@ -165,11 +164,11 @@ export default async function ThemePage({ params }: PageProps<'/[locale]/themes/
 
       <nav className="pager" aria-label={t.grid.title}>
         <Link className="pager__link" href={`/${locale}/themes/${prev.slug}`} rel="prev">
-          <span className="pager__label">← {t.detail.prev}</span>
+          <span className="pager__label"><ArrowLeft className="arrow" /> {t.detail.prev}</span>
           <span className="pager__name">{prev.i18n[locale].name}</span>
         </Link>
         <Link className="pager__link pager__link--next" href={`/${locale}/themes/${next.slug}`} rel="next">
-          <span className="pager__label">{t.detail.next} →</span>
+          <span className="pager__label">{t.detail.next} <ArrowRight className="arrow" /></span>
           <span className="pager__name">{next.i18n[locale].name}</span>
         </Link>
       </nav>

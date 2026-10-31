@@ -1,5 +1,6 @@
 'use client'
 
+import { ArrowRight, ArrowUpRight } from 'lucide-react'
 import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
 import { flushSync } from 'react-dom'
@@ -97,10 +98,10 @@ export default function StyleSwitcher({
           <div className="switcher__actions">
             <CopyButton text={current.prompt} labels={dict.copy} variant="primary" />
             <Link className="link" href={`/${locale}/themes/${current.slug}`}>
-              {t.details} →
+              {t.details} <ArrowRight className="arrow" />
             </Link>
             <Link className="link" href={`/${locale}/themes/${current.slug}/preview`} target="_blank">
-              {dict.styles.preview.open} ↗<span className="sr-only"> ({dict.styles.preview.newTab})</span>
+              {dict.styles.preview.open} <ArrowUpRight className="arrow" /><span className="sr-only"> ({dict.styles.preview.newTab})</span>
             </Link>
           </div>
         </aside>

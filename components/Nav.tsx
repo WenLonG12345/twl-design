@@ -1,5 +1,6 @@
 'use client'
 
+import { ArrowDown, ArrowUp } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
@@ -147,8 +148,8 @@ export default function Nav({
           </ul>
           <div className="cmdk__foot">
             <span>
-              <kbd>↑</kbd>
-              <kbd>↓</kbd> {dict.palette.navigate}
+              <kbd><ArrowUp className="arrow" /></kbd>
+              <kbd><ArrowDown className="arrow" /></kbd> {dict.palette.navigate}
             </span>
             <span>
               <kbd>↵</kbd> {dict.palette.open}
