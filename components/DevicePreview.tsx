@@ -45,6 +45,18 @@ export default function DevicePreview({
 
   return (
     <>
+      {/* The site steps aside for the charcoal stage. Cache Components keeps this page in the DOM (hidden by <Activity>)
+          after navigating away, so a body:has(.viewer) rule would leak onto the next page; the ref cleanup disables
+          this sheet when the page is hidden. */}
+      <style
+        ref={(el) => {
+          if (!el) return
+          el.media = ''
+          return () => {
+            el.media = 'not all'
+          }
+        }}
+      >{`body { background: var(--stage-bg); } body :is(.nav, .foot, .fab) { display: none; }`}</style>
       <div className="viewer__bar">
         <div className="viewer__head">{head}</div>
         <div className="viewer__devices" role="group" aria-label={labels.label}>

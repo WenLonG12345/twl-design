@@ -428,11 +428,9 @@ main { display: block; }
 .previewbtn:hover .previewbtn__go { transform: translate(2px, -2px); color: var(--color-accent-text); }
 .card__links { display: flex; gap: var(--space-md); }
 
-/* ---------- Full preview: the site steps aside, the theme gets the charcoal stage ---------- */
+/* ---------- Full preview: the theme gets the charcoal stage (the site steps aside in DevicePreview) ---------- */
 /* registered so the frame width can ease between devices; the preview reflows live as it goes, like dragging a window */
 @property --w { syntax: '<length-percentage>'; inherits: false; initial-value: 100%; }
-body:has(.viewer) { background: var(--stage-bg); }
-body:has(.viewer) :is(.nav, .foot, .fab) { display: none; }
 .viewer { min-height: 100dvh; color: var(--stage-muted); }
 .viewer__bar {
   position: sticky; top: 0; z-index: 400;
