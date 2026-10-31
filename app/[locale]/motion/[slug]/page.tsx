@@ -18,11 +18,12 @@ export async function generateMetadata({ params }: PageProps<'/[locale]/motion/[
   const motion = getMotion(slug)
   if (!hasLocale(locale) || !motion) return {}
   const copy = motion.i18n[locale]
+  const { brand } = getDictionary(locale)
   return {
     title: copy.title,
     description: copy.summary,
     alternates: { canonical: `/${locale}/motion/${slug}`, languages: languageAlternates(`/motion/${slug}`) },
-    openGraph: { type: 'article', title: copy.title, description: copy.summary },
+    openGraph: { type: 'article', siteName: brand, title: copy.title, description: copy.summary },
   }
 }
 

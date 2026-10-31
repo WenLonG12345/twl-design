@@ -1,16 +1,18 @@
 import type { Locale } from './i18n'
 import type { Component, Trigger } from './motions'
+import type { PaletteRole } from './styles'
 
 const en = {
-  brand: 'Motion Library',
+  brand: 'Design Library',
   meta: {
-    title: 'Motion Library',
+    title: 'Design Library',
     description:
-      'Live, interactive web animation demos for CSS, JavaScript, GSAP, SVG and Canvas. Every motion comes with its source and a copy-ready AI prompt in English and Simplified Chinese.',
+      'Live web animation demos for CSS, JavaScript, GSAP, SVG and Canvas, plus a library of website themes for small businesses. Every motion and theme comes with a copy-ready AI prompt in English and Simplified Chinese.',
   },
   nav: {
     search: 'Search motions…',
-    library: 'Library',
+    library: 'Motions',
+    styles: 'Themes',
     switchLang: '中文',
     switchLangLabel: 'Switch to Simplified Chinese',
     toDark: 'Switch to dark mode',
@@ -81,13 +83,24 @@ const en = {
   },
   skip: 'Skip to content',
   contribute: {
-    fab: 'Suggest a motion',
-    title: 'Suggest a motion',
-    lede: 'Seen an effect you would like to find here? Describe it, and it opens as a prefilled GitHub issue for you to post.',
-    name: 'Effect name',
-    namePh: 'e.g. Liquid fill button',
-    details: 'What does it do?',
-    detailsPh: 'What moves, when it plays, and where you saw it.',
+    fab: 'Suggest an idea',
+    title: 'Suggest an idea',
+    lede: 'Seen a motion or a theme you would like to find here? Describe it, and it opens as a prefilled GitHub issue for you to post.',
+    kind: 'What are you suggesting?',
+    motion: {
+      label: 'Motion',
+      name: 'Effect name',
+      namePh: 'e.g. Liquid fill button',
+      details: 'What does it do?',
+      detailsPh: 'What moves, when it plays, and where you saw it.',
+    },
+    theme: {
+      label: 'Theme',
+      name: 'Theme name',
+      namePh: 'e.g. Memphis pop',
+      details: 'What does it look like?',
+      detailsPh: 'Colours, fonts, shapes, the kind of business it suits, and where you saw it.',
+    },
     link: 'Reference link',
     optional: 'optional',
     note: 'Needs a GitHub account. Suggestions are public.',
@@ -95,21 +108,87 @@ const en = {
     submit: 'Continue on GitHub',
     close: 'Close',
   },
-  footer: '© 2026 Motion Library by twlworks · Demos and prompts are original work.',
+  styles: {
+    meta: {
+      title: 'Theme Library',
+      description:
+        '15 website themes for small businesses, each shown on a business it suits, from Swiss minimal to Nanyang heritage. Every theme comes with a copy-ready AI prompt in English and Simplified Chinese.',
+    },
+    hero: {
+      // The middle part gets the terracotta underline; {n} is the number of themes.
+      title: ['One layout, ', '{n}', ' themes.'],
+      lede: '{n} themes, each dressed as a business it suits. Find the one that looks most like yours, copy its prompt into an AI coding tool, and your own page follows.',
+      count: '{n} themes',
+    },
+    switcher: {
+      label: 'Choose a theme',
+      play: 'Auto-play',
+      pause: 'Pause',
+      details: 'Theme details',
+      bestFor: 'Best for',
+      previewOf: 'Sample page in the theme:',
+    },
+    grid: { title: 'All themes' },
+    preview: {
+      open: 'Full preview',
+      newTab: 'opens in a new tab',
+      title: 'Full preview',
+      back: 'Theme details',
+      label: 'Screen width',
+      devices: { mobile: 'Mobile', tablet: 'Tablet', desktop: 'Desktop' },
+    },
+    detail: {
+      back: 'All themes',
+      prompt: 'AI prompt',
+      palette: 'Palette',
+      type: 'Typography',
+      display: 'Headlines',
+      body: 'Body',
+      bestFor: 'Best for',
+      motions: 'Motions that suit it',
+      prev: 'Previous theme',
+      next: 'Next theme',
+      readOther: '阅读简体中文版',
+    },
+    roles: {
+      bg: 'Background',
+      surface: 'Surface',
+      ink: 'Text',
+      muted: 'Secondary',
+      accent: 'Accent',
+      extra: 'Support',
+    } satisfies Record<PaletteRole, string>,
+    note: 'Sample businesses are fictional.',
+    cta: {
+      title: 'Want your business to look like this?',
+      text: 'I design and build websites and business systems for Malaysian SMEs: landing pages, online ordering, bookings and admin dashboards. Pick a theme you like and tell me about your business.',
+      button: 'Talk to twlworks',
+    },
+    use: {
+      title: 'From a theme to your own site',
+      steps: [
+        'Flip through the themes and pick the one that fits your brand.',
+        'Copy its prompt. It covers colour, type, layout, components and motion, in the language you read.',
+        'Paste it into Claude, Cursor or any AI coding tool together with your own content.',
+      ],
+    },
+  },
+  footer: '© 2026 Design Library by twlworks · Demos and prompts are original work.',
 }
 
 export type Dictionary = typeof en
 
 const zhCN: Dictionary = {
-  brand: 'Motion Library',
+  brand: 'Design Library',
   meta: {
-    title: 'Motion Library',
+    title: 'Design Library',
     description:
-      '可交互的网页动效演示，涵盖 CSS、JavaScript、GSAP、SVG 与 Canvas。每个动效都附带源代码和可直接复制的 AI 提示词，支持简体中文与英文。',
+      '可交互的网页动效演示，涵盖 CSS、JavaScript、GSAP、SVG 与 Canvas，以及适合小商家网站的网站主题库。每个动效和主题都附带可直接复制的 AI 提示词，支持简体中文与英文。',
   },
   nav: {
     search: '搜索动效…',
     library: '动效列表',
+    styles: '主题',
     switchLang: 'EN',
     switchLangLabel: 'Switch to English',
     toDark: '切换到深色模式',
@@ -179,13 +258,24 @@ const zhCN: Dictionary = {
   },
   skip: '跳到主要内容',
   contribute: {
-    fab: '投稿动效创意',
-    title: '投稿动效创意',
-    lede: '看到想收录的效果？简单描述一下，会打开一个预先填好的 GitHub Issue，确认后即可提交。',
-    name: '效果名称',
-    namePh: '例如：液体填充按钮',
-    details: '它是怎么动的？',
-    detailsPh: '哪些元素在动、什么时候播放、在哪里看到的。',
+    fab: '投稿创意',
+    title: '投稿创意',
+    lede: '看到想收录的动效或主题？简单描述一下，会打开一个预先填好的 GitHub Issue，确认后即可提交。',
+    kind: '你想投稿的是？',
+    motion: {
+      label: '动效',
+      name: '效果名称',
+      namePh: '例如：液体填充按钮',
+      details: '它是怎么动的？',
+      detailsPh: '哪些元素在动、什么时候播放、在哪里看到的。',
+    },
+    theme: {
+      label: '主题',
+      name: '主题名称',
+      namePh: '例如：孟菲斯波普风',
+      details: '它看起来是什么样子？',
+      detailsPh: '配色、字体、形状、适合什么生意，以及在哪里看到的。',
+    },
     link: '参考链接',
     optional: '选填',
     note: '需要 GitHub 账号，投稿内容会公开。',
@@ -193,7 +283,71 @@ const zhCN: Dictionary = {
     submit: '前往 GitHub 提交',
     close: '关闭',
   },
-  footer: '© 2026 Motion Library · twlworks 出品 · 演示与提示词均为原创内容。',
+  styles: {
+    meta: {
+      title: '主题库',
+      description:
+        '15 个适合小商家的网站主题，每个都穿在一家适合它的店上：从瑞士极简到南洋老字号。每个主题都附带可直接复制的 AI 提示词，支持简体中文与英文。',
+    },
+    hero: {
+      title: ['一个版式，', '{n}', ' 个主题。'],
+      lede: '{n} 个主题，各自穿在一家适合它的店上。找到最像你生意的那一个，把提示词复制到 AI 编程工具里，你的网页就能照着改。',
+      count: '共 {n} 个主题',
+    },
+    switcher: {
+      label: '选择主题',
+      play: '自动播放',
+      pause: '暂停',
+      details: '查看主题详情',
+      bestFor: '适合',
+      previewOf: '示例网页，当前主题：',
+    },
+    grid: { title: '全部主题' },
+    preview: {
+      open: '全屏预览',
+      newTab: '在新标签页打开',
+      title: '全屏预览',
+      back: '主题详情',
+      label: '屏幕宽度',
+      devices: { mobile: '手机', tablet: '平板', desktop: '桌面' },
+    },
+    detail: {
+      back: '全部主题',
+      prompt: 'AI 提示词',
+      palette: '配色',
+      type: '字体',
+      display: '标题',
+      body: '正文',
+      bestFor: '适合',
+      motions: '适合搭配的动效',
+      prev: '上一个主题',
+      next: '下一个主题',
+      readOther: 'Read in English',
+    },
+    roles: {
+      bg: '背景',
+      surface: '表面',
+      ink: '文字',
+      muted: '次要',
+      accent: '强调',
+      extra: '辅助',
+    },
+    note: '示例商家均为虚构。',
+    cta: {
+      title: '想让你的生意也长这样？',
+      text: '我为马来西亚中小企业设计并开发网站和业务系统：品牌网页、线上点单、预约和管理后台。挑一个喜欢的主题，跟我聊聊你的生意。',
+      button: '联系 twlworks',
+    },
+    use: {
+      title: '从主题到你自己的网站',
+      steps: [
+        '翻看各个主题，挑出最适合你品牌的那一个。',
+        '复制它的提示词。提示词涵盖配色、字体、布局、组件和动效，语言跟随你正在阅读的版本。',
+        '连同你自己的内容，一起粘贴到 Claude、Cursor 或任意 AI 编程工具里。',
+      ],
+    },
+  },
+  footer: '© 2026 Design Library · twlworks 出品 · 演示与提示词均为原创内容。',
 }
 
 const dictionaries: Record<Locale, Dictionary> = { en, 'zh-CN': zhCN }
