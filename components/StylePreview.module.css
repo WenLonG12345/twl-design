@@ -1,4 +1,4 @@
-/* Hallmark · redesign: style specimens (01 02 03 05 06 08 09 10 13 14 15) · one signature move per style · CSS-only, genre-true
+/* Hallmark · redesign: style specimens (01 02 03 05 06 08 09 10 13 14 15; 06 14 15 again) · one signature move per style · CSS-only, genre-true
  * Hallmark · pre-emit critique: P4 H4 E4 S5 R4 V5
  */
 /* The sample page every style dresses. .frame is the size container; .page carries one style's tokens via [data-style].
@@ -315,48 +315,73 @@
    ====================================================================== */
 .page[data-style='dark-luxury'] {
   --bg: #0e0d0b; --surface: transparent; --ink: #ede6d6; --muted: #9c9481; --accent: #c8a96a; --accent-ink: #0e0d0b;
-  --line: #2e2a22; --r: 0px;
+  --line: #3a3326; --r: 0px;
+  --foil: linear-gradient(120deg, #8a6d3b, #e8cf96 30%, #b8955a 52%, #f3e2b3 72%, #9c7a43);
   --fd: var(--sf-cormorant), 'Songti SC', serif; --fb: var(--sf-dm-sans), var(--font-cjk), system-ui, sans-serif;
-  --tw: 500; --ts: -0.01em; --tl: 1.02; --label-ls: 0.32em;
+  --tw: 500; --ts: -0.01em; --tl: 1; --label-ls: 0.32em;
   text-align: center;
+  /* a warm spotlight falls on the arch; the rest stays in shadow */
+  background:
+    radial-gradient(55% 50% at 74% 34%, #2b2418, transparent 70%),
+    radial-gradient(45% 35% at 10% 100%, #1a1711, transparent 70%),
+    #0e0d0b;
 }
-/* an inset gold frame around the whole page */
 .page[data-style='dark-luxury']::after { content: ''; position: absolute; inset: 10px; border: 1px solid rgb(200 169 106 / 0.28); pointer-events: none; }
 .page[data-style='dark-luxury'] .bar { display: grid; grid-template-columns: 1fr auto 1fr; padding-bottom: 18px; border-bottom: 1px solid var(--line); }
-.page[data-style='dark-luxury'] .logo { grid-column: 2; grid-row: 1; justify-content: center; font-size: 20px; letter-spacing: 0.24em; text-transform: uppercase; font-weight: 500; }
+.page[data-style='dark-luxury'] .logo {
+  grid-column: 2; grid-row: 1; justify-content: center; font-size: 22px; font-weight: 500; letter-spacing: 0.26em; text-transform: uppercase;
+  background: var(--foil); -webkit-background-clip: text; background-clip: text; color: transparent;
+}
 .page[data-style='dark-luxury'] .mark { display: none; }
 .page[data-style='dark-luxury'] .links { grid-column: 1; grid-row: 1; margin: 0; font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; }
 .page[data-style='dark-luxury'] .navCta { grid-column: 3; grid-row: 1; justify-self: end; border-color: var(--accent); color: var(--accent); font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; }
-.page[data-style='dark-luxury'] .hero { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+.page[data-style='dark-luxury'] .hero { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); }
 .page[data-style='dark-luxury'] .heroText { text-align: left; }
 .page[data-style='dark-luxury'] .eyebrow { font-weight: 400; font-size: 11px; color: var(--accent); }
-.page[data-style='dark-luxury'] .title { font-size: clamp(36px, 7.2cqi, 84px); font-style: italic; }
-.page[data-style='dark-luxury'] .primary, .page[data-style='dark-luxury'] .secondary { height: 44px; font-weight: 500; font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; }
-.page[data-style='dark-luxury'] .primary { background: none; border-color: var(--accent); color: var(--accent); }
-.page[data-style='dark-luxury'] .secondary { border-color: transparent; color: var(--muted); padding: 0 8px; }
+.page[data-style='dark-luxury'] .eyebrow::before { content: ''; display: inline-block; width: 32px; height: 1px; margin-right: 12px; vertical-align: middle; background: var(--accent); }
+.page[data-style='dark-luxury'] .title { margin-top: 20px; font-size: clamp(40px, 8cqi, 96px); font-style: italic; }
+.page[data-style='dark-luxury'] .lede { max-width: 40ch; margin-top: 20px; }
+.page[data-style='dark-luxury'] .actions { align-items: center; gap: 28px; margin-top: 36px; }
+.page[data-style='dark-luxury'] .primary, .page[data-style='dark-luxury'] .secondary { height: 48px; font-weight: 500; font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; }
+.page[data-style='dark-luxury'] .primary { padding: 0 28px; border: 0; background: var(--foil); color: var(--accent-ink); }
+.page[data-style='dark-luxury'] .secondary { padding: 0; border: 0; color: var(--ink); }
+.page[data-style='dark-luxury'] .secondary::after { content: '→'; margin-left: 10px; color: var(--accent); letter-spacing: 0; }
+/* a lit niche: one polished gold orb resting on a plinth */
 .page[data-style='dark-luxury'] .art { aspect-ratio: 3 / 4; max-width: 300px; justify-self: center; width: 100%; }
-.page[data-style='dark-luxury'] .a1 { inset: 0; border-radius: 999px 999px 0 0; border: 1px solid var(--accent); background: radial-gradient(70% 60% at 50% 30%, #3a3020, #17150f 70%); }
-.page[data-style='dark-luxury'] .a1::after { content: ''; position: absolute; inset: 12px; border: 1px solid rgb(200 169 106 / 0.35); border-radius: inherit; }
-.page[data-style='dark-luxury'] .a2 { width: 40%; left: 30%; right: auto; bottom: 14%; border-radius: 999px 999px 0 0; aspect-ratio: 3 / 4; background: linear-gradient(#c8a96a, #6e5a32); opacity: 0.85; }
-.page[data-style='dark-luxury'] .a3 { left: 12%; right: 12%; width: auto; bottom: 7%; height: 1px; border-radius: 0; background: var(--accent); }
-.page[data-style='dark-luxury'] .cards { gap: 0; }
-.page[data-style='dark-luxury'] .card { border-width: 1px 0; border-radius: 0; padding: 24px 18px; justify-items: center; }
-.page[data-style='dark-luxury'] .card + .card { border-left-width: 1px; }
-/* roman numerals instead of 01 02 03 */
-.page[data-style='dark-luxury'] .k { font-size: 0; }
-.page[data-style='dark-luxury'] .k::before { font: 500 18px / 1 var(--fd); letter-spacing: 0.2em; color: var(--accent); }
+.page[data-style='dark-luxury'] .a1 {
+  inset: 0; border-radius: 999px 999px 0 0; border: 1px solid var(--accent);
+  background: radial-gradient(70% 45% at 50% 16%, rgb(232 207 150 / 0.32), transparent 70%), linear-gradient(#1d1912, #0f0e0b 82%);
+}
+.page[data-style='dark-luxury'] .a1::after { content: ''; position: absolute; inset: 12px 12px 0; border: 1px solid rgb(200 169 106 / 0.3); border-bottom: 0; border-radius: inherit; }
+.page[data-style='dark-luxury'] .a2 {
+  left: 29%; right: auto; bottom: 30%; width: 42%;
+  background: radial-gradient(circle at 34% 28%, #fff7df 0 5%, #ecd39b 20%, #b8955a 48%, #5e4722 78%, #2a1f0f);
+  box-shadow: 0 0 70px rgb(232 207 150 / 0.3), 0 26px 30px -14px rgb(0 0 0 / 0.85);
+}
+.page[data-style='dark-luxury'] .a3 {
+  left: 16%; right: 16%; bottom: 10%; width: auto; height: 20%; border-radius: 0;
+  border-top: 1px solid var(--accent); background: linear-gradient(#2a241a, #13110d);
+}
+.page[data-style='dark-luxury'] .a3::before { content: ''; position: absolute; top: -1px; left: 22%; right: 22%; height: 10px; background: radial-gradient(closest-side, rgb(243 226 179 / 0.55), transparent); }
+.page[data-style='dark-luxury'] .cards { gap: 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.page[data-style='dark-luxury'] .card { justify-items: center; gap: 12px; padding: 32px 22px; border: 0; border-radius: 0; }
+.page[data-style='dark-luxury'] .card + .card { border-left: 1px solid var(--line); }
+/* roman numerals in small gold diamonds */
+.page[data-style='dark-luxury'] .k { display: grid; place-items: center; width: 38px; height: 38px; margin-bottom: 6px; border: 1px solid rgb(200 169 106 / 0.55); font-size: 0; transform: rotate(45deg); }
+.page[data-style='dark-luxury'] .k::before { display: block; font: 500 15px / 1 var(--fd); letter-spacing: 0.06em; color: var(--accent); transform: rotate(-45deg); }
 .page[data-style='dark-luxury'] .card:nth-child(1) .k::before { content: 'I'; }
 .page[data-style='dark-luxury'] .card:nth-child(2) .k::before { content: 'II'; }
 .page[data-style='dark-luxury'] .card:nth-child(3) .k::before { content: 'III'; }
-.page[data-style='dark-luxury'] .cardTitle { font-size: 26px; font-weight: 500; }
-.page[data-style='dark-luxury'] .tag { font: italic 500 19px / 1 var(--fd); color: var(--accent); }
-.page[data-style='dark-luxury'] .foot { flex-direction: column; align-items: center; border: 0; }
+.page[data-style='dark-luxury'] .cardTitle { font-size: 28px; font-weight: 500; }
+.page[data-style='dark-luxury'] .tag { font: italic 500 20px / 1.2 var(--fd); background: var(--foil); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.page[data-style='dark-luxury'] .foot { flex-direction: column; align-items: center; gap: 18px; border: 0; }
 /* a gold rule with a diamond in the middle */
 .page[data-style='dark-luxury'] .foot::before {
-  content: '◆'; width: 180px; font-size: 9px; line-height: 1; color: var(--accent);
+  content: '◆'; width: 200px; font-size: 9px; line-height: 1; color: var(--accent);
   background: linear-gradient(var(--accent), var(--accent)) 0 50% / 42% 1px no-repeat, linear-gradient(var(--accent), var(--accent)) 100% 50% / 42% 1px no-repeat;
 }
-.page[data-style='dark-luxury'] .quote { font-size: 26px; }
+.page[data-style='dark-luxury'] .quote { max-width: 26ch; font-size: 32px; line-height: 1.25; }
+.page[data-style='dark-luxury'] .cite { margin-top: 14px; font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--accent); }
 .page[data-style='dark-luxury'] .hours { font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; }
 
 /* ======================================================================
@@ -655,53 +680,65 @@
   --bg: #f4efe4; --surface: transparent; --ink: #1a1a1a; --muted: #555049; --accent: #9e1b1b; --accent-ink: #f4efe4;
   --line: #1a1a1a; --r: 0px;
   --fd: var(--sf-playfair), 'Songti SC', serif; --fb: var(--sf-caslon), 'Songti SC', Georgia, serif;
-  --tw: 900; --ts: -0.02em; --tl: 0.95; --label-ls: 0.16em;
+  --tw: 900; --ts: -0.02em; --tl: 0.92; --label-ls: 0.16em;
   gap: clamp(20px, 3.5cqi, 36px);
 }
-.page[data-style='newspaper'] .bar { display: grid; justify-items: center; gap: 10px; padding-bottom: 10px; border-bottom: 4px double var(--ink); }
-.page[data-style='newspaper'] .logo { font: 900 clamp(30px, 6.8cqi, 76px) / 1 var(--fd); letter-spacing: -0.02em; font-style: italic; }
+/* masthead with ears, then a thick-and-thin dateline band */
+.page[data-style='newspaper'] .bar { position: relative; display: grid; justify-items: center; gap: 12px; }
+.page[data-style='newspaper'] .bar::before,
+.page[data-style='newspaper'] .bar::after { position: absolute; top: 6px; font: 700 10px / 1.4 var(--fb); letter-spacing: 0.18em; color: var(--ink); }
+.page[data-style='newspaper'] .bar::before { content: '★ ★ ★'; left: 0; color: var(--accent); }
+.page[data-style='newspaper'] .bar::after { content: 'Nº 001'; right: 0; }
+.page[data-style='newspaper'] .logo { font: 900 clamp(34px, 8.4cqi, 96px) / 0.9 var(--fd); letter-spacing: -0.035em; }
 .page[data-style='newspaper'] .mark { display: none; }
-/* the section links become a dateline band between rules */
-.page[data-style='newspaper'] .links { justify-content: center; width: 100%; margin: 0; padding-top: 6px; border-top: 1px solid var(--ink); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink); gap: 28px; }
+.page[data-style='newspaper'] .links {
+  justify-content: center; width: 100%; margin: 0; padding: 6px 0; gap: 28px;
+  border-top: 3px solid var(--ink); border-bottom: 1px solid var(--ink);
+  font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink);
+}
 .page[data-style='newspaper'] .navCta { display: none; }
 .page[data-style='newspaper'] .hero { grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); align-items: start; gap: 0; }
 .page[data-style='newspaper'] .heroText { padding-right: 24px; border-right: 1px solid var(--line); }
-.page[data-style='newspaper'] .eyebrow { color: var(--accent); font: 700 11px / 1.3 var(--fb); }
-.page[data-style='newspaper'] .title { font-size: clamp(34px, 6.8cqi, 80px); }
+/* the kicker sits in a solid red box */
+.page[data-style='newspaper'] .eyebrow { display: inline-block; padding: 4px 8px; background: var(--accent); color: var(--accent-ink); font: 700 11px / 1.3 var(--fb); }
+.page[data-style='newspaper'] .title { font-size: clamp(36px, 7.6cqi, 90px); }
 .page[data-style='newspaper'] .lede { max-width: 52ch; color: var(--ink); text-align: justify; hyphens: auto; }
 .page[data-style='newspaper'] .lede::first-letter { float: left; margin: 6px 8px 0 0; font: 900 50px / 0.78 var(--fd); color: var(--accent); }
 .page[data-style='newspaper'] .primary, .page[data-style='newspaper'] .secondary { height: 40px; font: 700 12px / 1 var(--fb); letter-spacing: 0.14em; text-transform: uppercase; }
 .page[data-style='newspaper'] .primary { background: var(--ink); color: var(--bg); }
-/* a halftone photograph with a caption */
+/* a real halftone: a dot screen multiplied over a greyscale scene, then thresholded */
 .page[data-style='newspaper'] .art { margin-left: 24px; aspect-ratio: 3 / 4; }
-.page[data-style='newspaper'] .a1 { inset: 0 0 30px 0; border: 1px solid var(--ink); border-radius: 0; background: #ebe4d4; overflow: hidden; }
-.page[data-style='newspaper'] .a1::before {
-  content: ''; position: absolute; inset: 0;
-  background: radial-gradient(circle, var(--ink) 0 45%, transparent 50%) 0 0 / 6px 6px;
-  -webkit-mask-image: linear-gradient(transparent 8%, rgb(0 0 0 / 0.5) 58%, #000);
-  mask-image: linear-gradient(transparent 8%, rgb(0 0 0 / 0.5) 58%, #000);
+.page[data-style='newspaper'] .a1 {
+  inset: 0 0 34px 0; border-radius: 0; outline: 1px solid var(--ink);
+  background:
+    radial-gradient(closest-side, #777, #fff) 0 0 / 6px 6px,
+    radial-gradient(circle at 68% 28%, #a0a0a0 0 9%, transparent 13%),
+    radial-gradient(130% 55% at 22% 100%, #8e8e8e 0 55%, transparent 56%),
+    radial-gradient(110% 42% at 92% 100%, #b4b4b4 0 55%, transparent 56%),
+    linear-gradient(#c8c8c8, #f8f8f8 58%);
+  /* only the dot screen multiplies; tones between 0.5 and 1 become dot sizes after the contrast threshold */
+  background-blend-mode: multiply, normal, normal, normal, normal;
+  filter: grayscale(1) contrast(14);
+  mix-blend-mode: multiply;
 }
-.page[data-style='newspaper'] .a1::after {
-  content: ''; position: absolute; top: 14%; left: 26%; width: 48%; aspect-ratio: 1; border-radius: 50%;
-  background: radial-gradient(circle, var(--ink) 0 60%, transparent 66%) 0 0 / 5px 5px;
-  -webkit-mask-image: radial-gradient(closest-side, #000 55%, transparent);
-  mask-image: radial-gradient(closest-side, #000 55%, transparent);
-}
+/* thumbnails shrink the page about 3×; a coarser screen keeps the dots from turning to moiré */
+:global(.scaled) .page[data-style='newspaper'] .a1 { background-size: 18px 18px, auto, auto, auto, auto; }
 .page[data-style='newspaper'] .a2 { display: none; }
 .page[data-style='newspaper'] .a3 {
-  left: 0; right: 0; bottom: 0; width: auto; height: 20px; border-radius: 0;
-  background: linear-gradient(#bdb5a6, #bdb5a6) 0 4px / 72% 3px no-repeat, linear-gradient(#bdb5a6, #bdb5a6) 0 12px / 44% 3px no-repeat;
+  left: 0; right: 0; bottom: 0; width: auto; height: 22px; border-radius: 0;
+  background: linear-gradient(#a49b8b, #a49b8b) 0 6px / 74% 2px no-repeat, linear-gradient(#a49b8b, #a49b8b) 0 13px / 46% 2px no-repeat;
 }
 .page[data-style='newspaper'] .cards { gap: 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 .page[data-style='newspaper'] .card { border: 0; padding: 16px 18px; }
 .page[data-style='newspaper'] .card + .card { border-left: 1px solid var(--line); }
 .page[data-style='newspaper'] .k { font: 700 11px / 1 var(--fb); letter-spacing: 0.16em; color: var(--accent); }
 .page[data-style='newspaper'] .k::before { content: 'No. '; }
-.page[data-style='newspaper'] .cardTitle { font-size: 22px; line-height: 1.05; }
+.page[data-style='newspaper'] .cardTitle { font-size: 24px; line-height: 1.05; }
 .page[data-style='newspaper'] .cardText { color: var(--ink); }
 .page[data-style='newspaper'] .tag { font: italic 700 15px / 1 var(--fb); }
-.page[data-style='newspaper'] .foot { border-top: 0; padding-top: 0; }
-.page[data-style='newspaper'] .quote { font-size: 22px; }
+.page[data-style='newspaper'] .foot { flex-direction: column; align-items: center; gap: 10px; padding-top: 0; border-top: 0; text-align: center; }
+.page[data-style='newspaper'] .quote { max-width: 34ch; font-size: 26px; line-height: 1.25; }
+.page[data-style='newspaper'] .hours { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink); }
 
 /* ======================================================================
    15 · Nanyang Heritage
@@ -709,12 +746,22 @@
 .page[data-style='nanyang-heritage'] {
   --bg: #f3e7cf; --surface: #fbf3e2; --ink: #2a1e14; --muted: #6e5a45; --accent: #b3261e; --accent-ink: #fbf3e2;
   --line: #2a1e14; --r: 6px; --bw: 2px;
-  --gold: #d9a441; --teal: #1f5e4e; --cream: #fbf3e2;
+  --gold: #d9a441; --gold-ink: #f1c96b; --teal: #1f5e4e; --cream: #fbf3e2; --tile: #f6e6c4;
   --fd: var(--sf-alfa-slab), 'Hei', var(--font-cjk), serif; --fb: var(--sf-dm-sans), var(--font-cjk), system-ui, sans-serif;
   --tw: 400; --ts: 0.005em; --tl: 1.02; --label-ls: 0.12em;
+  padding-bottom: calc(clamp(18px, 4.5cqi, 48px) + 18px);
 }
-.page[data-style='nanyang-heritage'] .bar { padding: 10px 14px; border-radius: 6px; background: var(--accent); color: var(--cream); outline: 2px solid var(--gold); outline-offset: -7px; }
-.page[data-style='nanyang-heritage'] .logo { font-size: 20px; letter-spacing: 0.02em; color: var(--cream); }
+/* a Peranakan tile skirting along the bottom */
+.page[data-style='nanyang-heritage']::after {
+  content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 18px; border-top: 2px solid var(--gold);
+  background: conic-gradient(from 135deg at 50% 0, var(--accent) 0 90deg, var(--teal) 0) 0 0 / 18px 100%;
+}
+/* the signboard: red panel, double gold border, gold lettering */
+.page[data-style='nanyang-heritage'] .bar {
+  padding: 14px 20px; border-radius: 4px; background: var(--accent);
+  outline: 2px solid var(--gold); outline-offset: -8px; box-shadow: 0 0 0 2px var(--ink);
+}
+.page[data-style='nanyang-heritage'] .logo { font-size: 22px; letter-spacing: 0.03em; color: var(--gold-ink); text-shadow: 2px 2px 0 #5c120e; }
 .page[data-style='nanyang-heritage'] .mark { border-radius: 50%; background: var(--gold); box-shadow: inset 0 0 0 4px var(--accent), inset 0 0 0 6px var(--gold); }
 .page[data-style='nanyang-heritage'] .links { color: #f6dcae; }
 .page[data-style='nanyang-heritage'] .navCta { border-color: var(--gold); color: var(--cream); }
@@ -722,41 +769,47 @@
   display: inline-block; padding: 6px 10px; border: 2px solid var(--accent); border-radius: 4px; color: var(--accent); transform: rotate(-3deg);
   box-shadow: inset 0 0 0 2px var(--bg), inset 0 0 0 3px var(--accent);
 }
-/* a sign-painter's gold drop shadow */
-.page[data-style='nanyang-heritage'] .title { color: var(--ink); text-shadow: 3px 3px 0 var(--gold); }
+/* teal sign lettering with a gold sign-painter's shadow */
+.page[data-style='nanyang-heritage'] .title { margin-top: 20px; color: var(--teal); text-shadow: 3px 3px 0 var(--gold); }
 .page[data-style='nanyang-heritage'] .secondary { border-color: var(--teal); color: var(--teal); }
+/* one 2×2 medallion tile: petal star, gold rings, corner quarters that meet as rosettes */
 .page[data-style='nanyang-heritage'] .art {
-  aspect-ratio: 1; border: 2px solid var(--ink); border-radius: 6px; overflow: hidden;
+  aspect-ratio: 1; border: 3px solid var(--ink); border-radius: 4px; overflow: hidden; box-shadow: 6px 6px 0 rgb(42 30 20 / 0.18);
   background:
-    radial-gradient(circle at 50% 50%, var(--cream) 0 16%, var(--gold) 16.5% 20%, transparent 20.5%) 0 0 / 25% 25%,
-    radial-gradient(circle at 0 0, var(--accent) 0 22%, transparent 22.5%) 0 0 / 25% 25%,
-    radial-gradient(circle at 100% 100%, var(--accent) 0 22%, transparent 22.5%) 0 0 / 25% 25%,
-    radial-gradient(circle at 100% 0, var(--teal) 0 22%, transparent 22.5%) 0 0 / 25% 25%,
-    radial-gradient(circle at 0 100%, var(--teal) 0 22%, transparent 22.5%) 0 0 / 25% 25%,
-    #f6e6c4;
+    linear-gradient(90deg, var(--ink) 0 2px, transparent 2px) 0 0 / 50% 100%,
+    linear-gradient(var(--ink) 0 2px, transparent 2px) 0 0 / 100% 50%,
+    radial-gradient(circle, var(--accent) 0 8%, var(--gold) 8.5% 12%, transparent 12.5%) 0 0 / 50% 50%,
+    radial-gradient(circle at 0 0, var(--accent) 0 12%, var(--gold) 12.5% 15%, transparent 15.5%) 0 0 / 50% 50%,
+    radial-gradient(circle at 100% 0, var(--accent) 0 12%, var(--gold) 12.5% 15%, transparent 15.5%) 0 0 / 50% 50%,
+    radial-gradient(circle at 0 100%, var(--accent) 0 12%, var(--gold) 12.5% 15%, transparent 15.5%) 0 0 / 50% 50%,
+    radial-gradient(circle at 100% 100%, var(--accent) 0 12%, var(--gold) 12.5% 15%, transparent 15.5%) 0 0 / 50% 50%,
+    radial-gradient(circle, transparent 0 30%, var(--gold) 30.5% 32.5%, var(--tile) 33%) 0 0 / 50% 50%,
+    repeating-conic-gradient(var(--teal) 0 12deg, var(--tile) 12deg 30deg) 0 0 / 50% 50%;
 }
-.page[data-style='nanyang-heritage'] .a1, .page[data-style='nanyang-heritage'] .a2 { display: none; }
-.page[data-style='nanyang-heritage'] .a3 { left: 32%; top: 32%; bottom: auto; width: 36%; height: auto; aspect-ratio: 1; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 6px var(--gold), 0 0 0 9px var(--ink), inset 0 0 0 10px var(--accent), inset 0 0 0 12px var(--gold); }
-/* kopitiam price boards: chalkboard green in a gold frame */
+.page[data-style='nanyang-heritage'] .a1, .page[data-style='nanyang-heritage'] .a2, .page[data-style='nanyang-heritage'] .a3 { display: none; }
+/* enamel-sign cards; the middle one is the featured teal board */
 .page[data-style='nanyang-heritage'] .cards { gap: 14px; }
 .page[data-style='nanyang-heritage'] .card {
-  border: 3px solid var(--gold); box-shadow: 0 0 0 2px var(--ink); color: var(--cream);
-  background: radial-gradient(circle at 30% 20%, rgb(255 255 255 / 0.07), transparent 60%), var(--teal);
-  outline: 1px dashed rgb(251 243 226 / 0.45); outline-offset: -9px;
+  padding: 22px; border-color: var(--ink); background: var(--cream);
+  outline: 1px solid var(--accent); outline-offset: -7px; box-shadow: 4px 4px 0 rgb(42 30 20 / 0.18);
 }
-.page[data-style='nanyang-heritage'] .k { color: var(--gold); }
-.page[data-style='nanyang-heritage'] .cardTitle { color: var(--cream); font-size: 18px; }
-.page[data-style='nanyang-heritage'] .cardText { color: #cfe0d6; }
-.page[data-style='nanyang-heritage'] .tag { justify-self: start; padding: 4px 10px; border-radius: 4px; background: var(--cream); color: var(--accent); font: 400 16px / 1 var(--fd); }
-.page[data-style='nanyang-heritage'] .foot { border-top-style: dashed; }
-.page[data-style='nanyang-heritage'] .quote { font: 600 18px / 1.4 var(--fb); }
+.page[data-style='nanyang-heritage'] .k { display: inline-grid; place-items: center; justify-self: start; width: 34px; height: 34px; border-radius: 50%; background: var(--accent); color: var(--cream); font: 400 14px / 1 var(--fd); letter-spacing: 0; }
+.page[data-style='nanyang-heritage'] .cardTitle { color: var(--teal); font-size: 19px; }
+.page[data-style='nanyang-heritage'] .tag { justify-self: start; padding: 4px 10px; border-radius: 3px; background: var(--accent); color: var(--cream); font: 400 15px / 1 var(--fd); transform: rotate(-2deg); }
+.page[data-style='nanyang-heritage'] .card:nth-child(2) { background: var(--teal); outline-color: var(--gold); }
+.page[data-style='nanyang-heritage'] .card:nth-child(2) .k { background: var(--gold); color: var(--ink); }
+.page[data-style='nanyang-heritage'] .card:nth-child(2) .cardTitle { color: var(--cream); }
+.page[data-style='nanyang-heritage'] .card:nth-child(2) .cardText { color: #cfe0d6; }
+.page[data-style='nanyang-heritage'] .card:nth-child(2) .tag { background: var(--gold); color: var(--ink); }
+.page[data-style='nanyang-heritage'] .foot { border-top: 2px solid var(--ink); }
+.page[data-style='nanyang-heritage'] .quote { font: 400 22px / 1.3 var(--fd); color: var(--accent); }
 
 /* Column rules only make sense side by side: once the hero and cards stack, rules run between rows instead. */
 @container (max-width: 680px) {
   /* beats the per-style column overrides above, so every style stacks on narrow screens */
   .page[data-style] .hero, .page[data-style] .cards { grid-template-columns: minmax(0, 1fr); }
   .page[data-style='warm-editorial'] .card, .page[data-style='warm-editorial'] .card + .card { padding: 18px 0; border-left: 0; }
-  .page[data-style='dark-luxury'] .card + .card { border-left-width: 0; border-top-width: 0; }
+  .page[data-style='dark-luxury'] .card + .card { border-left: 0; border-top: 1px solid var(--line); }
   .page[data-style='newspaper'] .heroText { padding-right: 0; border-right: 0; }
   .page[data-style='newspaper'] .art { margin-left: 0; aspect-ratio: 4 / 3; }
   .page[data-style='newspaper'] .card + .card { border-left: 0; border-top: 1px solid var(--line); }
