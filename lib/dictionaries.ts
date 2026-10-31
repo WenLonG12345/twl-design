@@ -1,5 +1,6 @@
 import type { Locale } from './i18n'
 import type { Component, Trigger } from './motions'
+import type { PaletteRole } from './styles'
 
 const en = {
   brand: 'Motion Library',
@@ -10,7 +11,8 @@ const en = {
   },
   nav: {
     search: 'Search motions…',
-    library: 'Library',
+    library: 'Motions',
+    styles: 'Styles',
     switchLang: '中文',
     switchLangLabel: 'Switch to Simplified Chinese',
     toDark: 'Switch to dark mode',
@@ -95,6 +97,63 @@ const en = {
     submit: 'Continue on GitHub',
     close: 'Close',
   },
+  styles: {
+    meta: {
+      title: 'Style Library',
+      description:
+        'The same studio homepage in 15 visual styles, from Swiss minimal to Nanyang heritage. Every style comes with a copy-ready AI prompt in English and Simplified Chinese.',
+    },
+    hero: {
+      // The middle part gets the terracotta underline; {n} is the number of styles.
+      title: ['One page, ', '{n}', ' styles.'],
+      lede: 'The same twlworks homepage, dressed {n} different ways. Pick the one that feels like your brand, copy its prompt into an AI coding tool, and your own page follows.',
+      count: '{n} styles',
+    },
+    switcher: {
+      label: 'Choose a style',
+      play: 'Auto-play',
+      pause: 'Pause',
+      details: 'Style details',
+      bestFor: 'Best for',
+      previewOf: 'Sample page in the style:',
+    },
+    grid: { title: 'All styles' },
+    detail: {
+      back: 'All styles',
+      prompt: 'AI prompt',
+      palette: 'Palette',
+      type: 'Typography',
+      display: 'Headlines',
+      body: 'Body',
+      bestFor: 'Best for',
+      motions: 'Motions that suit it',
+      prev: 'Previous style',
+      next: 'Next style',
+      readOther: '阅读简体中文版',
+    },
+    roles: {
+      bg: 'Background',
+      surface: 'Surface',
+      ink: 'Text',
+      muted: 'Secondary',
+      accent: 'Accent',
+      extra: 'Support',
+    } satisfies Record<PaletteRole, string>,
+    note: 'The sample page is the twlworks homepage.',
+    cta: {
+      title: 'Want your business to look like this?',
+      text: 'I design and build websites and business systems for Malaysian SMEs: landing pages, online ordering, bookings and admin dashboards. Pick a style you like and tell me about your business.',
+      button: 'Talk to twlworks',
+    },
+    use: {
+      title: 'From a style to your own site',
+      steps: [
+        'Flip through the styles on the same page and pick the one that fits your brand.',
+        'Copy its prompt. It covers colour, type, layout, components and motion, in the language you read.',
+        'Paste it into Claude, Cursor or any AI coding tool together with your own content.',
+      ],
+    },
+  },
   footer: '© 2026 Motion Library by twlworks · Demos and prompts are original work.',
 }
 
@@ -110,6 +169,7 @@ const zhCN: Dictionary = {
   nav: {
     search: '搜索动效…',
     library: '动效列表',
+    styles: '风格库',
     switchLang: 'EN',
     switchLangLabel: 'Switch to English',
     toDark: '切换到深色模式',
@@ -192,6 +252,62 @@ const zhCN: Dictionary = {
     cancel: '取消',
     submit: '前往 GitHub 提交',
     close: '关闭',
+  },
+  styles: {
+    meta: {
+      title: '风格库',
+      description:
+        '同一个工作室首页，用 15 种视觉风格呈现：从瑞士极简到南洋老字号。每个风格都附带可直接复制的 AI 提示词，支持简体中文与英文。',
+    },
+    hero: {
+      title: ['一个网页，', '{n}', ' 种风格。'],
+      lede: '同一个 twlworks 首页，换上 {n} 种不同的风格。挑一个最像你品牌的，把提示词复制到 AI 编程工具里，你的网页就能照着改。',
+      count: '共 {n} 种风格',
+    },
+    switcher: {
+      label: '选择风格',
+      play: '自动播放',
+      pause: '暂停',
+      details: '查看风格详情',
+      bestFor: '适合',
+      previewOf: '示例网页，当前风格：',
+    },
+    grid: { title: '全部风格' },
+    detail: {
+      back: '全部风格',
+      prompt: 'AI 提示词',
+      palette: '配色',
+      type: '字体',
+      display: '标题',
+      body: '正文',
+      bestFor: '适合',
+      motions: '适合搭配的动效',
+      prev: '上一个风格',
+      next: '下一个风格',
+      readOther: 'Read in English',
+    },
+    roles: {
+      bg: '背景',
+      surface: '表面',
+      ink: '文字',
+      muted: '次要',
+      accent: '强调',
+      extra: '辅助',
+    },
+    note: '示例网页是 twlworks 首页。',
+    cta: {
+      title: '想让你的生意也长这样？',
+      text: '我为马来西亚中小企业设计并开发网站和业务系统：品牌网页、线上点单、预约和管理后台。挑一个喜欢的风格，跟我聊聊你的生意。',
+      button: '联系 twlworks',
+    },
+    use: {
+      title: '从风格到你自己的网站',
+      steps: [
+        '在同一个网页上切换风格，挑出最适合你品牌的那一个。',
+        '复制它的提示词。提示词涵盖配色、字体、布局、组件和动效，语言跟随你正在阅读的版本。',
+        '连同你自己的内容，一起粘贴到 Claude、Cursor 或任意 AI 编程工具里。',
+      ],
+    },
   },
   footer: '© 2026 Motion Library · twlworks 出品 · 演示与提示词均为原创内容。',
 }
