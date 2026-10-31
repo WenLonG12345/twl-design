@@ -3,11 +3,11 @@ import type { Component, Trigger } from './motions'
 import type { PaletteRole } from './styles'
 
 const en = {
-  brand: 'Motion Library',
+  brand: 'Design Library',
   meta: {
-    title: 'Motion Library',
+    title: 'Design Library',
     description:
-      'Live, interactive web animation demos for CSS, JavaScript, GSAP, SVG and Canvas. Every motion comes with its source and a copy-ready AI prompt in English and Simplified Chinese.',
+      'Live web animation demos for CSS, JavaScript, GSAP, SVG and Canvas, plus a library of visual styles for small-business websites. Every motion and style comes with a copy-ready AI prompt in English and Simplified Chinese.',
   },
   nav: {
     search: 'Search motions…',
@@ -154,17 +154,17 @@ const en = {
       ],
     },
   },
-  footer: '© 2026 Motion Library by twlworks · Demos and prompts are original work.',
+  footer: '© 2026 Design Library by twlworks · Demos and prompts are original work.',
 }
 
 export type Dictionary = typeof en
 
 const zhCN: Dictionary = {
-  brand: 'Motion Library',
+  brand: 'Design Library',
   meta: {
-    title: 'Motion Library',
+    title: 'Design Library',
     description:
-      '可交互的网页动效演示，涵盖 CSS、JavaScript、GSAP、SVG 与 Canvas。每个动效都附带源代码和可直接复制的 AI 提示词，支持简体中文与英文。',
+      '可交互的网页动效演示，涵盖 CSS、JavaScript、GSAP、SVG 与 Canvas，以及适合小商家网站的视觉风格库。每个动效和风格都附带可直接复制的 AI 提示词，支持简体中文与英文。',
   },
   nav: {
     search: '搜索动效…',
@@ -309,7 +309,7 @@ const zhCN: Dictionary = {
       ],
     },
   },
-  footer: '© 2026 Motion Library · twlworks 出品 · 演示与提示词均为原创内容。',
+  footer: '© 2026 Design Library · twlworks 出品 · 演示与提示词均为原创内容。',
 }
 
 const dictionaries: Record<Locale, Dictionary> = { en, 'zh-CN': zhCN }

@@ -1,8 +1,8 @@
-# Motion Library
+# Design Library
 
-A twlworks project. Bilingual (English / Simplified Chinese) library of web animations. Each motion has a live demo, its source, and an AI prompt that recreates it. The prompt and the words inside the demo follow the site language.
+A twlworks project. Bilingual (English / Simplified Chinese) library of web animations and website styles. Each motion has a live demo, its source, and an AI prompt that recreates it; each style shows a sample business page and a prompt that restyles yours. The prompt and the words inside the demo follow the site language.
 
-[![Motion Library tour: a 45-second video of the site](docs/intro-poster.jpg)](intro.mp4)
+[![Design Library tour: a 45-second video of the site](docs/intro-poster.jpg)](intro.mp4)
 
 ## Run
 

@@ -21,7 +21,7 @@ export default function ContributeFab({ labels, locale }: { labels: Dictionary['
       '**What it does**',
       field('details'),
       field('link') && `**Reference**\n${field('link')}`,
-      `---\n_Submitted from Motion Library (${locale})_`,
+      `---\n_Submitted from Design Library (${locale})_`,
     ]
       .filter(Boolean)
       .join('\n\n')

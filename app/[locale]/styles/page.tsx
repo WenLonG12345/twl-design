@@ -13,12 +13,12 @@ import { designStyles } from '@/styles'
 export async function generateMetadata({ params }: PageProps<'/[locale]/styles'>): Promise<Metadata> {
   const { locale } = await params
   if (!hasLocale(locale)) return {}
-  const { styles } = getDictionary(locale)
+  const { brand, styles } = getDictionary(locale)
   return {
     title: styles.meta.title,
     description: styles.meta.description,
     alternates: { canonical: `/${locale}/styles`, languages: languageAlternates('/styles') },
-    openGraph: { title: styles.meta.title, description: styles.meta.description },
+    openGraph: { siteName: brand, title: styles.meta.title, description: styles.meta.description },
   }
 }
 

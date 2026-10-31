@@ -17,12 +17,12 @@ export async function generateMetadata({ params }: PageProps<'/[locale]/styles/[
   const style = getStyle(slug)
   if (!hasLocale(locale) || !style) return {}
   const copy = style.i18n[locale]
-  const { styles } = getDictionary(locale)
+  const { brand, styles } = getDictionary(locale)
   return {
     title: `${copy.name} · ${styles.meta.title}`,
     description: copy.summary,
     alternates: { canonical: `/${locale}/styles/${slug}`, languages: languageAlternates(`/styles/${slug}`) },
-    openGraph: { type: 'article', title: copy.name, description: copy.summary },
+    openGraph: { type: 'article', siteName: brand, title: copy.name, description: copy.summary },
   }
 }
 

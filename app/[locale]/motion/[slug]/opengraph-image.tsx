@@ -6,7 +6,7 @@ import { getMotion } from '@/motions'
 
 export const size = ogSize
 export const contentType = 'image/png'
-export const alt = 'Motion Library'
+export const alt = 'Design Library'
 
 export default async function Image({ params }: { params: Promise<{ locale: string; slug: string }> }) {
   const { locale: raw, slug } = await params
