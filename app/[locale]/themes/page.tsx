@@ -10,19 +10,19 @@ import { fmt, hasLocale, languageAlternates, SITE_URL } from '@/lib/i18n'
 import { cjkFontsHref, styleFontVars } from '@/lib/styleFonts'
 import { designStyles } from '@/styles'
 
-export async function generateMetadata({ params }: PageProps<'/[locale]/styles'>): Promise<Metadata> {
+export async function generateMetadata({ params }: PageProps<'/[locale]/themes'>): Promise<Metadata> {
   const { locale } = await params
   if (!hasLocale(locale)) return {}
   const { brand, styles } = getDictionary(locale)
   return {
     title: styles.meta.title,
     description: styles.meta.description,
-    alternates: { canonical: `/${locale}/styles`, languages: languageAlternates('/styles') },
+    alternates: { canonical: `/${locale}/themes`, languages: languageAlternates('/themes') },
     openGraph: { siteName: brand, title: styles.meta.title, description: styles.meta.description },
   }
 }
 
-export default async function StylesPage({ params }: PageProps<'/[locale]/styles'>) {
+export default async function ThemesPage({ params }: PageProps<'/[locale]/themes'>) {
   const { locale } = await params
   if (!hasLocale(locale)) notFound()
   const dict = getDictionary(locale)
@@ -37,14 +37,14 @@ export default async function StylesPage({ params }: PageProps<'/[locale]/styles
     description: t.meta.description,
     publisher: { '@type': 'Organization', name: 'twlworks', url: 'https://www.twlworks.com' },
     inLanguage: locale,
-    url: `${SITE_URL}/${locale}/styles`,
+    url: `${SITE_URL}/${locale}/themes`,
     mainEntity: {
       '@type': 'ItemList',
       itemListElement: items.map((s, i) => ({
         '@type': 'ListItem',
         position: i + 1,
         name: s.name,
-        url: `${SITE_URL}/${locale}/styles/${s.slug}`,
+        url: `${SITE_URL}/${locale}/themes/${s.slug}`,
       })),
     },
   }
@@ -77,14 +77,14 @@ export default async function StylesPage({ params }: PageProps<'/[locale]/styles
         <ul className="grid stylegrid">
           {items.map((s) => (
             <li key={s.slug} className="card">
-              <Link href={`/${locale}/styles/${s.slug}`} className="stylecard__thumb" tabIndex={-1} aria-hidden="true">
+              <Link href={`/${locale}/themes/${s.slug}`} className="stylecard__thumb" tabIndex={-1} aria-hidden="true">
                 <ScaledPreview>
                   <StylePreview style={s.slug} copy={s.sample} />
                 </ScaledPreview>
               </Link>
               <div className="card__body">
                 <h3 className="card__title">
-                  <Link href={`/${locale}/styles/${s.slug}`}>{s.name}</Link>
+                  <Link href={`/${locale}/themes/${s.slug}`}>{s.name}</Link>
                 </h3>
                 <p className="card__summary">{s.summary}</p>
                 <ul className="tags">
@@ -95,7 +95,7 @@ export default async function StylesPage({ params }: PageProps<'/[locale]/styles
               </div>
               <div className="card__actions">
                 <CopyButton text={s.prompt} labels={dict.copy} variant="ghost" />
-                <Link className="link" href={`/${locale}/styles/${s.slug}`}>
+                <Link className="link" href={`/${locale}/themes/${s.slug}`}>
                   {dict.card.details}
                 </Link>
               </div>

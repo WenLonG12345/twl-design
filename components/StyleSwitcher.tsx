@@ -96,7 +96,7 @@ export default function StyleSwitcher({
           </ul>
           <div className="switcher__actions">
             <CopyButton text={current.prompt} labels={dict.copy} variant="primary" />
-            <Link className="link" href={`/${locale}/styles/${current.slug}`}>
+            <Link className="link" href={`/${locale}/themes/${current.slug}`}>
               {t.details} →
             </Link>
           </div>

@@ -290,6 +290,11 @@ main { display: block; }
 }
 .contrib__close:hover { background: var(--color-paper-2); color: var(--color-ink); }
 .contrib__lede, .contrib__note { font-size: var(--text-sm); color: var(--color-muted); }
+/* motion / theme switch: native radios dressed as chips */
+.contrib__kind { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-xs); margin: 0; padding: 0; border: 0; }
+.contrib__kind legend { float: left; margin-right: var(--space-xs); padding: 0; font-size: var(--text-sm); font-weight: 500; color: var(--color-ink); }
+.contrib__kind .chip:has(:checked) { background: var(--color-ink); border-color: var(--color-ink); color: var(--color-paper); }
+.contrib__kind .chip:has(:focus-visible) { outline: 2px solid var(--color-focus); outline-offset: 2px; }
 .contrib__note { font-size: var(--text-xs); }
 .field { display: grid; gap: 6px; font-size: var(--text-sm); font-weight: 500; color: var(--color-ink); }
 .field em { font-style: normal; font-weight: 400; color: var(--color-muted); }

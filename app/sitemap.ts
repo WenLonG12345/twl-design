@@ -7,8 +7,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const paths = [
     { path: '', lastModified: motions.map((m) => m.added).sort().at(-1) },
     ...motions.map((m) => ({ path: `/motion/${m.slug}`, lastModified: m.added })),
-    { path: '/styles', lastModified: designStyles.map((s) => s.added).sort().at(-1) },
-    ...designStyles.map((s) => ({ path: `/styles/${s.slug}`, lastModified: s.added })),
+    { path: '/themes', lastModified: designStyles.map((s) => s.added).sort().at(-1) },
+    ...designStyles.map((s) => ({ path: `/themes/${s.slug}`, lastModified: s.added })),
   ]
   return paths.flatMap(({ path, lastModified }) =>
     locales.map((locale) => ({

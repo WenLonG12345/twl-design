@@ -92,7 +92,7 @@ export default function Nav({
           <Link className="nav__link" href={`/${locale}`}>
             {dict.nav.library}
           </Link>
-          <Link className="nav__link" href={`/${locale}/styles`}>
+          <Link className="nav__link" href={`/${locale}/themes`}>
             {dict.nav.styles}
           </Link>
           <Link className="nav__lang" href={otherHref} hrefLang={other} lang={other} aria-label={dict.nav.switchLangLabel}>

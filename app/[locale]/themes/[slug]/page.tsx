@@ -12,7 +12,7 @@ import { designStyles, getStyle } from '@/styles'
 export const generateStaticParams = () =>
   locales.flatMap((locale) => designStyles.map((s) => ({ locale, slug: s.slug })))
 
-export async function generateMetadata({ params }: PageProps<'/[locale]/styles/[slug]'>): Promise<Metadata> {
+export async function generateMetadata({ params }: PageProps<'/[locale]/themes/[slug]'>): Promise<Metadata> {
   const { locale, slug } = await params
   const style = getStyle(slug)
   if (!hasLocale(locale) || !style) return {}
@@ -21,12 +21,12 @@ export async function generateMetadata({ params }: PageProps<'/[locale]/styles/[
   return {
     title: `${copy.name} · ${styles.meta.title}`,
     description: copy.summary,
-    alternates: { canonical: `/${locale}/styles/${slug}`, languages: languageAlternates(`/styles/${slug}`) },
+    alternates: { canonical: `/${locale}/themes/${slug}`, languages: languageAlternates(`/themes/${slug}`) },
     openGraph: { type: 'article', siteName: brand, title: copy.name, description: copy.summary },
   }
 }
 
-export default async function StylePage({ params }: PageProps<'/[locale]/styles/[slug]'>) {
+export default async function ThemePage({ params }: PageProps<'/[locale]/themes/[slug]'>) {
   const { locale, slug } = await params
   const style = getStyle(slug)
   if (!hasLocale(locale) || !style) notFound()
@@ -48,7 +48,7 @@ export default async function StylePage({ params }: PageProps<'/[locale]/styles/
     inLanguage: locale,
     dateCreated: style.added,
     keywords: copy.bestFor.join(', '),
-    url: `${SITE_URL}/${locale}/styles/${slug}`,
+    url: `${SITE_URL}/${locale}/themes/${slug}`,
   }
 
   return (
@@ -59,10 +59,10 @@ export default async function StylePage({ params }: PageProps<'/[locale]/styles/
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c') }}
       />
       <nav className="crumbs" aria-label="Breadcrumb">
-        <Link className="link" href={`/${locale}/styles`}>
+        <Link className="link" href={`/${locale}/themes`}>
           ← {t.detail.back}
         </Link>
-        <Link className="link" href={`/${other}/styles/${slug}`} hrefLang={other} lang={other}>
+        <Link className="link" href={`/${other}/themes/${slug}`} hrefLang={other} lang={other}>
           {t.detail.readOther}
         </Link>
       </nav>
@@ -154,11 +154,11 @@ export default async function StylePage({ params }: PageProps<'/[locale]/styles/
       </div>
 
       <nav className="pager" aria-label={t.grid.title}>
-        <Link className="pager__link" href={`/${locale}/styles/${prev.slug}`} rel="prev">
+        <Link className="pager__link" href={`/${locale}/themes/${prev.slug}`} rel="prev">
           <span className="pager__label">← {t.detail.prev}</span>
           <span className="pager__name">{prev.i18n[locale].name}</span>
         </Link>
-        <Link className="pager__link pager__link--next" href={`/${locale}/styles/${next.slug}`} rel="next">
+        <Link className="pager__link pager__link--next" href={`/${locale}/themes/${next.slug}`} rel="next">
           <span className="pager__label">{t.detail.next} →</span>
           <span className="pager__name">{next.i18n[locale].name}</span>
         </Link>
